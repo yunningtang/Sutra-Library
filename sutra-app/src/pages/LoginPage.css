@@ -1,0 +1,195 @@
+.login-page {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--page-padding);
+  background: var(--cream);
+}
+
+.login-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--r-full);
+  background: var(--warm);
+  border: 1px solid var(--border-ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--c-text-mute);
+  transition: all 0.18s ease;
+  z-index: 10;
+}
+
+.login-close:active {
+  transform: scale(0.9);
+}
+
+/* === Hero === */
+.login-hero {
+  text-align: center;
+  margin-bottom: 40px;
+  animation: staggerIn 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.login-title {
+  font-family: var(--font-serif);
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--c-ink);
+  margin-bottom: 6px;
+}
+
+.login-desc {
+  font-family: var(--font-ui);
+  font-size: 14px;
+  color: var(--c-text-mute);
+}
+
+/* === Form Container === */
+.login-form {
+  width: 100%;
+  max-width: 340px;
+  animation: staggerIn 0.5s cubic-bezier(0.22, 1, 0.36, 1) 60ms both;
+}
+
+/* === Google Button === */
+.google-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 13px 16px;
+  background: var(--white);
+  border: 1px solid var(--border-ink);
+  border-radius: var(--r-md);
+  font-family: var(--font-ui);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--c-ink);
+  transition: all 0.18s ease;
+}
+
+.google-btn:hover {
+  background: var(--warm);
+}
+
+.google-btn:active {
+  transform: scale(0.97);
+}
+
+.google-icon {
+  flex-shrink: 0;
+}
+
+/* === Divider === */
+.login-divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 20px 0;
+}
+
+.divider-line {
+  flex: 1;
+  height: 1px;
+  background: var(--border-ink);
+}
+
+.divider-text {
+  font-family: var(--font-ui);
+  font-size: 12px;
+  color: var(--c-text-hint);
+}
+
+/* === Form Fields === */
+.form-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.form-input {
+  width: 100%;
+  padding: 13px 16px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--c-ink);
+  background: var(--white);
+  border: 1px solid var(--c-ink-faint);
+  border-radius: var(--r-md);
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.25s ease;
+}
+
+.form-input::placeholder {
+  color: var(--c-text-hint);
+}
+
+.form-input:focus {
+  border-color: var(--theme);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--theme) 10%, transparent);
+}
+
+/* === Error === */
+.login-error {
+  font-family: var(--font-ui);
+  font-size: 13px;
+  color: var(--rose);
+  text-align: center;
+  margin-bottom: 12px;
+  animation: fadeIn 0.2s ease;
+}
+
+/* === Submit Button === */
+.submit-btn {
+  width: 100%;
+  padding: 13px;
+  background: linear-gradient(180deg, var(--theme-l), var(--theme-d));
+  color: var(--white);
+  border: none;
+  border-radius: var(--r-md);
+  font-family: var(--font-ui);
+  font-size: 15px;
+  font-weight: 600;
+  box-shadow: 0 2px 12px color-mix(in srgb, var(--theme) 25%, transparent);
+  transition: all 0.18s ease;
+}
+
+.submit-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px color-mix(in srgb, var(--theme) 30%, transparent);
+}
+
+.submit-btn:active {
+  transform: scale(0.97);
+}
+
+/* === Mode Switch === */
+.mode-switch {
+  text-align: center;
+  margin-top: 20px;
+  font-family: var(--font-ui);
+  font-size: 13px;
+  color: var(--c-text-mute);
+}
+
+.mode-link {
+  font-family: var(--font-ui);
+  font-size: 13px;
+  color: var(--theme);
+  font-weight: 600;
+  margin-left: 2px;
+  transition: opacity 0.18s ease;
+}
+
+.mode-link:active {
+  opacity: 0.7;
+}
