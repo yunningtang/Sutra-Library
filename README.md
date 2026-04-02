@@ -2,24 +2,6 @@
 
 A minimal Buddhist sutra reading app. Read, count, learn.
 
-├── types.ts
-├── manifest.ts
-├── pglm.ts          ← 大乘离文字普光明藏经（已完成）
-├── heart.ts          ← 心经
-├── eight.ts          ← 八大人觉经
-├── amitabha.ts       ← 阿弥陀经
-├── pumen.ts          ← 普门品
-├── medicine.ts       ← 药师经
-├── diamond.ts        ← 金刚经
-├── puxian.ts         ← 行愿品
-├── 42chapter.ts      ← 四十二章经
-├── wuliang.ts        ← 无量寿经
-├── dizang.ts         ← 地藏经
-├── dabeizhou.ts      ← 大悲咒
-├── lengyan-zhou.ts   ← 楞严咒
-├── shizhou.ts        ← 十小咒
-└── mengshan.ts       ← 蒙山施食仪
-
 ---
 
 ## What it does
