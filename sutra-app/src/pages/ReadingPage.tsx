@@ -31,6 +31,12 @@ export default function ReadingPage() {
   useEffect(() => {
     if (sutraId === 'pglm') {
       import('../data/pglm').then((mod) => setSutra(mod.pglm))
+    } else if (sutraId === 'diamond') {
+      import('../data/diamond').then((mod) => setSutra(mod.diamond))
+    } else if (sutraId === 'yaoshi') {
+      import('../data/yaoshi').then((mod) => setSutra(mod.yaoshi))
+    } else if (sutraId === 'heart') {
+      import('../data/heart').then((mod) => setSutra(mod.heart))
     }
   }, [sutraId])
 

@@ -242,7 +242,7 @@
   align-items: center;
   justify-content: flex-end;
   cursor: default;
-  user-select: none;
+  user-select: text;
   position: relative;
   margin-right: 2px;
 }

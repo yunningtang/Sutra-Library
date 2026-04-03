@@ -298,15 +298,87 @@ export const pglm: SutraData = {
       ],
     },
     {
-      id: 'dedication',
-      title: '回向偈',
+      id: 'closing',
+      title: '结诵仪',
       paragraphs: [
         {
-          id: 'ded01',
-          label: '回向偈',
+          id: 'cls01',
+          label: '补阙真言（三遍）',
           chars: p(
-            '愿以此功德，庄严佛净土，上报四重恩，下济三途苦，若有见闻者，悉发菩提心，尽此一报身，同生极乐国。',
-            'yuàn yǐ cǐ gōng dé zhuāng yán fó jìng tǔ shàng bào sì chóng ēn xià jì sān tú kǔ ruò yǒu jiàn wén zhě xī fā pú tí xīn jìn cǐ yī bào shēn tóng shēng jí lè guó'
+            '南无喝啰怛那·哆罗夜耶·佉啰佉啰·俱住俱住·摩啰摩啰·虎啰·吽·贺贺·苏怛拿·吽·泼抹拿·娑婆诃·',
+            'ná mó hē là dá nà duō luó yè yē qū là qū là jù zhù jù zhù mó là mó là hǔ là hōng hè hè sū dá ná hōng pō mò ná suō pó hē'
+          ),
+        },
+        {
+          id: 'cls02',
+          label: '补阙圆满真言（三遍）',
+          chars: p(
+            '唵·呼嚧呼嚧·社曳穆契·莎诃·',
+            'ǎn hū lū hū lū shè yì mù qì suō hē'
+          ),
+        },
+        {
+          id: 'cls03',
+          label: '普回向真言（三遍）',
+          chars: p(
+            '唵·娑麼啰·娑麼啰·弭麼曩·萨嚩诃·摩诃斫迦啰嚩吽·',
+            'ǎn suō mó là suō mó là mǐ mó nǎng sà wá hē mó hē zhuó jiā là wá hōng'
+          ),
+        },
+        {
+          id: 'cls04',
+          label: '（合掌三称）',
+          chars: p(
+            '南无佛 南无法 南无僧',
+            'ná mó fó ná mó fǎ ná mó sēng'
+          ),
+        },
+        {
+          id: 'cls05',
+          label: '（合掌三称）',
+          chars: p(
+            '南无本师释迦牟尼佛',
+            'ná mó běn shī shì jiā móu ní fó'
+          ),
+        },
+        {
+          id: 'cls06',
+          label: '（合掌三称）',
+          chars: p(
+            '南无观世音菩萨摩诃萨',
+            'ná mó guān shì yīn pú sà mó hē sà'
+          ),
+        },
+        {
+          id: 'cls07',
+          label: '（合掌三称）',
+          chars: p(
+            '南无护法诸天菩萨',
+            'ná mó hù fǎ zhū tiān pú sà'
+          ),
+        },
+        {
+          id: 'cls08',
+          label: '礼佛发愿文（一遍）',
+          chars: p(
+            '归命十方调御师，演扬清净微妙法，三乘四果解脱僧，愿赐慈悲哀摄受。但（某甲）自违真性，枉入迷流。随生死以飘沉，逐色声而贪染。十缠十使，积成有漏之因；六根六尘，妄作无边之罪。迷沦苦海，深溺邪途。著我耽人，举枉措直。累生业障，一切愆尤。仰三宝以慈悲，沥一心而忏悔。所愿能仁拯拔，善友提携。出烦恼之深源，到菩提之彼岸。此世福基命位，各愿昌隆；来生智种灵苗，同希增秀。生逢中国，长遇明师。正信出家，童真入道。六根通利，三业纯和。不染世缘，常修梵行。执持禁戒，尘业不侵。严护威仪，蜎飞无损。不逢八难，不缺四缘。般若智以现前，菩提心而不退。修习正法，了悟大乘。开六度之行门，越三祇之劫海。建法幢于处处，破疑网于重重。降伏众魔，绍隆三宝。承事十方诸佛，无有疲劳。修学一切法门，悉皆通达。广作福慧，普利尘沙。得六种之神通，圆一生之佛果。然后不舍法界，遍入尘劳。等观音之慈心，行普贤之愿海。他方此界，逐类随形。应现色身，演扬妙法。泥犁苦趣，饿鬼道中，或放大光明，或现诸神变，其有见我相，乃至闻我名，皆发菩提心，永出轮回苦。火镬冰河之地，变作香林；饮铜食铁之徒，化生净土。披毛戴角，负债含怨，尽罢辛酸，咸沾利乐。疾疫世而现为药草，救疗沉疴；饥馑时而化作稻粱，济诸贫馁。但有利益，无不兴崇。次期累世冤亲，现存眷属，出四生之汩没，舍万劫之爱缠。等与含生，齐成佛道。虚空有尽，我愿无穷。情与无情，同圆种智。',
+            'guī mìng shí fāng tiáo yù shī yǎn yáng qīng jìng wēi miào fǎ sān shèng sì guǒ jiě tuō sēng yuàn cì cí bēi āi shè shòu dàn mǒu jiǎ zì wéi zhēn xìng wǎng rù mí liú suí shēng sǐ yǐ piāo chén zhú sè shēng ér tān rǎn shí chán shí shǐ jī chéng yǒu lòu zhī yīn liù gēn liù chén wàng zuò wú biān zhī zuì mí lún kǔ hǎi shēn nì xié tú zhù wǒ dān rén jǔ wǎng cuò zhí lěi shēng yè zhàng yī qiè qiān yóu yǎng sān bǎo yǐ cí bēi lì yī xīn ér chàn huǐ suǒ yuàn néng rén zhěng bá shàn yǒu tí xié chū fán nǎo zhī shēn yuán dào pú tí zhī bǐ àn cǐ shì fú jī mìng wèi gè yuàn chāng lóng lái shēng zhì zhǒng líng miáo tóng xī zēng xiù shēng féng zhōng guó cháng yù míng shī zhèng xìn chū jiā tóng zhēn rù dào liù gēn tōng lì sān yè chún hé bù rǎn shì yuán cháng xiū fàn xíng zhí chí jìn jiè chén yè bù qīn yán hù wēi yí yuān fēi wú sǔn bù féng bā nàn bù quē sì yuán bō rě zhì yǐ xiàn qián pú tí xīn ér bù tuì xiū xí zhèng fǎ liǎo wù dà shèng kāi liù dù zhī xíng mén yuè sān qí zhī jié hǎi jiàn fǎ chuáng yú chù chù pò yí wǎng yú chóng chóng xiáng fú zhòng mó shào lóng sān bǎo chéng shì shí fāng zhū fó wú yǒu pí láo xiū xué yī qiè fǎ mén xī jiē tōng dá guǎng zuò fú huì pǔ lì chén shā dé liù zhǒng zhī shén tōng yuán yī shēng zhī fó guǒ rán hòu bù shě fǎ jiè biàn rù chén láo děng guān yīn zhī cí xīn xíng pǔ xián zhī yuàn hǎi tā fāng cǐ jiè zhú lèi suí xíng yìng xiàn sè shēn yǎn yáng miào fǎ ní lí kǔ qù è guǐ dào zhōng huò fàng dà guāng míng huò xiàn zhū shén biàn qí yǒu jiàn wǒ xiàng nǎi zhì wén wǒ míng jiē fā pú tí xīn yǒng chū lún huí kǔ huǒ huò bīng hé zhī dì biàn zuò xiāng lín yǐn tóng shí tiě zhī tú huà shēng jìng tǔ pī máo dài jiǎo fù zhài hán yuàn jìn bà xīn suān xián zhān lì lè jí yì shì ér xiàn wéi yào cǎo jiù liáo chén kē jī jǐn shí ér huà zuò dào liáng jì zhū pín něi dàn yǒu lì yì wú bù xīng chóng cì qī lěi shì yuān qīn xiàn cún juàn shǔ chū sì shēng zhī gǔ mò shě wàn jié zhī ài chán děng yǔ hán shēng qí chéng fó dào xū kōng yǒu jìn wǒ yuàn wú qióng qíng yǔ wú qíng tóng yuán zhǒng zhì'
+          ),
+        },
+        {
+          id: 'cls09',
+          label: '回向偈（一遍）',
+          chars: p(
+            '愿以此功德，庄严佛净土，上报四重恩，下济三途苦，若有见闻者，悉发菩提心，尽此一报身，同生极乐国。十方三世一切佛·一切菩萨摩诃萨·摩诃般若波罗蜜·',
+            'yuàn yǐ cǐ gōng dé zhuāng yán fó jìng tǔ shàng bào sì chóng ēn xià jì sān tú kǔ ruò yǒu jiàn wén zhě xī fā pú tí xīn jìn cǐ yī bào shēn tóng shēng jí lè guó shí fāng sān shì yī qiè fó yī qiè pú sà mó hē sà mó hē bō rě bō luó mì'
+          ),
+        },
+        {
+          id: 'cls10',
+          label: '三皈依（一遍）',
+          chars: p(
+            '自皈依佛，当愿众生，体解大道，发无上心；自皈依法，当愿众生，深入经藏，智慧如海；自皈依僧，当愿众生，统理大众，一切无碍。和南圣众。',
+            'zì guī yī fó dāng yuàn zhòng shēng tǐ jiě dà dào fā wú shàng xīn zì guī yī fǎ dāng yuàn zhòng shēng shēn rù jīng zàng zhì huì rú hǎi zì guī yī sēng dāng yuàn zhòng shēng tǒng lǐ dà zhòng yī qiè wú ài hé nán shèng zhòng'
           ),
         },
       ],

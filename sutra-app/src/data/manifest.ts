@@ -22,7 +22,7 @@ export const manifest: SutraManifestItem[] = [
     translator: '唐 · 玄奘',
     translatorFull: '唐三藏法师玄奘奉诏译',
     charCount: 260,
-    status: 'coming_soon',
+    status: 'available',
   },
   {
     id: 'diamond',
@@ -30,7 +30,15 @@ export const manifest: SutraManifestItem[] = [
     translator: '姚秦 · 鸠摩罗什',
     translatorFull: '姚秦天竺三藏鸠摩罗什译',
     charCount: 5000,
-    status: 'coming_soon',
+    status: 'available',
+  },
+  {
+    id: 'yaoshi',
+    name: '药师琉璃光如来本愿功德经',
+    translator: '唐 · 玄奘',
+    translatorFull: '唐三藏法师玄奘奉诏译',
+    charCount: 5000,
+    status: 'available',
   },
   {
     id: 'dizang',
