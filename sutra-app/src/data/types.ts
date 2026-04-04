@@ -37,7 +37,7 @@ export interface SutraData {
  * Helper to pair Chinese text characters with their pinyin.
  * Punctuation marks get null pinyin.
  */
-const PUNCT_RE = /[：，。？、！""''\u201c\u201d\u2018\u2019（）；·．《》\s']/
+const PUNCT_RE = /[：，。？、！""''\u201c\u201d\u2018\u2019\u300c\u300d\u300e\u300f（）；·．《》\s']/
 
 export function p(text: string, pinyinStr: string): SutraChar[] {
   const chars = [...text]

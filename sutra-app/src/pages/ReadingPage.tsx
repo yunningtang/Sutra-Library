@@ -296,20 +296,38 @@ export default function ReadingPage() {
                   className={`char-grid ${showPinyin ? 'with-pinyin' : ''}`}
                   style={{ fontSize: `${fontSize}px` }}
                 >
-                  {para.chars.map((c, i) => (
-                    <span
-                      key={i}
-                      className={`char-unit${!c.pinyin ? ' char-punct' : ''}`}
-                      onPointerDown={(e) => handleCharDown(c.char, c.pinyin, e)}
-                      onPointerUp={handleCharUp}
-                      onPointerCancel={handleCharUp}
-                    >
-                      {showPinyin && c.pinyin && (
-                        <span className="char-pinyin">{c.pinyin}</span>
-                      )}
-                      <span className="char-han">{c.char}</span>
-                    </span>
-                  ))}
+                  {para.chars.map((c, i) => {
+                    const isQuoteStart = (c.char === '\u300c' || c.char === '\u300e' || c.char === '\u201c') && i + 1 < para.chars.length
+                    if (showPinyin && c.pinyin) {
+                      return (
+                        <ruby
+                          key={i}
+                          className="char-ruby"
+                          onPointerDown={(e) => handleCharDown(c.char, c.pinyin, e)}
+                          onPointerUp={handleCharUp}
+                          onPointerCancel={handleCharUp}
+                        >
+                          {c.char}<rt>{c.pinyin}</rt>
+                        </ruby>
+                      )
+                    }
+                    if (isQuoteStart) {
+                      return (
+                        <span key={i} className="char-q">{c.char}</span>
+                      )
+                    }
+                    return (
+                      <span
+                        key={i}
+                        className="char-plain"
+                        onPointerDown={(e) => handleCharDown(c.char, c.pinyin, e)}
+                        onPointerUp={handleCharUp}
+                        onPointerCancel={handleCharUp}
+                      >
+                        {c.char}
+                      </span>
+                    )
+                  })}
                 </div>
               </div>
             ))}

@@ -256,62 +256,49 @@
   letter-spacing: 0.02em;
 }
 
-/* === Char Grid — CLReq Typography === */
+/* === Char Grid — Ruby-based CLReq Typography === */
 .char-grid {
-  display: flex;
-  flex-wrap: wrap;
+  font-family: var(--font-reading);
+  color: var(--c-ink);
   line-height: 2.0;
   line-break: strict;
   word-break: normal;
   overflow-wrap: break-word;
+  letter-spacing: 0.02em;
 }
 
+/* With pinyin: much larger line-height for ruby annotations */
 .char-grid.with-pinyin {
-  line-height: 1;
+  line-height: 2.8;
 }
 
-.char-unit {
-  display: inline-flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-end;
+/* Ruby elements for pinyin */
+.char-ruby {
+  ruby-align: center;
   cursor: default;
   user-select: text;
-  position: relative;
 }
 
-.char-grid.with-pinyin .char-unit {
-  margin-bottom: 10px;
-  margin-top: 4px;
-}
-
-.char-pinyin {
-  font-family: var(--font-ui);
+.char-grid rt {
   font-size: 10px;
+  font-family: var(--font-ui);
   color: var(--c-text-hint);
-  line-height: 1;
-  margin-bottom: 2px;
-  white-space: nowrap;
+  font-weight: 400;
   letter-spacing: 0;
-  text-align: center;
+  ruby-align: center;
 }
 
-.char-han {
-  font-family: var(--font-reading);
-  color: var(--c-ink);
-  line-height: 1.8;
+/* Plain text (no pinyin) and punctuation */
+.char-plain {
+  cursor: default;
+  user-select: text;
 }
 
-/* Punctuation compression — prevents orphaned quotes/marks on new line */
-.char-punct {
-  flex-shrink: 1;
-  margin-left: -0.1em;
-  margin-right: -0.1em;
+/* Opening quote + next char: prevent orphan line break */
+.char-q {
+  white-space: nowrap;
 }
 
-.char-punct .char-han {
-  letter-spacing: -0.2em;
-}
 
 /* === Footer === */
 .reading-footer {
