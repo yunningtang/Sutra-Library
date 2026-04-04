@@ -18,6 +18,27 @@ interface AuthState {
   syncFromCloud: () => Promise<void>
 }
 
+// Wait for zustand persist to rehydrate before syncing
+function waitForStoreRehydration(): Promise<void> {
+  return new Promise((resolve) => {
+    const state = useStore.getState()
+    // If store already has non-default data, it's rehydrated
+    if (Object.keys(state.readingCounts).length > 0 || state.favorites.length > 0 || state.counterRecords.length > 0) {
+      resolve()
+      return
+    }
+    // Otherwise wait a tick for persist to restore
+    const unsub = useStore.subscribe((s) => {
+      if (Object.keys(s.readingCounts).length > 0 || s.favorites.length > 0 || s.counterRecords.length > 0) {
+        unsub()
+        resolve()
+      }
+    })
+    // Fallback: if store is genuinely empty, resolve after 500ms
+    setTimeout(() => { unsub(); resolve() }, 500)
+  })
+}
+
 export const useAuth = create<AuthState>()((set, get) => ({
   user: null,
   session: null,
@@ -32,10 +53,16 @@ export const useAuth = create<AuthState>()((set, get) => ({
     const { data: { session } } = await supabase.auth.getSession()
     set({ session, user: session?.user ?? null, initialized: true })
 
-    supabase.auth.onAuthStateChange((_event, session) => {
+    if (session?.user) {
+      await waitForStoreRehydration()
+      await get().syncFromCloud()
+    }
+
+    supabase.auth.onAuthStateChange(async (_event, session) => {
       set({ session, user: session?.user ?? null })
       if (session?.user) {
-        get().syncFromCloud()
+        await waitForStoreRehydration()
+        await get().syncFromCloud()
       }
     })
   },
@@ -99,9 +126,11 @@ export const useAuth = create<AuthState>()((set, get) => ({
       updated_at: new Date().toISOString(),
     }
 
-    await supabase
+    const { error } = await supabase
       .from('user_data')
       .upsert(payload, { onConflict: 'user_id' })
+
+    if (error) console.error('syncToCloud error:', error)
   },
 
   syncFromCloud: async () => {
@@ -109,13 +138,16 @@ export const useAuth = create<AuthState>()((set, get) => ({
     const user = get().user
     if (!user) return
 
-    const { data } = await supabase
+    const { data, error } = await supabase
       .from('user_data')
       .select('*')
       .eq('user_id', user.id)
       .single()
 
+    if (error) console.error('syncFromCloud fetch error:', error)
+
     if (!data) {
+      // First time login — push local data to cloud
       await get().syncToCloud()
       return
     }
@@ -158,5 +190,8 @@ export const useAuth = create<AuthState>()((set, get) => ({
         darkMode: settings.darkMode !== undefined ? (settings.darkMode as boolean) : store.darkMode,
       }),
     })
+
+    // Push merged data back to cloud
+    await get().syncToCloud()
   },
 }))

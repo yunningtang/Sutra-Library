@@ -47,6 +47,7 @@ export default function ProfilePage() {
   const user = useAuth((s) => s.user)
   const signOut = useAuth((s) => s.signOut)
   const syncToCloud = useAuth((s) => s.syncToCloud)
+  const syncFromCloud = useAuth((s) => s.syncFromCloud)
   const colorInputRef = useRef<HTMLInputElement>(null)
   const [showColorPanel, setShowColorPanel] = useState(false)
   const [hexInput, setHexInput] = useState(customColor)
@@ -73,7 +74,7 @@ export default function ProfilePage() {
           <div className="profile-card-body">
             <div className="profile-card-text">{user.email}</div>
             <div className="profile-card-sub">
-              <button className="profile-sync-btn" onClick={syncToCloud}>同步数据</button>
+              <button className="profile-sync-btn" onClick={async () => { await syncFromCloud(); await syncToCloud() }}>同步数据</button>
               <span style={{ margin: '0 6px', color: 'var(--c-ink-faint)' }}>·</span>
               <button className="profile-sync-btn profile-logout-btn" onClick={signOut}>退出登录</button>
             </div>
