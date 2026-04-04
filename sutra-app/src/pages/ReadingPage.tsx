@@ -268,7 +268,7 @@ export default function ReadingPage() {
         <button className="toolbar-btn press-scale" onClick={handleClose} aria-label="返回">
           <IconBack size={18} />
         </button>
-        <div className="toolbar-title">{sutra.name}</div>
+        <div className="toolbar-title" />
         <div className="toolbar-right">
           {hasToc && (
             <button
