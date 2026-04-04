@@ -1,4 +1,4 @@
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useStore, type ThemeColor, type FontChoice } from '../store/useStore'
 import { useAuth } from '../store/useAuth'
@@ -19,6 +19,9 @@ const themeOptions: { id: ThemeColor; label: string; color: string }[] = [
   { id: 'peach', label: '蜜桃', color: '#E8A598' },
   { id: 'amber', label: '琥珀', color: '#D9A84E' },
   { id: 'rose', label: '玫瑰', color: '#D4849A' },
+  { id: 'slate', label: '岩灰', color: '#7A8B99' },
+  { id: 'teal', label: '青碧', color: '#5BA4A4' },
+  { id: 'ink', label: '墨黑', color: '#3A3A3A' },
 ]
 
 export default function ProfilePage() {
@@ -33,7 +36,9 @@ export default function ProfilePage() {
   const setFontSize = useStore((s) => s.setFontSize)
   const setFontChoice = useStore((s) => s.setFontChoice)
   const togglePinyin = useStore((s) => s.togglePinyin)
+  const showCounterRing = useStore((s) => s.showCounterRing)
   const toggleProgress = useStore((s) => s.toggleProgress)
+  const toggleCounterRing = useStore((s) => s.toggleCounterRing)
   const setThemeColor = useStore((s) => s.setThemeColor)
   const setCustomColor = useStore((s) => s.setCustomColor)
   const toggleDarkMode = useStore((s) => s.toggleDarkMode)
@@ -43,6 +48,15 @@ export default function ProfilePage() {
   const signOut = useAuth((s) => s.signOut)
   const syncToCloud = useAuth((s) => s.syncToCloud)
   const colorInputRef = useRef<HTMLInputElement>(null)
+  const [showColorPanel, setShowColorPanel] = useState(false)
+  const [hexInput, setHexInput] = useState(customColor)
+
+  const paletteColors = [
+    '#E74C3C', '#E67E22', '#F1C40F', '#2ECC71', '#1ABC9C', '#3498DB',
+    '#9B59B6', '#E91E63', '#795548', '#607D8B', '#34495E', '#16A085',
+    '#D35400', '#C0392B', '#8E44AD', '#2980B9', '#27AE60', '#F39C12',
+    '#1E90FF', '#FF6B6B', '#A29BFE', '#FD79A8', '#00CEC9', '#636E72',
+  ]
 
   const fontSizes = [18, 20, 22, 24, 26]
   const hasRecords = Object.values(readingCounts).some((c) => c > 0)
@@ -118,7 +132,7 @@ export default function ProfilePage() {
               <button
                 className={`theme-dot theme-custom ${themeColor === 'custom' ? 'active' : ''}`}
                 style={{ '--dot-color': customColor } as React.CSSProperties}
-                onClick={() => colorInputRef.current?.click()}
+                onClick={() => { setShowColorPanel(!showColorPanel); setHexInput(customColor) }}
                 title="自定义"
               >
                 <span className="custom-plus">{themeColor === 'custom' ? '' : '+'}</span>
@@ -129,9 +143,41 @@ export default function ProfilePage() {
                 type="color"
                 className="color-input-hidden"
                 value={customColor}
-                onChange={(e) => setCustomColor(e.target.value)}
+                onChange={(e) => { setCustomColor(e.target.value); setHexInput(e.target.value) }}
               />
             </div>
+            {showColorPanel && (
+              <div className="color-panel">
+                <div className="color-palette">
+                  {paletteColors.map((c) => (
+                    <button
+                      key={c}
+                      className={`palette-dot ${customColor === c && themeColor === 'custom' ? 'active' : ''}`}
+                      style={{ background: c }}
+                      onClick={() => { setCustomColor(c); setHexInput(c) }}
+                    />
+                  ))}
+                </div>
+                <div className="color-hex-row">
+                  <span className="hex-hash">#</span>
+                  <input
+                    className="hex-input"
+                    type="text"
+                    maxLength={6}
+                    value={hexInput.replace('#', '')}
+                    onChange={(e) => {
+                      const val = e.target.value.replace(/[^0-9a-fA-F]/g, '').slice(0, 6)
+                      setHexInput('#' + val)
+                      if (val.length === 6) setCustomColor('#' + val)
+                    }}
+                    placeholder="6B9E7D"
+                  />
+                  <button className="hex-pick-btn" onClick={() => colorInputRef.current?.click()}>
+                    取色
+                  </button>
+                </div>
+              </div>
+            )}
           </div>
 
           {/* Dark Mode */}
@@ -193,6 +239,18 @@ export default function ProfilePage() {
               onClick={toggleProgress}
               role="switch"
               aria-checked={showProgress}
+            >
+              <span className="toggle-knob" />
+            </button>
+          </div>
+
+          <div className="setting-item">
+            <span className="setting-label">计数进度环</span>
+            <button
+              className={`toggle ${showCounterRing ? 'on' : ''}`}
+              onClick={toggleCounterRing}
+              role="switch"
+              aria-checked={showCounterRing}
             >
               <span className="toggle-knob" />
             </button>

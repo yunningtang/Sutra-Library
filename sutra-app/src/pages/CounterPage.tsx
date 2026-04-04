@@ -6,7 +6,7 @@ import './CounterPage.css'
 type Tab = 'counter' | 'history'
 
 export default function CounterPage() {
-  const { counter, counterRecords, incrementCounter, resetCounter, setCounterTarget, saveCounterRecord, deleteCounterRecord, updateCounterRecordNote } = useStore()
+  const { counter, counterRecords, incrementCounter, resetCounter, setCounterTarget, saveCounterRecord, deleteCounterRecord, updateCounterRecordNote, showCounterRing } = useStore()
   const [tab, setTab] = useState<Tab>('counter')
   const [showReset, setShowReset] = useState(false)
   const [showTarget, setShowTarget] = useState(false)
@@ -118,17 +118,19 @@ export default function CounterPage() {
 
           {/* Progress ring */}
           <div className="counter-ring-wrap">
-            <svg className="counter-ring" viewBox="0 0 200 200">
-              <circle className="ring-bg" cx="100" cy="100" r="90" fill="none" stroke="var(--warm-alt)" strokeWidth="3" />
-              <circle className="ring-progress" cx="100" cy="100" r="90" fill="none" stroke="url(#ringGrad)" strokeWidth="4" strokeLinecap="round"
-                strokeDasharray={`${2 * Math.PI * 90}`} strokeDashoffset={`${2 * Math.PI * 90 * (1 - progress)}`} transform="rotate(-90 100 100)" />
-              <defs>
-                <linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor="var(--theme-l)" />
-                  <stop offset="100%" stopColor="var(--theme)" />
-                </linearGradient>
-              </defs>
-            </svg>
+            {showCounterRing && (
+              <svg className="counter-ring" viewBox="0 0 200 200">
+                <circle className="ring-bg" cx="100" cy="100" r="90" fill="none" stroke="var(--warm-alt)" strokeWidth="3" />
+                <circle className="ring-progress" cx="100" cy="100" r="90" fill="none" stroke="url(#ringGrad)" strokeWidth="4" strokeLinecap="round"
+                  strokeDasharray={`${2 * Math.PI * 90}`} strokeDashoffset={`${2 * Math.PI * 90 * (1 - progress)}`} transform="rotate(-90 100 100)" />
+                <defs>
+                  <linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="var(--theme-l)" />
+                    <stop offset="100%" stopColor="var(--theme)" />
+                  </linearGradient>
+                </defs>
+              </svg>
+            )}
             <button className={`counter-circle ${pressing ? 'pressed' : ''}`} onPointerDown={handleTap}>
               <span className="circle-label" />
             </button>

@@ -29,18 +29,20 @@ export default function LibraryPage() {
                   style={{ animationDelay: `${index * 40}ms` }}
                   onClick={() => navigate(`/sutra/${sutra.id}`)}
                 >
-                  <div className="sutra-card-name">{sutra.name}</div>
+                  <div className="sutra-card-header">
+                    <div className="sutra-card-name">{sutra.name}</div>
+                    {count > 0 && (
+                      <div className="sutra-card-count">
+                        <span className="count-dot" />
+                        已诵 {count} 部
+                      </div>
+                    )}
+                  </div>
                   <div className="sutra-card-meta">
                     <span className="sutra-card-translator">{sutra.translator}</span>
                     <span className="sutra-card-dot">&middot;</span>
                     <span className="sutra-card-chars">约 {sutra.charCount} 字</span>
                   </div>
-                  {count > 0 && (
-                    <div className="sutra-card-count">
-                      <span className="count-dot" />
-                      已诵 {count} 部
-                    </div>
-                  )}
                 </div>
               )
             })}
@@ -63,18 +65,20 @@ export default function LibraryPage() {
                   style={{ animationDelay: `${index * 40}ms` }}
                   onClick={() => isAvailable && navigate(`/sutra/${sutra.id}`)}
                 >
-                  <div className="sutra-card-name">{sutra.name}</div>
+                  <div className="sutra-card-header">
+                    <div className="sutra-card-name">{sutra.name}</div>
+                    {isAvailable && count > 0 && (
+                      <div className="sutra-card-count">
+                        <span className="count-dot" />
+                        已诵 {count} 部
+                      </div>
+                    )}
+                  </div>
                   <div className="sutra-card-meta">
                     <span className="sutra-card-translator">{sutra.translator}</span>
                     <span className="sutra-card-dot">&middot;</span>
                     <span className="sutra-card-chars">约 {sutra.charCount} 字</span>
                   </div>
-                  {isAvailable && count > 0 && (
-                    <div className="sutra-card-count">
-                      <span className="count-dot" />
-                      已诵 {count} 部
-                    </div>
-                  )}
                   {!isAvailable && (
                     <div className="sutra-card-coming">即将上线</div>
                   )}

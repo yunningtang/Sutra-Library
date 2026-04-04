@@ -67,6 +67,13 @@ const themeVars: Record<string, Record<string, string>> = {
     '--theme-bg': '#ECF5F5',
     '--theme-d': '#458585',
   },
+  ink: {
+    '--theme': '#3A3A3A',
+    '--theme-l': '#555555',
+    '--theme-xl': '#888888',
+    '--theme-bg': '#F0F0F0',
+    '--theme-d': '#2A2A2A',
+  },
 }
 
 // Generate light/dark/bg variants from a single hex color
