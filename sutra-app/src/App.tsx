@@ -128,6 +128,9 @@ function ThemeProvider({ children }: { children: React.ReactNode }) {
     } else {
       root.removeAttribute('data-theme')
     }
+
+    const meta = document.querySelector('meta[name="theme-color"]')
+    if (meta) meta.setAttribute('content', darkMode ? '#1C1B1A' : '#FCFCFB')
   }, [themeColor, customColor, darkMode, fontChoice])
 
   return <>{children}</>

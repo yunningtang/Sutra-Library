@@ -43,6 +43,16 @@ interface AppState {
   deleteCounterRecord: (index: number) => void
   updateCounterRecordNote: (index: number, note: string) => void
 
+  // Hints (one-time)
+  hasSeenLongPressHint: boolean
+  hasSeenToolbarHint: boolean
+  dismissLongPressHint: () => void
+  dismissToolbarHint: () => void
+
+  // Reading position
+  readingPositions: Record<string, number>
+  saveReadingPosition: (sutraId: string, scrollY: number) => void
+
   // Settings
   fontSize: number
   fontChoice: FontChoice
@@ -128,6 +138,17 @@ export const useStore = create<AppState>()(
           counterRecords: state.counterRecords.map((r, i) =>
             i === index ? { ...r, note } : r
           ),
+        })),
+
+      hasSeenLongPressHint: false,
+      hasSeenToolbarHint: false,
+      dismissLongPressHint: () => set({ hasSeenLongPressHint: true }),
+      dismissToolbarHint: () => set({ hasSeenToolbarHint: true }),
+
+      readingPositions: {},
+      saveReadingPosition: (sutraId, scrollY) =>
+        set((state) => ({
+          readingPositions: { ...state.readingPositions, [sutraId]: scrollY },
         })),
 
       fontSize: 20,

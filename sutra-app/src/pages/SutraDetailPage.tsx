@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { manifest } from '../data/manifest'
 import { useStore } from '../store/useStore'
-import { IconBack, IconHeart, IconHeartFilled, IconScroll, IconNote, IconInfo } from '../components/Icons'
+import { IconBack, IconHeart, IconHeartFilled, IconNote, IconInfo } from '../components/Icons'
 import type { SutraData } from '../data/types'
 import './SutraDetailPage.css'
 
@@ -87,10 +87,6 @@ export default function SutraDetailPage() {
       </button>
 
       <div className="detail-links">
-        <button className="detail-link-btn" onClick={() => navigate(`/read/${sutra.id}`)}>
-          <span className="link-icon-wrap"><IconScroll size={16} /></span>
-          <span>经文全文</span>
-        </button>
         <button
           className={`detail-link-btn ${activePanel === 'glossary' ? 'link-active' : ''}`}
           onClick={() => togglePanel('glossary')}

@@ -93,6 +93,7 @@
 
 /* === Primary Button === */
 .start-reading-btn {
+  position: relative;
   width: 100%;
   padding: 16px;
   background: linear-gradient(180deg, var(--theme-l), var(--theme-d));
