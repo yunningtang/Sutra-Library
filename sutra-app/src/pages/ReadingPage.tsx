@@ -113,11 +113,10 @@ export default function ReadingPage() {
 
   const currentCount = readingCounts[sutraId!] || 0
   const fontSizeOptions = [
-    { size: 18, label: '小' },
+    { size: 16, label: '小' },
     { size: 20, label: '标准' },
-    { size: 22, label: '中' },
     { size: 24, label: '大' },
-    { size: 26, label: '特大' },
+    { size: 28, label: '特大' },
   ]
 
   if (!sutra) {

@@ -128,7 +128,7 @@ export const useStore = create<AppState>()(
           ),
         })),
 
-      fontSize: 22,
+      fontSize: 20,
       fontChoice: 'serif',
       showPinyin: true,
       showProgress: true,
