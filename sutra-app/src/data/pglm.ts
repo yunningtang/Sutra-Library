@@ -1,18 +1,5 @@
 import type { SutraData } from './types'
-
-// Helper to convert a string of chars + pinyin pairs into SutraChar array
-function p(text: string, pinyinStr: string): { char: string; pinyin: string | null }[] {
-  const chars = [...text]
-  const pinyins = pinyinStr.split(' ')
-  let pi = 0
-  return chars.map((c) => {
-    const isPunctuation = /[：，。？、！\u201c\u201d（）；·\s]/.test(c)
-    if (isPunctuation) {
-      return { char: c, pinyin: null }
-    }
-    return { char: c, pinyin: pinyins[pi++] || null }
-  })
-}
+import { p } from './types'
 
 export const pglm: SutraData = {
   id: 'pglm',

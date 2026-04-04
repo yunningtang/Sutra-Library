@@ -2181,7 +2181,7 @@ export const dizang: SutraData = {
           label: '三皈依',
           chars: p(
             '愿冤亲债主、历代宗亲',
-            ''
+            'yuàn yuān qīn zhài zhǔ lì dài zōng qīn'
           ),
         },
         {
@@ -2189,7 +2189,7 @@ export const dizang: SutraData = {
           label: null,
           chars: p(
             '皈依佛　皈依法　皈依僧（三遍）',
-            ''
+            'guī yī fó guī yī fǎ guī yī sēng'
           ),
         },
         {
@@ -2197,7 +2197,7 @@ export const dizang: SutraData = {
           label: null,
           chars: p(
             '皈依佛两足尊　皈依法离欲尊　皈依僧众中尊',
-            ''
+            'guī yī fó liǎng zú zūn guī yī fǎ lí yù zūn guī yī sēng zhòng zhōng zūn'
           ),
         },
         {
@@ -2205,7 +2205,7 @@ export const dizang: SutraData = {
           label: null,
           chars: p(
             '皈依佛不堕地狱　皈依法不堕饿鬼　皈依僧不堕畜生（三遍）',
-            ''
+            'guī yī fó bù duò dì yù guī yī fǎ bù duò è guǐ guī yī sēng bù duò chù shēng'
           ),
         },
         {
@@ -2213,7 +2213,7 @@ export const dizang: SutraData = {
           label: null,
           chars: p(
             '皈依佛竟　皈依法竟　皈依僧竟（三遍）',
-            ''
+            'guī yī fó jìng guī yī fǎ jìng guī yī sēng jìng'
           ),
         },
       ],

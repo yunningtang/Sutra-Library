@@ -1118,7 +1118,7 @@ export const diamond: SutraData = {
     },
     {
       id: 'huixiang2',
-      title: '回向偈',
+      title: '回向偈（二）',
       paragraphs: [
         {
           id: 'huixiang2_p001',
