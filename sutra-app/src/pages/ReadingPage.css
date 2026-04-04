@@ -259,8 +259,9 @@
 /* === Char Grid — Ruby-based CLReq Typography === */
 .char-grid {
   font-family: var(--font-reading);
-  color: var(--c-ink);
+  color: var(--c-reading);
   line-height: 2.0;
+  text-align: justify;
   line-break: strict;
   word-break: normal;
   overflow-wrap: break-word;

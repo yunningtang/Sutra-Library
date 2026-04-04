@@ -31,6 +31,7 @@
   --lemon: #D4C564;
 
   /* === Neutrals & Text === */
+  --c-reading: #1A1A1A;
   --c-ink: #2E2E2E;
   --c-ink-soft: #555555;
   --c-ink-faint: #C0C0C0;
@@ -78,6 +79,7 @@
    ============================== */
 
 [data-theme="dark"] {
+  --c-reading: #E8E6E2;
   --c-ink: #D8D8D5;
   --c-ink-soft: #B0ADA8;
   --c-ink-faint: #555250;
