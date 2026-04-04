@@ -17,7 +17,7 @@ export const heart: SutraData = {
           label: null,
           chars: p(
             '观自在菩萨，行深般若波罗蜜多时，照见五蕴皆空，度一切苦厄。',
-            'guān zì zài pú sà xíng shēn bō rě bō luó mì duō shí zhào jiàn wǔ yùn jiē kōng dù yī qiè kǔ è'
+            'guān zì zài pú sà xíng shēn bō rě bō luó mì duō shí zhào jiàn wǔ yùn jiē kōng dù yī qiē kǔ è'
           ),
         },
         {
@@ -81,7 +81,7 @@ export const heart: SutraData = {
           label: null,
           chars: p(
             '故知般若波罗蜜多，是大神咒，是大明咒，是无上咒，是无等等咒。能除一切苦，真实不虚。',
-            'gù zhī bō rě bō luó mì duō shì dà shén zhòu shì dà míng zhòu shì wú shàng zhòu shì wú děng děng zhòu néng chú yī qiè kǔ zhēn shí bù xū'
+            'gù zhī bō rě bō luó mì duō shì dà shén zhòu shì dà míng zhòu shì wú shàng zhòu shì wú děng děng zhòu néng chú yī qiē kǔ zhēn shí bù xū'
           ),
         },
         {
