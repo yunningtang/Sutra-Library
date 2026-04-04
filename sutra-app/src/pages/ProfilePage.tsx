@@ -84,6 +84,7 @@ export default function ProfilePage() {
   const [hexInput, setHexInput] = useState(customColor)
   const [editingName, setEditingName] = useState(false)
   const [nameInput, setNameInput] = useState('')
+  const [showAbout, setShowAbout] = useState(false)
 
   const handleAvatarChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
@@ -143,11 +144,12 @@ export default function ProfilePage() {
                   value={nameInput}
                   onChange={(e) => setNameInput(e.target.value)}
                   onKeyDown={(e) => { if (e.key === 'Enter') handleNameSave() }}
-                  placeholder="输入昵称"
+                  onBlur={() => setTimeout(handleNameSave, 150)}
+                  placeholder="昵称"
                   autoFocus
                   maxLength={20}
                 />
-                <button className="name-edit-save" onClick={handleNameSave}>✓</button>
+                <button className="name-edit-save" onClick={handleNameSave}>保存</button>
               </div>
             ) : (
               <button
@@ -360,21 +362,26 @@ export default function ProfilePage() {
       )}
 
       <div className="profile-section">
-        <div className="section-title">关于</div>
-        <div className="section-card">
-          <div className="about-item">
-            <span className="about-label">经库</span>
-            <span className="about-value">v1.0</span>
+        <button className="section-title about-toggle" onClick={() => setShowAbout(!showAbout)}>
+          关于
+          <span className={`about-arrow ${showAbout ? 'open' : ''}`}>›</span>
+        </button>
+        {showAbout && (
+          <div className="section-card about-card">
+            <div className="about-item">
+              <span className="about-label">经库</span>
+              <span className="about-value">v1.0</span>
+            </div>
+            <div className="about-item">
+              <span className="about-label">开发者</span>
+              <span className="about-value">Yunning Tang</span>
+            </div>
+            <a className="about-item about-link" href="mailto:tangyunning27@gmail.com">
+              <span className="about-label">联系作者</span>
+              <span className="about-value">tangyunning27@gmail.com</span>
+            </a>
           </div>
-          <div className="about-item">
-            <span className="about-label">开发者</span>
-            <span className="about-value">Yunning Tang</span>
-          </div>
-          <a className="about-item about-link" href="mailto:tangyunning27@gmail.com">
-            <span className="about-label">联系作者</span>
-            <span className="about-value">tangyunning27@gmail.com</span>
-          </a>
-        </div>
+        )}
       </div>
     </div>
   )

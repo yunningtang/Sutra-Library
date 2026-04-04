@@ -134,34 +134,43 @@ button.profile-avatar:active {
 
 .name-edit-input {
   flex: 1;
-  font-family: var(--font-body);
-  font-size: 15px;
-  font-weight: 600;
+  font-family: var(--font-ui);
+  font-size: 14px;
+  font-weight: 500;
   color: var(--c-ink);
   background: var(--white);
-  border: 1px solid var(--theme);
+  border: 1px solid var(--border-ink);
   border-radius: var(--r-sm);
-  padding: 4px 10px;
+  padding: 6px 10px;
   outline: none;
-  box-shadow: 0 0 0 3px color-mix(in srgb, var(--theme) 10%, transparent);
+  transition: border-color 0.2s ease;
+}
+
+.name-edit-input:focus {
+  border-color: var(--theme);
+}
+
+.name-edit-input::placeholder {
+  color: var(--c-text-hint);
+  font-weight: 400;
 }
 
 .name-edit-save {
-  width: 28px;
-  height: 28px;
-  border-radius: var(--r-full);
-  background: var(--theme);
-  color: var(--on-accent);
-  font-size: 14px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  font-family: var(--font-ui);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--theme);
+  padding: 6px 12px;
+  border-radius: var(--r-sm);
+  background: var(--theme-bg);
+  border: 1px solid var(--theme-xl);
   flex-shrink: 0;
   transition: all 0.18s ease;
 }
 
 .name-edit-save:active {
-  transform: scale(0.9);
+  transform: scale(0.94);
+  opacity: 0.8;
 }
 
 .profile-card-sub {
@@ -542,6 +551,29 @@ button.profile-avatar:active {
 }
 
 /* === About Section === */
+.about-toggle {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  width: auto;
+}
+
+.about-arrow {
+  font-size: 14px;
+  color: var(--c-text-hint);
+  transition: transform 0.2s ease;
+  display: inline-block;
+}
+
+.about-arrow.open {
+  transform: rotate(90deg);
+}
+
+.about-card {
+  animation: staggerIn 0.3s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
 .about-item {
   display: flex;
   justify-content: space-between;
