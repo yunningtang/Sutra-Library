@@ -14,6 +14,8 @@ interface AuthState {
   signUpWithEmail: (email: string, password: string) => Promise<string | null>
   signInWithGoogle: () => Promise<string | null>
   signOut: () => Promise<void>
+  resetPassword: (email: string) => Promise<string | null>
+  updatePassword: (password: string) => Promise<string | null>
   syncToCloud: () => Promise<void>
   syncFromCloud: () => Promise<void>
 }
@@ -101,6 +103,26 @@ export const useAuth = create<AuthState>()((set, get) => ({
     if (!supabase) return
     await supabase.auth.signOut()
     set({ user: null, session: null })
+  },
+
+  resetPassword: async (email) => {
+    if (!supabase) return '后端未配置'
+    set({ loading: true })
+    const { error } = await supabase.auth.resetPasswordForEmail(email, {
+      redirectTo: `${window.location.origin}/#/reset-password`,
+    })
+    set({ loading: false })
+    if (error) return error.message
+    return null
+  },
+
+  updatePassword: async (password) => {
+    if (!supabase) return '后端未配置'
+    set({ loading: true })
+    const { error } = await supabase.auth.updateUser({ password })
+    set({ loading: false })
+    if (error) return error.message
+    return null
   },
 
   syncToCloud: async () => {

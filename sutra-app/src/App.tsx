@@ -8,6 +8,7 @@ import ReadingPage from './pages/ReadingPage'
 import CounterPage from './pages/CounterPage'
 import ProfilePage from './pages/ProfilePage'
 import LoginPage from './pages/LoginPage'
+import ResetPasswordPage from './pages/ResetPasswordPage'
 import { useStore } from './store/useStore'
 
 const themeVars: Record<string, Record<string, string>> = {
@@ -144,6 +145,7 @@ export default function App() {
         <Routes>
           <Route path="/read/:sutraId" element={<ReadingPage />} />
           <Route path="/login" element={<LoginPage />} />
+          <Route path="/reset-password" element={<ResetPasswordPage />} />
           <Route element={<Layout />}>
             <Route path="/" element={<LibraryPage />} />
             <Route path="/sutra/:sutraId" element={<SutraDetailPage />} />

@@ -4,16 +4,34 @@ import { IconClose } from '../components/Icons'
 import { useAuth } from '../store/useAuth'
 import './LoginPage.css'
 
-type Mode = 'login' | 'register'
+type Mode = 'login' | 'register' | 'forgot' | 'email-sent'
+
+const emailProviders = [
+  { name: 'Gmail', match: 'gmail.com', url: 'https://mail.google.com' },
+  { name: 'Outlook', match: 'outlook.com', url: 'https://outlook.live.com' },
+  { name: 'Outlook', match: 'hotmail.com', url: 'https://outlook.live.com' },
+  { name: 'QQ邮箱', match: 'qq.com', url: 'https://mail.qq.com' },
+  { name: '163邮箱', match: '163.com', url: 'https://mail.163.com' },
+  { name: 'Yahoo', match: 'yahoo.com', url: 'https://mail.yahoo.com' },
+  { name: 'iCloud', match: 'icloud.com', url: 'https://www.icloud.com/mail' },
+]
+
+function getEmailProviderUrl(email: string): string | null {
+  const domain = email.split('@')[1]?.toLowerCase()
+  if (!domain) return null
+  const provider = emailProviders.find((p) => domain.includes(p.match))
+  return provider?.url ?? null
+}
 
 export default function LoginPage() {
   const navigate = useNavigate()
-  const { signInWithEmail, signUpWithEmail, signInWithGoogle, loading } = useAuth()
+  const { signInWithEmail, signUpWithEmail, signInWithGoogle, resetPassword, loading } = useAuth()
   const [mode, setMode] = useState<Mode>('login')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [confirmPw, setConfirmPw] = useState('')
   const [error, setError] = useState('')
+  const [sentType, setSentType] = useState<'register' | 'reset'>('register')
 
   const handleSubmit = async () => {
     setError('')
@@ -30,14 +48,36 @@ export default function LoginPage() {
       return
     }
 
-    const err = mode === 'login'
-      ? await signInWithEmail(email, password)
-      : await signUpWithEmail(email, password)
+    if (mode === 'login') {
+      const err = await signInWithEmail(email, password)
+      if (err) {
+        setError(err)
+      } else {
+        navigate(-1)
+      }
+    } else {
+      const err = await signUpWithEmail(email, password)
+      if (err) {
+        setError(err)
+      } else {
+        setSentType('register')
+        setMode('email-sent')
+      }
+    }
+  }
 
+  const handleForgotSubmit = async () => {
+    setError('')
+    if (!email) {
+      setError('请输入注册邮箱')
+      return
+    }
+    const err = await resetPassword(email)
     if (err) {
       setError(err)
     } else {
-      navigate(-1)
+      setSentType('reset')
+      setMode('email-sent')
     }
   }
 
@@ -47,6 +87,81 @@ export default function LoginPage() {
     if (err) setError(err)
   }
 
+  const providerUrl = getEmailProviderUrl(email)
+
+  // Email sent confirmation screen
+  if (mode === 'email-sent') {
+    return (
+      <div className="login-page">
+        <button className="login-close press-scale" onClick={() => navigate(-1)}>
+          <IconClose size={18} />
+        </button>
+        <div className="sent-content">
+          <div className="sent-icon">✉</div>
+          <h2 className="sent-title">
+            {sentType === 'register' ? '验证邮件已发送' : '重置链接已发送'}
+          </h2>
+          <p className="sent-desc">
+            {sentType === 'register'
+              ? '请查收邮箱���的验证链接以完成注册'
+              : '请查收邮箱中的重置链接以设���新密码'}
+          </p>
+          <p className="sent-email">{email}</p>
+          {providerUrl && (
+            <a className="sent-open-btn" href={providerUrl} target="_blank" rel="noopener noreferrer">
+              去邮箱查收
+            </a>
+          )}
+          <button
+            className="sent-back-btn"
+            onClick={() => { setMode('login'); setError(''); setPassword(''); setConfirmPw('') }}
+          >
+            返回登录
+          </button>
+        </div>
+      </div>
+    )
+  }
+
+  // Forgot password screen
+  if (mode === 'forgot') {
+    return (
+      <div className="login-page">
+        <button className="login-close press-scale" onClick={() => navigate(-1)}>
+          <IconClose size={18} />
+        </button>
+        <div className="login-hero">
+          <h1 className="login-title">重置密码</h1>
+          <p className="login-desc">输入��册邮箱，我们���发送重��链接</p>
+        </div>
+        <div className="login-form">
+          <div className="form-fields">
+            <input
+              className="form-input"
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="注册邮箱"
+              autoComplete="email"
+              autoFocus
+            />
+          </div>
+          {error && <div className="login-error">{error}</div>}
+          <button className="submit-btn" onClick={handleForgotSubmit} disabled={loading}>
+            {loading ? '...' : '发送重置链接'}
+          </button>
+          <div className="mode-switch">
+            <span>
+              想起来了？
+              <button className="mode-link" onClick={() => { setMode('login'); setError('') }}>返回登录</button>
+            </span>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+  // Login / Register screen
   return (
     <div className="login-page">
       <button className="login-close press-scale" onClick={() => navigate(-1)}>
@@ -55,7 +170,7 @@ export default function LoginPage() {
 
       <div className="login-hero">
         <h1 className="login-title">经库</h1>
-        <p className="login-desc">登录后同步诵读记录与计数数据</p>
+        <p className="login-desc">随时随地，不丢失每一次修行记录</p>
       </div>
 
       <div className="login-form">
@@ -105,6 +220,14 @@ export default function LoginPage() {
             />
           )}
         </div>
+
+        {mode === 'login' && (
+          <div className="forgot-row">
+            <button className="forgot-link" onClick={() => { setMode('forgot'); setError('') }}>
+              忘记密码？
+            </button>
+          </div>
+        )}
 
         {error && <div className="login-error">{error}</div>}
 
