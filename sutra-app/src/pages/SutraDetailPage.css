@@ -95,7 +95,7 @@
   width: 100%;
   padding: 16px;
   background: linear-gradient(180deg, var(--theme-l), var(--theme-d));
-  color: var(--white);
+  color: var(--on-accent);
   border: none;
   border-radius: var(--r-md);
   font-family: var(--font-ui);
