@@ -302,6 +302,17 @@
   line-height: 1.8;
 }
 
+/* Punctuation compression — prevents orphaned quotes/marks on new line */
+.char-punct {
+  flex-shrink: 1;
+  margin-left: -0.1em;
+  margin-right: -0.1em;
+}
+
+.char-punct .char-han {
+  letter-spacing: -0.2em;
+}
+
 /* === Footer === */
 .reading-footer {
   position: fixed;

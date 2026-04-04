@@ -299,7 +299,7 @@ export default function ReadingPage() {
                   {para.chars.map((c, i) => (
                     <span
                       key={i}
-                      className="char-unit"
+                      className={`char-unit${!c.pinyin ? ' char-punct' : ''}`}
                       onPointerDown={(e) => handleCharDown(c.char, c.pinyin, e)}
                       onPointerUp={handleCharUp}
                       onPointerCancel={handleCharUp}
