@@ -238,7 +238,7 @@ export const pglm: SutraData = {
           id: 'p023',
           label: null,
           chars: p(
-            '善男子，以如是义我说此言：\'非己所安，不加于物。\'如是一法，是诸菩萨应常护持。',
+            '善男子，以如是义我说此言：\u2018非己所安，不加于物。\u2019如是一法，是诸菩萨应常护持。',
             'shàn nán zǐ yǐ rú shì yì wǒ shuō cǐ yán fēi jǐ suǒ ān bù jiā yú wù rú shì yī fǎ shì zhū pú sà yīng cháng hù chí'
           ),
         },
