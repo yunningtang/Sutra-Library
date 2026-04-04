@@ -1,18 +1,19 @@
 import { useState, useRef, useEffect, useCallback } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useStore } from '../store/useStore'
-import { IconClose, IconCheck } from '../components/Icons'
+import { IconBack, IconCheck } from '../components/Icons'
 import type { SutraData, GlossaryItem } from '../data/types'
 import './ReadingPage.css'
 
 export default function ReadingPage() {
   const { sutraId } = useParams<{ sutraId: string }>()
   const navigate = useNavigate()
-  const { fontSize, showPinyin, showProgress, setFontSize, togglePinyin, toggleProgress, completeReading, readingCounts } = useStore()
+  const { fontSize, showPinyin, showProgress, setFontSize, togglePinyin, completeReading, readingCounts } = useStore()
 
   const [sutra, setSutra] = useState<SutraData | null>(null)
   const [showToolbar, setShowToolbar] = useState(true)
   const [showFontPanel, setShowFontPanel] = useState(false)
+  const [showToc, setShowToc] = useState(false)
   const [glossaryPopup, setGlossaryPopup] = useState<{
     item: GlossaryItem | null
     pinyin: string | null
@@ -37,24 +38,39 @@ export default function ReadingPage() {
       import('../data/yaoshi').then((mod) => setSutra(mod.yaoshi))
     } else if (sutraId === 'heart') {
       import('../data/heart').then((mod) => setSutra(mod.heart))
+    } else if (sutraId === 'dizang') {
+      import('../data/dizang').then((mod) => setSutra(mod.dizang))
+    } else if (sutraId === 'liaozhi') {
+      import('../data/liaozhi').then((mod) => setSutra(mod.liaozhi))
     }
   }, [sutraId])
 
+  // Immersive scroll: hide toolbar on scroll down, show on scroll up
   useEffect(() => {
     let lastY = 0
+    let ticking = false
     const handleScroll = () => {
-      const y = window.scrollY
-      if (y > lastY && y > 60) setShowToolbar(false)
-      if (y < lastY) setShowToolbar(true)
-      lastY = y
+      if (ticking) return
+      ticking = true
+      requestAnimationFrame(() => {
+        const y = window.scrollY
+        if (y > lastY && y > 60) {
+          setShowToolbar(false)
+          setShowFontPanel(false)
+          setShowToc(false)
+        }
+        if (y < lastY) setShowToolbar(true)
+        lastY = y
 
-      const docH = document.documentElement.scrollHeight
-      const winH = window.innerHeight
-      const maxScroll = docH - winH
-      if (maxScroll > 0) setScrollProgress(Math.min(y / maxScroll, 1))
-      if (y + winH >= docH - 50) {
-        setAtBottom(true)
-      }
+        const docH = document.documentElement.scrollHeight
+        const winH = window.innerHeight
+        const maxScroll = docH - winH
+        if (maxScroll > 0) setScrollProgress(Math.min(y / maxScroll, 1))
+        if (y + winH >= docH - 50) {
+          setAtBottom(true)
+        }
+        ticking = false
+      })
     }
     window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
@@ -125,22 +141,54 @@ export default function ReadingPage() {
     )
   }
 
+  const hasToc = sutra.sections.length > 1
+
+  const handlePageTap = (e: React.MouseEvent) => {
+    const target = e.target as HTMLElement
+    if (target.closest('.reading-toolbar') || target.closest('.reading-toc') || target.closest('.font-panel') || target.closest('.reading-footer') || target.closest('.glossary-popup')) return
+    setGlossaryPopup(null)
+    setShowFontPanel(false)
+    setShowToc(false)
+    setShowToolbar((v) => !v)
+  }
+
+  const scrollToSection = (sectionId: string) => {
+    const el = document.getElementById(`section-${sectionId}`)
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      setShowToc(false)
+    }
+  }
+
   return (
-    <div className="reading-page" onClick={() => { setGlossaryPopup(null); setShowFontPanel(false) }}>
-      {/* Toolbar */}
+    <div className="reading-page" onClick={handlePageTap}>
+      {/* Progress bar — thin line always at very top, z above toolbar */}
+      {showProgress && (
+        <div className="reading-progress-bar">
+          <div className="reading-progress-fill" style={{ width: `${scrollProgress * 100}%` }} />
+        </div>
+      )}
+
+      {/* Immersive toolbar — auto-hide, frosted glass */}
       <div className={`reading-toolbar ${showToolbar ? 'visible' : 'hidden'}`}>
-        <button className="toolbar-btn press-scale" onClick={handleClose}>
-          <IconClose size={16} />
+        <button className="toolbar-btn press-scale" onClick={handleClose} aria-label="返回">
+          <IconBack size={18} />
         </button>
         <div className="toolbar-title">{sutra.name}</div>
         <div className="toolbar-right">
-          <button
-            className={`toolbar-btn toolbar-text-btn ${showProgress ? 'toolbar-btn-active' : ''}`}
-            onClick={(e) => { e.stopPropagation(); toggleProgress() }}
-            title="显示进度"
-          >
-            %
-          </button>
+          {hasToc && (
+            <button
+              className={`toolbar-btn ${showToc ? 'toolbar-btn-active' : ''}`}
+              onClick={(e) => { e.stopPropagation(); setShowToc(!showToc); setShowFontPanel(false) }}
+              aria-label="目录"
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                <line x1="3" y1="6" x2="21" y2="6" />
+                <line x1="3" y1="12" x2="15" y2="12" />
+                <line x1="3" y1="18" x2="18" y2="18" />
+              </svg>
+            </button>
+          )}
           <button
             className={`toolbar-btn toolbar-text-btn ${showPinyin ? 'toolbar-btn-active' : ''}`}
             onClick={(e) => { e.stopPropagation(); togglePinyin() }}
@@ -149,17 +197,25 @@ export default function ReadingPage() {
           </button>
           <button
             className="toolbar-btn toolbar-text-btn"
-            onClick={(e) => { e.stopPropagation(); setShowFontPanel(!showFontPanel) }}
+            onClick={(e) => { e.stopPropagation(); setShowFontPanel(!showFontPanel); setShowToc(false) }}
           >
             Aa
           </button>
         </div>
       </div>
 
-      {/* Progress bar — always visible at top */}
-      {showProgress && (
-        <div className="reading-progress-bar">
-          <div className="reading-progress-fill" style={{ width: `${scrollProgress * 100}%` }} />
+      {/* TOC panel — slides below toolbar */}
+      {showToc && hasToc && (
+        <div className="reading-toc" onClick={(e) => e.stopPropagation()}>
+          {sutra.sections.map((section) => (
+            <button
+              key={section.id}
+              className="toc-item"
+              onClick={() => scrollToSection(section.id)}
+            >
+              {section.title}
+            </button>
+          ))}
         </div>
       )}
 
@@ -186,7 +242,7 @@ export default function ReadingPage() {
         </div>
 
         {sutra.sections.map((section) => (
-          <div key={section.id} className="reading-section">
+          <div key={section.id} id={`section-${section.id}`} className="reading-section">
             {section.paragraphs.map((para) => (
               <div key={para.id} className="reading-paragraph">
                 {para.label && (
