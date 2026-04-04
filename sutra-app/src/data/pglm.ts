@@ -174,7 +174,7 @@ export const pglm: SutraData = {
           id: 'p015',
           label: null,
           chars: p(
-            '佛言：\u201c善哉！善哉！善男子，汝以如来威神之力，乃能问我如是深义。谛听！谛听！善思念之，当为汝说。',
+            '佛言：\u201c善哉！善哉！善男子，汝以如来威神之力，乃能问我如是深义。谛听！谛听！善思念之，当为汝说。\u201d',
             'fó yán shàn zāi shàn zāi shàn nán zǐ rǔ yǐ rú lái wēi shén zhī lì nǎi néng wèn wǒ rú shì shēn yì dì tīng dì tīng shàn sī niàn zhī dāng wèi rǔ shuō'
           ),
         },
@@ -182,7 +182,7 @@ export const pglm: SutraData = {
           id: 'p016',
           label: null,
           chars: p(
-            '\u201c善男子，有一种法菩萨应离，所谓欲贪。善男子，如是一法，是诸菩萨所应永离。',
+            '\u201c善男子，有一种法菩萨应离，所谓欲贪。善男子，如是一法，是诸菩萨所应永离。\u201d',
             'shàn nán zǐ yǒu yī zhǒng fǎ pú sà yīng lí suǒ wèi yù tān shàn nán zǐ rú shì yī fǎ shì zhū pú sà suǒ yīng yǒng lí'
           ),
         },
@@ -190,7 +190,7 @@ export const pglm: SutraData = {
           id: 'p017',
           label: null,
           chars: p(
-            '\u201c善男子，复有一法菩萨应离，所谓瞋怒。如是一法，是诸菩萨所应永离。',
+            '\u201c善男子，复有一法菩萨应离，所谓瞋怒。如是一法，是诸菩萨所应永离。\u201d',
             'shàn nán zǐ fù yǒu yī fǎ pú sà yīng lí suǒ wèi chēn nù rú shì yī fǎ shì zhū pú sà suǒ yīng yǒng lí'
           ),
         },
@@ -198,7 +198,7 @@ export const pglm: SutraData = {
           id: 'p018',
           label: null,
           chars: p(
-            '\u201c善男子，复有一法菩萨应离，所谓愚痴。如是一法，是诸菩萨所应永离。',
+            '\u201c善男子，复有一法菩萨应离，所谓愚痴。如是一法，是诸菩萨所应永离。\u201d',
             'shàn nán zǐ fù yǒu yī fǎ pú sà yīng lí suǒ wèi yú chī rú shì yī fǎ shì zhū pú sà suǒ yīng yǒng lí'
           ),
         },
@@ -206,7 +206,7 @@ export const pglm: SutraData = {
           id: 'p019',
           label: null,
           chars: p(
-            '\u201c善男子，复有一法菩萨应离，所谓我取。善男子，复有一法菩萨应离，所谓疑惑。善男子，复有一法菩萨应离，所谓憍慢。善男子，复有一法菩萨应离，所谓懈怠。善男子，复有一法菩萨应离，所谓惛眠。善男子，复有一法菩萨应离，所谓爱著。善男子，如是一法，是诸菩萨所应永离。',
+            '\u201c善男子，复有一法菩萨应离，所谓我取。善男子，复有一法菩萨应离，所谓疑惑。善男子，复有一法菩萨应离，所谓憍慢。善男子，复有一法菩萨应离，所谓懈怠。善男子，复有一法菩萨应离，所谓惛眠。善男子，复有一法菩萨应离，所谓爱著。善男子，如是一法，是诸菩萨所应永离。\u201d',
             'shàn nán zǐ fù yǒu yī fǎ pú sà yīng lí suǒ wèi wǒ qǔ shàn nán zǐ fù yǒu yī fǎ pú sà yīng lí suǒ wèi yí huò shàn nán zǐ fù yǒu yī fǎ pú sà yīng lí suǒ wèi jiāo màn shàn nán zǐ fù yǒu yī fǎ pú sà yīng lí suǒ wèi xiè dài shàn nán zǐ fù yǒu yī fǎ pú sà yīng lí suǒ wèi hūn mián shàn nán zǐ fù yǒu yī fǎ pú sà yīng lí suǒ wèi ài zhuó shàn nán zǐ rú shì yī fǎ shì zhū pú sà suǒ yīng yǒng lí'
           ),
         },
@@ -214,7 +214,7 @@ export const pglm: SutraData = {
           id: 'p020',
           label: null,
           chars: p(
-            '\u201c善男子，汝复问我，何者一法，是诸菩萨应常护持？善男子，谓诸菩萨，非己所安，不加于物。若诸菩萨守护此法，即是能持诸佛如来一切禁戒。',
+            '\u201c善男子，汝复问我，何者一法，是诸菩萨应常护持？善男子，谓诸菩萨，非己所安，不加于物。若诸菩萨守护此法，即是能持诸佛如来一切禁戒。\u201d',
             'shàn nán zǐ rǔ fù wèn wǒ hé zhě yī fǎ shì zhū pú sà yīng cháng hù chí shàn nán zǐ wèi zhū pú sà fēi jǐ suǒ ān bù jiā yú wù ruò zhū pú sà shǒu hù cǐ fǎ jí shì néng chí zhū fó rú lái yī qiè jìn jiè'
           ),
         },
@@ -246,7 +246,7 @@ export const pglm: SutraData = {
           id: 'p024',
           label: null,
           chars: p(
-            '\u201c善男子，如汝所问，何者一法，是诸如来现所觉了？善男子，无有少法是如来觉。何以故？如来觉者无所觉故。',
+            '\u201c善男子，如汝所问，何者一法，是诸如来现所觉了？善男子，无有少法是如来觉。何以故？如来觉者无所觉故。\u201d',
             'shàn nán zǐ rú rǔ suǒ wèn hé zhě yī fǎ shì zhū rú lái xiàn suǒ jué liǎo shàn nán zǐ wú yǒu shǎo fǎ shì rú lái jué hé yǐ gù rú lái jué zhě wú suǒ jué gù'
           ),
         },
@@ -270,7 +270,7 @@ export const pglm: SutraData = {
           id: 'p027',
           label: null,
           chars: p(
-            '\u201c善男子，一切法性普光明藏是如来觉。善男子，何故法性名普光明藏？',
+            '\u201c善男子，一切法性普光明藏是如来觉。善男子，何故法性名普光明藏？\u201d',
             'shàn nán zǐ yī qiè fǎ xìng pǔ guāng míng zàng shì rú lái jué shàn nán zǐ hé gù fǎ xìng míng pǔ guāng míng zàng'
           ),
         },
@@ -294,7 +294,7 @@ export const pglm: SutraData = {
           id: 'p030',
           label: null,
           chars: p(
-            '\u201c善男子，一相法是如来觉。云何一相？所谓诸法不来不去、非因非缘、不生不灭、无取无舍、不增不减。',
+            '\u201c善男子，一相法是如来觉。云何一相？所谓诸法不来不去、非因非缘、不生不灭、无取无舍、不增不减。\u201d',
             'shàn nán zǐ yī xiàng fǎ shì rú lái jué yún hé yī xiàng suǒ wèi zhū fǎ bù lái bú qù fēi yīn fēi yuán bù shēng bú miè wú qǔ wú shě bù zēng bù jiǎn'
           ),
         },
@@ -302,7 +302,7 @@ export const pglm: SutraData = {
           id: 'p031',
           label: null,
           chars: p(
-            '善男子，诸法自性，本无所有，不可为喻，非是文辞之所辩说。如是一法，是诸如来现所觉了。\u201d',
+            '\u201c善男子，诸法自性，本无所有，不可为喻，非是文辞之所辩说。如是一法，是诸如来现所觉了。\u201d',
             'shàn nán zǐ zhū fǎ zì xìng běn wú suǒ yǒu bù kě wéi yù fēi shì wén cí zhī suǒ biàn shuō rú shì yī fǎ shì zhū rú lái xiàn suǒ jué liǎo'
           ),
         },
@@ -358,7 +358,7 @@ export const pglm: SutraData = {
           id: 'p038',
           label: null,
           chars: p(
-            '尔时，世尊普观众会而作是言：\u201c诸仁者，我此所说甚深方广希有法门，非诸众生有少善根而能听受。能听受者即为承事供养于我，亦为荷担无上菩提。',
+            '尔时，世尊普观众会而作是言：\u201c诸仁者，我此所说甚深方广希有法门，非诸众生有少善根而能听受。能听受者即为承事供养于我，亦为荷担无上菩提。\u201d',
             'ěr shí shì zūn pǔ guān zhòng huì ér zuò shì yán zhū rén zhě wǒ cǐ suǒ shuō shèn shēn fāng guǎng xī yǒu fǎ mén fēi zhū zhòng shēng yǒu shǎo shàn gēn ér néng tīng shòu néng tīng shòu zhě jí wéi chéng shì gòng yǎng yú wǒ yì wéi hé dān wú shàng pú tí'
           ),
         },
@@ -406,7 +406,7 @@ export const pglm: SutraData = {
           id: 'p044',
           label: null,
           chars: p(
-            '善男子，取要言之，我见是人，已成佛道。\u201d',
+            '\u201c善男子，取要言之，我见是人，已成佛道。\u201d',
             'shàn nán zǐ qǔ yào yán zhī wǒ jiàn shì rén yǐ chéng fó dào'
           ),
         },
