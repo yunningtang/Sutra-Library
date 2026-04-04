@@ -334,7 +334,7 @@ export const yaoshi: SutraData = {
           id: 'main_p007',
           label: '第一大愿',
           chars: p(
-            '\u201d愿我来世，得阿耨多罗三藐三菩提时，自身光明炽然，照耀无量、无数、无边世界，以三十二大丈夫相、八十随形庄严其身，令一切有情如我无异。',
+            '\u201c愿我来世，得阿耨多罗三藐三菩提时，自身光明炽然，照耀无量、无数、无边世界，以三十二大丈夫相、八十随形庄严其身，令一切有情如我无异。',
             'yuàn wǒ lái shì dé ē nòu duō luó sān miǎo sān pú tí shí zì shēn guāng míng chì rán zhào yào wú liàng wú shù wú biān shì jiè yǐ sān shí èr dà zhàng fū xiàng bā shí suí xíng zhuāng yán qí shēn lìng yī qiè yǒu qíng rú wǒ wú yì'
           ),
         },
@@ -350,7 +350,7 @@ export const yaoshi: SutraData = {
           id: 'main_p009',
           label: '第三大愿',
           chars: p(
-            '\u201d愿我来世，得菩提时，以无量无边智慧方便，令诸有情皆得无尽所受用物，莫令众生有所乏少。',
+            '\u201c愿我来世，得菩提时，以无量无边智慧方便，令诸有情皆得无尽所受用物，莫令众生有所乏少。',
             'yuàn wǒ lái shì dé pú tí shí yǐ wú liàng wú biān zhì huì fāng biàn lìng zhū yǒu qíng jiē dé wú jìn suǒ shòu yòng wù mò lìng zhòng shēng yǒu suǒ fá shǎo'
           ),
         },
@@ -366,7 +366,7 @@ export const yaoshi: SutraData = {
           id: 'main_p011',
           label: '第五大愿',
           chars: p(
-            '\u201d愿我来世，得菩提时，若有无量无边有情，于我法中，修行梵行，一切皆令得不缺戒，具三聚戒，设有毁犯，闻我名已，还得清净，不堕恶趣。',
+            '\u201c愿我来世，得菩提时，若有无量无边有情，于我法中，修行梵行，一切皆令得不缺戒，具三聚戒，设有毁犯，闻我名已，还得清净，不堕恶趣。',
             'yuàn wǒ lái shì dé pú tí shí ruò yǒu wú liàng wú biān yǒu qíng yú wǒ fǎ zhōng xiū xíng fàn hèng yī qiè jiē lìng dé bù quē jiè jù sān jù jiè shè yǒu huǐ fàn wén wǒ míng yǐ huán dé qīng jìng bú duò è qù'
           ),
         },
@@ -382,7 +382,7 @@ export const yaoshi: SutraData = {
           id: 'main_p013',
           label: '第七大愿',
           chars: p(
-            '\u201d愿我来世，得菩提时，若诸有情，众病逼切，无救无归，无医无药，无亲无家，贫穷多苦，我之名号，一经其耳，众病悉除，身心安乐，家属资具，悉皆丰足，乃至证得无上菩提。',
+            '\u201c愿我来世，得菩提时，若诸有情，众病逼切，无救无归，无医无药，无亲无家，贫穷多苦，我之名号，一经其耳，众病悉除，身心安乐，家属资具，悉皆丰足，乃至证得无上菩提。',
             'yuàn wǒ lái shì dé pú tí shí ruò zhū yǒu qíng zhòng bìng bī qiè wú jiù wú guī wú yī wú yào wú qīn wú jiā pín qióng duō kǔ wǒ zhī míng hào yī jīng qí ěr zhòng bìng xī chú shēn xīn ān lè jiā shǔ zī jù xī jiē fēng zú nǎi zhì zhèng dé wú shàng pú tí'
           ),
         },
@@ -398,7 +398,7 @@ export const yaoshi: SutraData = {
           id: 'main_p015',
           label: '第九大愿',
           chars: p(
-            '\u201d愿我来世，得菩提时，令诸有情，出魔罥网，解脱一切外道缠缚，若堕种种恶见稠林，皆当引摄置于正见，渐令修习诸菩萨行，速证无上正等菩提。',
+            '\u201c愿我来世，得菩提时，令诸有情，出魔罥网，解脱一切外道缠缚，若堕种种恶见稠林，皆当引摄置于正见，渐令修习诸菩萨行，速证无上正等菩提。',
             'yuàn wǒ lái shì dé pú tí shí lìng zhū yǒu qíng chū mó juàn wǎng jiě tuō yī qiè wài dào chán fù ruò duò zhǒng zhǒng è jiàn chóu lín jiē dāng yǐn shè zhì yú zhèng jiàn jiàn lìng xiū xí zhū pú sà xíng sù zhèng wú shàng zhèng děng pú tí'
           ),
         },
@@ -414,7 +414,7 @@ export const yaoshi: SutraData = {
           id: 'main_p017',
           label: '第十一大愿',
           chars: p(
-            '\u201d愿我来世，得菩提时，若诸有情，饥渴所恼，为求食故，造诸恶业，得闻我名，专念受持，我当先以上妙饮食，饱足其身，后以法味，毕竟安乐，而建立之。',
+            '\u201c愿我来世，得菩提时，若诸有情，饥渴所恼，为求食故，造诸恶业，得闻我名，专念受持，我当先以上妙饮食，饱足其身，后以法味，毕竟安乐，而建立之。',
             'yuàn wǒ lái shì dé pú tí shí ruò zhū yǒu qíng jī kě suǒ nǎo wèi qiú shí gù zào zhū è yè dé wén wǒ míng zhuān niàn shòu chí wǒ dāng xiān yǐ shàng miào yǐn shí bǎo zú qí shēn hòu yǐ fǎ wèi bì jìng ān lè ér jiàn lì zhī'
           ),
         },
@@ -430,7 +430,7 @@ export const yaoshi: SutraData = {
           id: 'main_p019',
           label: null,
           chars: p(
-            '\u201d曼殊室利，是为彼世尊药师琉璃光如来、应、正等觉，行菩萨道时，所发十二微妙上愿。',
+            '\u201c曼殊室利，是为彼世尊药师琉璃光如来、应、正等觉，行菩萨道时，所发十二微妙上愿。',
             'màn shū shì lì shì wéi bǐ shì zūn yào shī liú lí guāng rú lái yīng zhèng děng jué xíng pú sà dào shí suǒ fā shí èr wēi miào shàng yuàn'
           ),
         },
@@ -454,7 +454,7 @@ export const yaoshi: SutraData = {
           id: 'main_p022',
           label: null,
           chars: p(
-            '\u201d复次，曼殊室利，若诸有情，虽于如来受诸学处而破尸罗；有虽不破尸罗而破轨则；有于尸罗、轨则虽得不坏，然毁正见；有虽不毁正见而弃多闻，于佛所说契经深义不能解了；有虽多闻而增上慢，由增上慢覆蔽心故，自是非他，嫌谤正法，为魔伴党。如是愚人，自行邪见，复令无量俱胝有情，堕大险坑，此诸有情，应于地狱、旁生、鬼趣流转无穷。若得闻此药师琉璃光如来名号，便舍恶行，修诸善法，不堕恶趣。设有不能舍诸恶行修行善法堕恶趣者，以彼如来本愿威力，令其现前，暂闻名号，从彼命终，还生人趣，得正见精进，善调意乐，便能舍家，趣于非家，如来法中，受持学处，无有毁犯，正见多闻，解甚深义，离增上慢，不谤正法，不为魔伴，渐次修行诸菩萨行，速得圆满。',
+            '\u201c复次，曼殊室利，若诸有情，虽于如来受诸学处而破尸罗；有虽不破尸罗而破轨则；有于尸罗、轨则虽得不坏，然毁正见；有虽不毁正见而弃多闻，于佛所说契经深义不能解了；有虽多闻而增上慢，由增上慢覆蔽心故，自是非他，嫌谤正法，为魔伴党。如是愚人，自行邪见，复令无量俱胝有情，堕大险坑，此诸有情，应于地狱、旁生、鬼趣流转无穷。若得闻此药师琉璃光如来名号，便舍恶行，修诸善法，不堕恶趣。设有不能舍诸恶行修行善法堕恶趣者，以彼如来本愿威力，令其现前，暂闻名号，从彼命终，还生人趣，得正见精进，善调意乐，便能舍家，趣于非家，如来法中，受持学处，无有毁犯，正见多闻，解甚深义，离增上慢，不谤正法，不为魔伴，渐次修行诸菩萨行，速得圆满。',
             'fù cì màn shū shì lì ruò zhū yǒu qíng suī yú rú lái shòu zhū xué chù ér pò shī luó yǒu suī bú pò shī luó ér pò guǐ zé yǒu yú shī luó guǐ zé suī dé bú huài rán huǐ zhèng jiàn yǒu suī bù huǐ zhèng jiàn ér qì duō wén yú fó suǒ shuō qì jīng shēn yì bù néng jiě liǎo yǒu suī duō wén ér zēng shàng màn yóu zēng shàng màn fù bì xīn gù zì shì fēi tā xián bàng zhèng fǎ wéi mó bàn dǎng rú shì yú rén zì xíng xié jiàn fù lìng wú liàng jù zhī yǒu qíng duò dà xiǎn kēng cǐ zhū yǒu qíng yīng yú dì yù páng shēng guǐ qù liú zhuǎn wú qióng ruò dé wén cǐ yào shī liú lí guāng rú lái míng hào biàn shě è xíng xiū zhū shàn fǎ bú duò è qù shè yǒu bù néng shě zhū è xíng xiū xíng shàn fǎ duò è qù zhě yǐ bǐ rú lái běn yuàn wēi lì lìng qí xiàn qián zàn wén míng hào cóng bǐ mìng zhōng huán shēng rén qù dé zhèng jiàn jīng jìn shàn tiáo yì lè biàn néng shě jiā qù yú fēi jiā rú lái fǎ zhōng shòu chí xué chù wú yǒu huǐ fàn zhèng jiàn duō wén jiě shèn shēn yì lí zēng shàng màn bú bàng zhèng fǎ bù wéi mó bàn jiàn cì xiū xíng zhū pú sà xíng sù dé yuán mǎn'
           ),
         },
@@ -470,7 +470,7 @@ export const yaoshi: SutraData = {
           id: 'main_p024',
           label: null,
           chars: p(
-            '\u201d复次，曼殊室利，若诸有情，好喜乖离，更相斗讼，恼乱自他，以身、语、意造作增长种种恶业，展转常为不饶益事，互相谋害，告召山林、树冢等神，杀诸众生，取其血肉，祭祀药叉、罗刹婆等，书怨人名，作其形像，以恶咒术而咒诅之，厌魅、蛊道、咒起尸鬼，令断彼命及坏其身。是诸有情，若得闻此药师琉璃光如来名号，彼诸恶事，悉不能害，一切展转皆起慈心，利益安乐，无损恼意及嫌恨心，各各欢悦，于自所受生于喜足，不相侵陵，互为饶益。',
+            '\u201c复次，曼殊室利，若诸有情，好喜乖离，更相斗讼，恼乱自他，以身、语、意造作增长种种恶业，展转常为不饶益事，互相谋害，告召山林、树冢等神，杀诸众生，取其血肉，祭祀药叉、罗刹婆等，书怨人名，作其形像，以恶咒术而咒诅之，厌魅、蛊道、咒起尸鬼，令断彼命及坏其身。是诸有情，若得闻此药师琉璃光如来名号，彼诸恶事，悉不能害，一切展转皆起慈心，利益安乐，无损恼意及嫌恨心，各各欢悦，于自所受生于喜足，不相侵陵，互为饶益。',
             'fù cì màn shū shì lì ruò zhū yǒu qíng hào xǐ guāi lí gèng xiāng dòu sòng nǎo luàn zì tā yǐ shēn yǔ yì zào zuò zēng zhǎng zhǒng zhǒng è yè zhǎn zhuǎn cháng wéi bù ráo yì shì hù xiāng móu hài gào zhào shān lín shù zhǒng děng shén shā zhū zhòng shēng qǔ qí xuè ròu jì sì yào chā luó chà pó děng shū yuàn rén míng zuò qí xíng xiàng yǐ è zhòu shù ér zhòu zǔ zhī yǎn mèi gǔ dào zhòu qǐ shī guǐ lìng duàn bǐ mìng jí huài qí shēn shì zhū yǒu qíng ruò dé wén cǐ yào shī liú lí guāng rú lái míng hào bǐ zhū è shì xī bù néng hài yī qiè zhǎn zhuǎn jiē qǐ cí xīn lì yì ān lè wú sǔn nǎo yì jí xián hèn xīn gè gè huān yuè yú zì suǒ shòu shēng yú xǐ zú bù xiāng qīn líng hù wéi ráo yì'
           ),
         },
@@ -486,7 +486,7 @@ export const yaoshi: SutraData = {
           id: 'main_p026',
           label: null,
           chars: p(
-            '\u201d复次，曼殊室利，彼药师琉璃光如来得菩提时，由本愿力观诸有情，遇众病苦，瘦𤼣、干消、黄热等病；或被厌魅、蛊毒所中；或复短命；或时横死。欲令是等病苦消除，所求愿满，时彼世尊，入三摩地，名曰除灭一切众生苦恼，既入定已，于肉髻中，出大光明，光中演说大陀罗尼曰：',
+            '\u201c复次，曼殊室利，彼药师琉璃光如来得菩提时，由本愿力观诸有情，遇众病苦，瘦𤼣、干消、黄热等病；或被厌魅、蛊毒所中；或复短命；或时横死。欲令是等病苦消除，所求愿满，时彼世尊，入三摩地，名曰除灭一切众生苦恼，既入定已，于肉髻中，出大光明，光中演说大陀罗尼曰：',
             'fù cì màn shū shì lì bǐ yào shī liú lí guāng rú lái dé pú tí shí yóu běn yuàn lì guān zhū yǒu qíng yù zhòng bìng kǔ shòu luán gān xiāo huáng rè děng bìng huò bèi yǎn mèi gǔ dú suǒ zhòng huò fù duǎn mìng huò shí hèng sǐ yù lìng shì děng bìng kǔ xiāo chú suǒ qiú yuàn mǎn shí bǐ shì zūn rù sān mó dì míng yuē chú miè yī qiè zhòng shēng kǔ nǎo jì rù dìng yǐ yú ròu jì zhōng chū dà guāng míng guāng zhōng yǎn shuō dà tuó luó ní yuē'
           ),
         },
@@ -510,7 +510,7 @@ export const yaoshi: SutraData = {
           id: 'main_p029',
           label: null,
           chars: p(
-            '\u201d复次，曼殊室利，若有净信男子、女人，得闻药师琉璃光如来、应、正等觉所有名号，闻已诵持；晨嚼齿木，澡漱清净，以诸香华、烧香、涂香，作众伎乐，供养形像；于此经典，若自书，若教人书，一心受持，听闻其义；于彼法师，应修供养，一切所有资身之具，悉皆施与，勿令乏少。如是便蒙诸佛护念，所求愿满，乃至菩提。\u201c',
+            '\u201c复次，曼殊室利，若有净信男子、女人，得闻药师琉璃光如来、应、正等觉所有名号，闻已诵持；晨嚼齿木，澡漱清净，以诸香华、烧香、涂香，作众伎乐，供养形像；于此经典，若自书，若教人书，一心受持，听闻其义；于彼法师，应修供养，一切所有资身之具，悉皆施与，勿令乏少。如是便蒙诸佛护念，所求愿满，乃至菩提。\u201d',
             'fù cì màn shū shì lì ruò yǒu jìng xìn nán zǐ nǚ rén dé wén yào shī liú lí guāng rú lái yīng zhèng děng jué suǒ yǒu míng hào wén yǐ sòng chí chén jiáo chǐ mù zǎo shù qīng jìng yǐ zhū xiāng huā shāo xiāng tú xiāng zuò zhòng jì yuè gòng yǎng xíng xiàng yú cǐ jīng diǎn ruò zì shū ruò jiào rén shū yī xīn shòu chí tīng wén qí yì yú bǐ fǎ shī yīng xiū gòng yǎng yī qiè suǒ yǒu zī shēn zhī jù xī jiē shī yǔ wù lìng fá shǎo rú shì biàn méng zhū fó hù niàn suǒ qiú yuàn mǎn nǎi zhì pú tí'
           ),
         },
@@ -518,7 +518,7 @@ export const yaoshi: SutraData = {
           id: 'main_p030',
           label: null,
           chars: p(
-            '尔时，曼殊室利童子白佛言：\u201d世尊！我当誓于像法转时，以种种方便，令诸净信善男子、善女人等，得闻世尊药师琉璃光如来名号，乃至睡中亦以佛名觉悟其耳。世尊！若于此经受持读诵，或复为他演说开示，若自书，若教人书，恭敬尊重，以种种华香、涂香、粖香、烧香、华鬘、璎珞、幡盖、伎乐而为供养，以五色彩作囊盛之，扫洒净处，敷设高座而用安处。尔时，四大天王与其眷属及余无量百千天众，皆诣其所，供养守护。世尊，若此经宝流行之处，有能受持，以彼世尊药师琉璃光如来本愿功德及闻名号，当知是处，无复横死，亦复不为诸恶鬼神夺其精气，设已夺者，还得如故，身心安乐。\u201c',
+            '尔时，曼殊室利童子白佛言：\u201c世尊！我当誓于像法转时，以种种方便，令诸净信善男子、善女人等，得闻世尊药师琉璃光如来名号，乃至睡中亦以佛名觉悟其耳。世尊！若于此经受持读诵，或复为他演说开示，若自书，若教人书，恭敬尊重，以种种华香、涂香、粖香、烧香、华鬘、璎珞、幡盖、伎乐而为供养，以五色彩作囊盛之，扫洒净处，敷设高座而用安处。尔时，四大天王与其眷属及余无量百千天众，皆诣其所，供养守护。世尊，若此经宝流行之处，有能受持，以彼世尊药师琉璃光如来本愿功德及闻名号，当知是处，无复横死，亦复不为诸恶鬼神夺其精气，设已夺者，还得如故，身心安乐。\u201d',
             'ěr shí màn shū shì lì tóng zǐ bó fó yán shì zūn wǒ dāng shì yú xiàng fǎ zhuǎn shí yǐ zhǒng zhǒng fāng biàn lìng zhū jìng xìn shàn nán zǐ shàn nǚ rén děng dé wén shì zūn yào shī liú lí guāng rú lái míng hào nǎi zhì shuì zhōng yì yǐ fó míng jué wù qí ěr shì zūn ruò yú cǐ jīng shòu chí dú sòng huò fù wèi tā yǎn shuō kāi shì ruò zì shū ruò jiào rén shū gōng jìng zūn zhòng yǐ zhǒng zhǒng huā xiāng tú xiāng mò xiāng shāo xiāng huā mán yīng luò fān gài jì yuè ér wéi gòng yǎng yǐ wǔ sè cǎi zuò náng chéng zhī sǎo sǎ jìng chù fū shè gāo zuò ér yòng ān chǔ ěr shí sì dà tiān wáng yǔ qí juàn shǔ jí yú wú liàng bǎi qiān tiān zhòng jiē yì qí suǒ gòng yǎng shǒu hù shì zūn ruò cǐ jīng bǎo liú xíng zhī chù yǒu néng shòu chí yǐ bǐ shì zūn yào shī liú lí guāng rú lái běn yuàn gōng dé jí wén míng hào dāng zhī shì chù wú fù hèng sǐ yì fù bù wéi zhū è guǐ shén duó qí jīng qì shè yǐ duó zhě huán dé rú gù shēn xīn ān lè'
           ),
         },
@@ -526,7 +526,7 @@ export const yaoshi: SutraData = {
           id: 'main_p031',
           label: null,
           chars: p(
-            '佛告曼殊室利：\u201d如是！如是！如汝所说。曼殊室利，若有净信善男子、善女人等，欲供养彼世尊药师琉璃光如来者，应先造立彼佛形像，敷清净座而安处之，散种种华，烧种种香，以种种幢幡庄严其处，七日七夜受八分斋戒，食清净食，澡浴香洁，著清净衣，应生无垢浊心，无怒害心，于一切有情，起利益安乐、慈悲喜舍、平等之心，鼓乐歌赞，右绕佛像，复应念彼如来本愿功德，读诵此经，思惟其义，演说开示，随所乐求，一切皆遂。求长寿得长寿，求富饶得富饶，求官位得官位，求男女得男女。若复有人，忽得恶梦，见诸恶相，或怪鸟来集，或于住处百怪出现，此人若以众妙资具，恭敬供养彼世尊药师琉璃光如来者，恶梦、恶相、诸不吉祥皆悉隐没，不能为患。或有水火、刀毒、悬险、恶象、师子、虎狼、熊罴、毒蛇、恶蝎、蜈蚣、蚰蜒、蚊虻等怖，若能至心忆念彼佛，恭敬供养，一切怖畏皆得解脱。若他国侵扰，盗贼反乱，忆念恭敬彼如来者，亦皆解脱。',
+            '佛告曼殊室利：\u201c如是！如是！如汝所说。曼殊室利，若有净信善男子、善女人等，欲供养彼世尊药师琉璃光如来者，应先造立彼佛形像，敷清净座而安处之，散种种华，烧种种香，以种种幢幡庄严其处，七日七夜受八分斋戒，食清净食，澡浴香洁，著清净衣，应生无垢浊心，无怒害心，于一切有情，起利益安乐、慈悲喜舍、平等之心，鼓乐歌赞，右绕佛像，复应念彼如来本愿功德，读诵此经，思惟其义，演说开示，随所乐求，一切皆遂。求长寿得长寿，求富饶得富饶，求官位得官位，求男女得男女。若复有人，忽得恶梦，见诸恶相，或怪鸟来集，或于住处百怪出现，此人若以众妙资具，恭敬供养彼世尊药师琉璃光如来者，恶梦、恶相、诸不吉祥皆悉隐没，不能为患。或有水火、刀毒、悬险、恶象、师子、虎狼、熊罴、毒蛇、恶蝎、蜈蚣、蚰蜒、蚊虻等怖，若能至心忆念彼佛，恭敬供养，一切怖畏皆得解脱。若他国侵扰，盗贼反乱，忆念恭敬彼如来者，亦皆解脱。',
             'fó gào màn shū shì lì rú shì rú shì rú rǔ suǒ shuō màn shū shì lì ruò yǒu jìng xìn shàn nán zǐ shàn nǚ rén děng yù gòng yǎng bǐ shì zūn yào shī liú lí guāng rú lái zhě yīng xiān zào lì bǐ fó xíng xiàng fū qīng jìng zuò ér ān chǔ zhī sàn zhǒng zhǒng huā shāo zhǒng zhǒng xiāng yǐ zhǒng zhǒng chuáng fān zhuāng yán qí chù qī rì qī yè shòu bā fēn zhāi jiè shí qīng jìng shí zǎo yù xiāng jié zhuó qīng jìng yī yīng shēng wú gòu zhuó xīn wú nù hài xīn yú yī qiè yǒu qíng qǐ lì yì ān lè cí bēi xǐ shě píng děng zhī xīn gǔ yuè gē zàn yòu rào fó xiàng fù yīng niàn bǐ rú lái běn yuàn gōng dé dú sòng cǐ jīng sī wéi qí yì yǎn shuō kāi shì suí suǒ yào qiú yī qiè jiē suì qiú cháng shòu dé cháng shòu qiú fù ráo dé fù ráo qiú guān wèi dé guān wèi qiú nán nǚ dé nán nǚ ruò fù yǒu rén hū dé è mèng jiàn zhū è xiàng huò guài niǎo lái jí huò yú zhù chù bǎi guài chū xiàn cǐ rén ruò yǐ zhòng miào zī jù gōng jìng gòng yǎng bǐ shì zūn yào shī liú lí guāng rú lái zhě è mèng è xiàng zhū bù jí xiáng jiē xī yǐn mò bù néng wéi huàn huò yǒu shuǐ huǒ dāo dú xuán xiǎn è xiàng shī zǐ hǔ láng xióng pí dú shé è xiē wú gōng yóu yán wén méng děng bù ruò néng zhì xīn yì niàn bǐ fó gōng jìng gòng yǎng yī qiè bù wèi jiē dé jiě tuō ruò tā guó qīn rǎo dào zéi fǎn luàn yì niàn gōng jìng bǐ rú lái zhě yì jiē jiě tuō'
           ),
         },
@@ -590,7 +590,7 @@ export const yaoshi: SutraData = {
           id: 'main_p039',
           label: null,
           chars: p(
-            '\u201d复次，阿难，若刹帝力、灌顶王等灾难起时，所谓人众疾疫难、他国侵逼难、自界叛逆难、星宿变怪难、日月薄蚀难、非时风雨难、过时不雨难。彼刹帝力、灌顶王等，尔时应于一切有情起慈悲心，赦诸系闭，依前所说供养之法，供养彼世尊药师琉璃光如来，由此善根及彼如来本愿力故，令其国界即得安隐，风雨顺时，谷稼成熟，一切有情无病欢乐；于其国中，无有暴恶药叉等神恼有情者，一切恶相皆即隐没；而刹帝力、灌顶王等，寿命色力，无病自在，皆得增益。阿难，若帝后、妃主、储君、王子、大臣、辅相、中宫、婇女、百官、黎庶为病所苦及余厄难，亦应造立五色神幡，然灯续明，放诸生命，散杂色华，烧众名香，病得除愈，众难解脱。\u201c',
+            '\u201c复次，阿难，若刹帝力、灌顶王等灾难起时，所谓人众疾疫难、他国侵逼难、自界叛逆难、星宿变怪难、日月薄蚀难、非时风雨难、过时不雨难。彼刹帝力、灌顶王等，尔时应于一切有情起慈悲心，赦诸系闭，依前所说供养之法，供养彼世尊药师琉璃光如来，由此善根及彼如来本愿力故，令其国界即得安隐，风雨顺时，谷稼成熟，一切有情无病欢乐；于其国中，无有暴恶药叉等神恼有情者，一切恶相皆即隐没；而刹帝力、灌顶王等，寿命色力，无病自在，皆得增益。阿难，若帝后、妃主、储君、王子、大臣、辅相、中宫、婇女、百官、黎庶为病所苦及余厄难，亦应造立五色神幡，然灯续明，放诸生命，散杂色华，烧众名香，病得除愈，众难解脱。\u201d',
             'fù cì ē nán ruò chà dì lì guàn dǐng wáng děng zāi nàn qǐ shí suǒ wèi rén zhòng jí yì nàn tā guó qīn bī nàn zì jiè pàn nì nàn xīng xiù biàn guài nàn rì yuè bó shí nàn fēi shí fēng yǔ nàn guò shí bù yǔ nàn bǐ chà dì lì guàn dǐng wáng děng ěr shí yīng yú yī qiè yǒu qíng qǐ cí bēi xīn shè zhū xì bì yī qián suǒ shuō gòng yǎng zhī fǎ gòng yǎng bǐ shì zūn yào shī liú lí guāng rú lái yóu cǐ shàn gēn jí bǐ rú lái běn yuàn lì gù lìng qí guó jiè jí dé ān wěn fēng yǔ shùn shí gǔ jià chéng shú yī qiè yǒu qíng wú bìng huān lè yú qí guó zhōng wú yǒu bào è yào chā děng shén nǎo yǒu qíng zhě yī qiè è xiàng jiē jí yǐn mò ér chà dì lì guàn dǐng wáng děng shòu mìng sè lì wú bìng zì zài jiē dé zēng yì ē nán ruò dì hòu fēi zhǔ chǔ jūn wáng zǐ dà chén fǔ xiàng zhōng gōng cǎi nǚ bǎi guān lí shù wéi bìng suǒ kǔ jí yú è nàn yì yīng zào lì wǔ sè shén fān rán dēng xù míng fàng zhū shēng mìng sàn zá sè huā shāo zhòng míng xiāng bìng dé chú yù zhòng nàn jiě tuō'
           ),
         },
@@ -598,7 +598,7 @@ export const yaoshi: SutraData = {
           id: 'main_p040',
           label: null,
           chars: p(
-            '尔时，阿难问救脱菩萨言：\u201d善男子，云何已尽之命而可增益？\u201c',
+            '尔时，阿难问救脱菩萨言：\u201c善男子，云何已尽之命而可增益？\u201d',
             'ěr shí ē nán wèn jiù tuō pú sà yán shàn nán zǐ yún hé yǐ jìn zhī mìng ér kě zēng yì'
           ),
         },
@@ -606,7 +606,7 @@ export const yaoshi: SutraData = {
           id: 'main_p041',
           label: null,
           chars: p(
-            '救脱菩萨言：\u201d大德！汝岂不闻如来说有九横死耶？是故劝造续命幡灯，修诸福德。以修福故，尽其寿命，不经苦患。\u201c',
+            '救脱菩萨言：\u201c大德！汝岂不闻如来说有九横死耶？是故劝造续命幡灯，修诸福德。以修福故，尽其寿命，不经苦患。\u201d',
             'jiù tuō pú sà yán dà dé rǔ qǐ bù wén rú lái shuō yǒu jiǔ hèng sǐ yé shì gù quàn zào xù mìng fān dēng xiū zhū fú dé yǐ xiū fú gù jìn qí shòu mìng bù jīng kǔ huàn'
           ),
         },
@@ -614,7 +614,7 @@ export const yaoshi: SutraData = {
           id: 'main_p042',
           label: null,
           chars: p(
-            '阿难问言：\u201d九横云何？\u201c',
+            '阿难问言：\u201c九横云何？\u201d',
             'ē nán wèn yán jiǔ hèng yún hé'
           ),
         },
@@ -622,7 +622,7 @@ export const yaoshi: SutraData = {
           id: 'main_p043',
           label: null,
           chars: p(
-            '救脱菩萨言：\u201d若诸有情，得病虽轻，然无医药及看病者，设复遇医，授以非药，实不应死，而便横死；又信世间邪魔外道妖孽之师，妄说祸福，便生恐动，心不自正，卜问觅祸，杀种种众生，解奏神明，呼诸魍魉，请乞福佑，欲冀延年，终不能得，愚痴迷惑，信邪倒见，遂令横死，入于地狱，无有出期，是名初横；二者，横被王法之所诛戮；三者，畋猎嬉戏，耽淫嗜酒，放逸无度，横为非人夺其精气；四者，横为火焚；五者，横为水溺；六者，横为种种恶兽所啖；七者，横堕山崖；八者，横为毒药、厌祷、咒咀、起尸鬼等之所中害；九者，饥渴所困，不得饮食，而便横死。是为如来略说横死有此九种，其余复有无量诸横，难可具说。',
+            '救脱菩萨言：\u201c若诸有情，得病虽轻，然无医药及看病者，设复遇医，授以非药，实不应死，而便横死；又信世间邪魔外道妖孽之师，妄说祸福，便生恐动，心不自正，卜问觅祸，杀种种众生，解奏神明，呼诸魍魉，请乞福佑，欲冀延年，终不能得，愚痴迷惑，信邪倒见，遂令横死，入于地狱，无有出期，是名初横；二者，横被王法之所诛戮；三者，畋猎嬉戏，耽淫嗜酒，放逸无度，横为非人夺其精气；四者，横为火焚；五者，横为水溺；六者，横为种种恶兽所啖；七者，横堕山崖；八者，横为毒药、厌祷、咒咀、起尸鬼等之所中害；九者，饥渴所困，不得饮食，而便横死。是为如来略说横死有此九种，其余复有无量诸横，难可具说。',
             'jiù tuō pú sà yán ruò zhū yǒu qíng dé bìng suī qīng rán wú yī yào jí kàn bìng zhě shè fù yù yī shòu yǐ fēi yào shí bù yīng sǐ ér biàn hèng sǐ yòu xìn shì jiān xié mó wài dào yāo niè zhī shī wàng shuō huò fú biàn shēng kǒng dòng xīn bú zì zhèng bǔ wèn mì huò shā zhǒng zhǒng zhòng shēng jiě zòu shén míng hū zhū wǎng liǎng qǐng qǐ fú yòu yù jì yán nián zhōng bù néng dé yú chī mí huò xìn xié dào jiàn suì lìng hèng sǐ rù yú dì yù wú yǒu chū qī shì míng chū hèng èr zhě hèng bèi wáng fǎ zhī suǒ zhū lù sān zhě tián liè xī xì dān yín shì jiǔ fàng yì wú dù hèng wéi fēi rén duó qí jīng qì sì zhě hèng wéi huǒ fén wǔ zhě hèng wéi shuǐ nì liù zhě hèng wéi zhǒng zhǒng è shòu suǒ dàn qī zhě hèng duò shān yá bā zhě hèng wéi dú yào yǎn dǎo zhòu zǔ qǐ shī guǐ děng zhī suǒ zhòng hài jiǔ zhě jī kě suǒ kùn bù dé yǐn shí ér biàn hèng sǐ shì wéi rú lái lüè shuō hèng sǐ yǒu cǐ jiǔ zhǒng qí yú fù yǒu wú liàng zhū hèng nán kě jù shuō'
           ),
         },

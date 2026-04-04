@@ -182,7 +182,7 @@ export const pglm: SutraData = {
           id: 'p016',
           label: null,
           chars: p(
-            '\u201d善男子，有一种法菩萨应离，所谓欲贪。善男子，如是一法，是诸菩萨所应永离。',
+            '\u201c善男子，有一种法菩萨应离，所谓欲贪。善男子，如是一法，是诸菩萨所应永离。',
             'shàn nán zǐ yǒu yī zhǒng fǎ pú sà yīng lí suǒ wèi yù tān shàn nán zǐ rú shì yī fǎ shì zhū pú sà suǒ yīng yǒng lí'
           ),
         },
@@ -198,7 +198,7 @@ export const pglm: SutraData = {
           id: 'p018',
           label: null,
           chars: p(
-            '\u201d善男子，复有一法菩萨应离，所谓愚痴。如是一法，是诸菩萨所应永离。',
+            '\u201c善男子，复有一法菩萨应离，所谓愚痴。如是一法，是诸菩萨所应永离。',
             'shàn nán zǐ fù yǒu yī fǎ pú sà yīng lí suǒ wèi yú chī rú shì yī fǎ shì zhū pú sà suǒ yīng yǒng lí'
           ),
         },
@@ -214,7 +214,7 @@ export const pglm: SutraData = {
           id: 'p020',
           label: null,
           chars: p(
-            '\u201d善男子，汝复问我，何者一法，是诸菩萨应常护持？善男子，谓诸菩萨，非己所安，不加于物。若诸菩萨守护此法，即是能持诸佛如来一切禁戒。',
+            '\u201c善男子，汝复问我，何者一法，是诸菩萨应常护持？善男子，谓诸菩萨，非己所安，不加于物。若诸菩萨守护此法，即是能持诸佛如来一切禁戒。',
             'shàn nán zǐ rǔ fù wèn wǒ hé zhě yī fǎ shì zhū pú sà yīng cháng hù chí shàn nán zǐ wèi zhū pú sà fēi jǐ suǒ ān bù jiā yú wù ruò zhū pú sà shǒu hù cǐ fǎ jí shì néng chí zhū fó rú lái yī qiè jìn jiè'
           ),
         },
@@ -270,7 +270,7 @@ export const pglm: SutraData = {
           id: 'p027',
           label: null,
           chars: p(
-            '\u201d善男子，一切法性普光明藏是如来觉。善男子，何故法性名普光明藏？',
+            '\u201c善男子，一切法性普光明藏是如来觉。善男子，何故法性名普光明藏？',
             'shàn nán zǐ yī qiè fǎ xìng pǔ guāng míng zàng shì rú lái jué shàn nán zǐ hé gù fǎ xìng míng pǔ guāng míng zàng'
           ),
         },
