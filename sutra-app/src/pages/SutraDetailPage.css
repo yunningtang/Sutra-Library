@@ -55,9 +55,10 @@
 .detail-name {
   font-family: var(--font-serif);
   font-size: 24px;
-  font-weight: 700;
+  font-weight: 600;
   color: var(--c-ink);
-  line-height: 1.4;
+  line-height: 1.5;
+  letter-spacing: 0.04em;
   margin-bottom: 8px;
 }
 
@@ -172,4 +173,135 @@
 
 .detail-link-btn:disabled .link-icon-wrap {
   opacity: 0.5;
+}
+
+.link-arrow {
+  margin-left: auto;
+  font-size: 12px;
+  color: var(--c-text-hint);
+}
+
+.link-active {
+  color: var(--theme);
+}
+
+/* === Expandable Panel === */
+.detail-panel {
+  background: var(--warm);
+  border-radius: var(--r-md);
+  padding: 16px;
+  margin: 4px 0 8px;
+  animation: fadeSlideDown 0.25s ease;
+}
+
+.panel-empty {
+  font-size: 14px;
+  color: var(--c-text-hint);
+  text-align: center;
+  padding: 12px 0;
+}
+
+/* === Glossary List === */
+.glossary-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.glossary-entry {
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border-ink);
+}
+
+.glossary-entry:last-child {
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.glossary-head {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 6px;
+  flex-wrap: wrap;
+}
+
+.glossary-chars {
+  font-family: var(--font-serif);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--c-ink);
+}
+
+.glossary-pinyin {
+  font-family: var(--font-ui);
+  font-size: 13px;
+  color: var(--c-text-hint);
+}
+
+.glossary-cat {
+  font-family: var(--font-ui);
+  font-size: 11px;
+  color: var(--theme);
+  font-weight: 600;
+  background: var(--theme-bg);
+  padding: 2px 8px;
+  border-radius: var(--r-full);
+  white-space: nowrap;
+}
+
+.glossary-def {
+  font-size: 14px;
+  color: var(--c-text-body);
+  line-height: 1.8;
+  line-break: strict;
+  word-break: normal;
+}
+
+/* === About Section === */
+.about-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.about-row {
+  display: flex;
+  gap: 16px;
+}
+
+.about-label {
+  font-family: var(--font-ui);
+  font-size: 13px;
+  color: var(--c-text-hint);
+  flex-shrink: 0;
+  min-width: 40px;
+}
+
+.about-value {
+  font-size: 14px;
+  color: var(--c-text-body);
+  line-height: 1.6;
+}
+
+.about-desc {
+  font-size: 14px;
+  color: var(--c-text-body);
+  line-height: 1.8;
+  line-break: strict;
+  word-break: normal;
+  padding-top: 16px;
+  border-top: 1px solid var(--border-ink);
+}
+
+@keyframes fadeSlideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
