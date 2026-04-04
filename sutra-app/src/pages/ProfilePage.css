@@ -29,7 +29,7 @@
   transition: all 0.18s ease;
 }
 
-.profile-card:active {
+button.profile-card:active {
   transform: scale(0.98);
   background: var(--warm);
 }
@@ -44,6 +44,47 @@
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  position: relative;
+  cursor: pointer;
+  transition: opacity 0.18s ease;
+}
+
+button.profile-avatar:active {
+  opacity: 0.7;
+}
+
+.avatar-img {
+  width: 44px;
+  height: 44px;
+  object-fit: cover;
+  border-radius: var(--r-full);
+  position: absolute;
+  top: -1px;
+  left: -1px;
+}
+
+.avatar-edit-badge {
+  position: absolute;
+  bottom: -1px;
+  right: -1px;
+  width: 18px;
+  height: 18px;
+  border-radius: var(--r-full);
+  background: var(--theme);
+  color: var(--on-accent);
+  font-size: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1.5px solid var(--white);
+}
+
+.avatar-input-hidden {
+  position: absolute;
+  width: 0;
+  height: 0;
+  opacity: 0;
+  pointer-events: none;
 }
 
 .profile-card-body {
@@ -55,6 +96,72 @@
   font-size: 16px;
   font-weight: 600;
   margin-bottom: 2px;
+}
+
+.profile-name-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  text-align: left;
+  transition: color 0.18s ease;
+}
+
+.name-edit-icon {
+  font-size: 12px;
+  color: var(--c-text-hint);
+  opacity: 0;
+  transition: opacity 0.18s ease;
+}
+
+.profile-name-btn:hover .name-edit-icon,
+.profile-name-btn:active .name-edit-icon {
+  opacity: 1;
+}
+
+.profile-card-email {
+  font-family: var(--font-ui);
+  font-size: 12px;
+  color: var(--c-text-hint);
+  margin-bottom: 2px;
+}
+
+.name-edit-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.name-edit-input {
+  flex: 1;
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--c-ink);
+  background: var(--white);
+  border: 1px solid var(--theme);
+  border-radius: var(--r-sm);
+  padding: 4px 10px;
+  outline: none;
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--theme) 10%, transparent);
+}
+
+.name-edit-save {
+  width: 28px;
+  height: 28px;
+  border-radius: var(--r-full);
+  background: var(--theme);
+  color: var(--on-accent);
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.18s ease;
+}
+
+.name-edit-save:active {
+  transform: scale(0.9);
 }
 
 .profile-card-sub {
@@ -432,4 +539,38 @@
 
 .toggle.on .toggle-knob {
   left: 22px;
+}
+
+/* === About Section === */
+.about-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--border-ink);
+}
+
+.about-item:last-child {
+  border-bottom: none;
+}
+
+.about-link {
+  text-decoration: none;
+  transition: background 0.18s ease;
+}
+
+.about-link:active {
+  background: var(--warm);
+}
+
+.about-label {
+  font-family: var(--font-ui);
+  font-size: 14px;
+  color: var(--c-ink);
+}
+
+.about-value {
+  font-family: var(--font-ui);
+  font-size: 13px;
+  color: var(--c-text-mute);
 }

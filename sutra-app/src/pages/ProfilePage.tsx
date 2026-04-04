@@ -6,6 +6,31 @@ import { manifest } from '../data/manifest'
 import { IconUser, IconSun, IconMoon } from '../components/Icons'
 import './ProfilePage.css'
 
+function resizeImage(file: File, maxSize: number): Promise<string> {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader()
+    reader.onload = () => {
+      const img = new Image()
+      img.onload = () => {
+        const canvas = document.createElement('canvas')
+        let w = img.width
+        let h = img.height
+        if (w > h) { h = maxSize * h / w; w = maxSize }
+        else { w = maxSize * w / h; h = maxSize }
+        canvas.width = w
+        canvas.height = h
+        const ctx = canvas.getContext('2d')!
+        ctx.drawImage(img, 0, 0, w, h)
+        resolve(canvas.toDataURL('image/jpeg', 0.8))
+      }
+      img.onerror = reject
+      img.src = reader.result as string
+    }
+    reader.onerror = reject
+    reader.readAsDataURL(file)
+  })
+}
+
 const fontOptions: { id: FontChoice; label: string; sample: string }[] = [
   { id: 'serif', label: '宋体', sample: '经' },
   { id: 'sans', label: '黑体', sample: '经' },
@@ -43,14 +68,41 @@ export default function ProfilePage() {
   const setCustomColor = useStore((s) => s.setCustomColor)
   const toggleDarkMode = useStore((s) => s.toggleDarkMode)
 
+  const displayName = useStore((s) => s.displayName)
+  const avatarData = useStore((s) => s.avatarData)
+
   const navigate = useNavigate()
   const user = useAuth((s) => s.user)
   const signOut = useAuth((s) => s.signOut)
   const syncToCloud = useAuth((s) => s.syncToCloud)
   const syncFromCloud = useAuth((s) => s.syncFromCloud)
+  const updateDisplayName = useAuth((s) => s.updateDisplayName)
+  const updateAvatar = useAuth((s) => s.updateAvatar)
   const colorInputRef = useRef<HTMLInputElement>(null)
+  const avatarInputRef = useRef<HTMLInputElement>(null)
   const [showColorPanel, setShowColorPanel] = useState(false)
   const [hexInput, setHexInput] = useState(customColor)
+  const [editingName, setEditingName] = useState(false)
+  const [nameInput, setNameInput] = useState('')
+
+  const handleAvatarChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0]
+    if (!file) return
+    const dataUrl = await resizeImage(file, 128)
+    await updateAvatar(dataUrl)
+    e.target.value = ''
+  }
+
+  const handleNameSave = async () => {
+    const trimmed = nameInput.trim()
+    if (trimmed && trimmed !== displayName) {
+      await updateDisplayName(trimmed)
+    }
+    setEditingName(false)
+  }
+
+  const userDisplayName = displayName || user?.user_metadata?.display_name || ''
+  const userAvatar = avatarData || user?.user_metadata?.avatar_data || user?.user_metadata?.avatar_url || ''
 
   const paletteColors = [
     '#E74C3C', '#E67E22', '#F1C40F', '#2ECC71', '#1ABC9C', '#3498DB',
@@ -68,11 +120,47 @@ export default function ProfilePage() {
 
       {user ? (
         <div className="profile-card">
-          <div className="profile-avatar">
-            <IconUser size={22} color="var(--theme)" />
-          </div>
+          <button className="profile-avatar" onClick={() => avatarInputRef.current?.click()}>
+            {userAvatar ? (
+              <img src={userAvatar} alt="" className="avatar-img" />
+            ) : (
+              <IconUser size={22} color="var(--theme)" />
+            )}
+            <span className="avatar-edit-badge">✎</span>
+          </button>
+          <input
+            ref={avatarInputRef}
+            type="file"
+            accept="image/*"
+            className="avatar-input-hidden"
+            onChange={handleAvatarChange}
+          />
           <div className="profile-card-body">
-            <div className="profile-card-text">{user.email}</div>
+            {editingName ? (
+              <div className="name-edit-row">
+                <input
+                  className="name-edit-input"
+                  value={nameInput}
+                  onChange={(e) => setNameInput(e.target.value)}
+                  onKeyDown={(e) => { if (e.key === 'Enter') handleNameSave() }}
+                  placeholder="输入昵称"
+                  autoFocus
+                  maxLength={20}
+                />
+                <button className="name-edit-save" onClick={handleNameSave}>✓</button>
+              </div>
+            ) : (
+              <button
+                className="profile-card-text profile-name-btn"
+                onClick={() => { setNameInput(userDisplayName); setEditingName(true) }}
+              >
+                {userDisplayName || user.email}
+                <span className="name-edit-icon">✎</span>
+              </button>
+            )}
+            {!editingName && userDisplayName && (
+              <div className="profile-card-email">{user.email}</div>
+            )}
             <div className="profile-card-sub">
               <button className="profile-sync-btn" onClick={async () => { await syncFromCloud(); await syncToCloud() }}>同步数据</button>
               <span style={{ margin: '0 6px', color: 'var(--c-ink-faint)' }}>·</span>
@@ -90,25 +178,6 @@ export default function ProfilePage() {
             <div className="profile-card-sub">登录后可同步数据</div>
           </div>
         </button>
-      )}
-
-      {hasRecords && (
-        <div className="profile-section">
-          <div className="section-title">诵读记录</div>
-          <div className="section-card">
-            {manifest
-              .filter((s) => readingCounts[s.id] > 0)
-              .map((s) => (
-                <div key={s.id} className="record-item">
-                  <span className="record-name">{s.name}</span>
-                  <span className="record-count">
-                    <span className="record-dot" />
-                    {readingCounts[s.id]} 部
-                  </span>
-                </div>
-              ))}
-          </div>
-        </div>
       )}
 
       <div className="profile-section">
@@ -268,6 +337,43 @@ export default function ProfilePage() {
               <span className="toggle-knob" />
             </button>
           </div>
+        </div>
+      </div>
+
+      {hasRecords && (
+        <div className="profile-section">
+          <div className="section-title">诵读记录</div>
+          <div className="section-card">
+            {manifest
+              .filter((s) => readingCounts[s.id] > 0)
+              .map((s) => (
+                <div key={s.id} className="record-item">
+                  <span className="record-name">{s.name}</span>
+                  <span className="record-count">
+                    <span className="record-dot" />
+                    {readingCounts[s.id]} 部
+                  </span>
+                </div>
+              ))}
+          </div>
+        </div>
+      )}
+
+      <div className="profile-section">
+        <div className="section-title">关于</div>
+        <div className="section-card">
+          <div className="about-item">
+            <span className="about-label">经库</span>
+            <span className="about-value">v1.0</span>
+          </div>
+          <div className="about-item">
+            <span className="about-label">开发者</span>
+            <span className="about-value">Yunning Tang</span>
+          </div>
+          <a className="about-item about-link" href="mailto:tangyunning27@gmail.com">
+            <span className="about-label">联系作者</span>
+            <span className="about-value">tangyunning27@gmail.com</span>
+          </a>
         </div>
       </div>
     </div>

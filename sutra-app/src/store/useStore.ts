@@ -53,6 +53,10 @@ interface AppState {
   readingPositions: Record<string, number>
   saveReadingPosition: (sutraId: string, scrollY: number) => void
 
+  // Profile
+  displayName: string
+  avatarData: string
+
   // Settings
   fontSize: number
   fontChoice: FontChoice
@@ -150,6 +154,9 @@ export const useStore = create<AppState>()(
         set((state) => ({
           readingPositions: { ...state.readingPositions, [sutraId]: scrollY },
         })),
+
+      displayName: '',
+      avatarData: '',
 
       fontSize: 20,
       fontChoice: 'serif',

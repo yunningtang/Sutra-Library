@@ -16,6 +16,8 @@ interface AuthState {
   signOut: () => Promise<void>
   resetPassword: (email: string) => Promise<string | null>
   updatePassword: (password: string) => Promise<string | null>
+  updateDisplayName: (name: string) => Promise<string | null>
+  updateAvatar: (dataUrl: string) => Promise<string | null>
   syncToCloud: () => Promise<void>
   syncFromCloud: () => Promise<void>
 }
@@ -125,6 +127,25 @@ export const useAuth = create<AuthState>()((set, get) => ({
     return null
   },
 
+  updateDisplayName: async (name) => {
+    if (!supabase) return '后端未配置'
+    const { error } = await supabase.auth.updateUser({ data: { display_name: name } })
+    if (error) return error.message
+    // Also persist in store settings via sync
+    useStore.setState({ displayName: name })
+    await get().syncToCloud()
+    return null
+  },
+
+  updateAvatar: async (dataUrl) => {
+    if (!supabase) return '后端未配置'
+    const { error } = await supabase.auth.updateUser({ data: { avatar_data: dataUrl } })
+    if (error) return error.message
+    useStore.setState({ avatarData: dataUrl })
+    await get().syncToCloud()
+    return null
+  },
+
   syncToCloud: async () => {
     if (!supabase) return
     const user = get().user
@@ -144,6 +165,8 @@ export const useAuth = create<AuthState>()((set, get) => ({
         themeColor: store.themeColor,
         customColor: store.customColor,
         darkMode: store.darkMode,
+        displayName: store.displayName,
+        avatarData: store.avatarData,
       },
       updated_at: new Date().toISOString(),
     }
@@ -210,6 +233,8 @@ export const useAuth = create<AuthState>()((set, get) => ({
         themeColor: (settings.themeColor as typeof store.themeColor) || store.themeColor,
         customColor: (settings.customColor as string) || store.customColor,
         darkMode: settings.darkMode !== undefined ? (settings.darkMode as boolean) : store.darkMode,
+        displayName: (settings.displayName as string) || store.displayName,
+        avatarData: (settings.avatarData as string) || store.avatarData,
       }),
     })
 
