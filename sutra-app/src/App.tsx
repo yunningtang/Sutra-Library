@@ -89,7 +89,7 @@ function hexToVars(hex: string): Record<string, string> {
 }
 
 const fontFamilies: Record<string, string> = {
-  serif: "'Noto Serif SC', Georgia, serif",
+  serif: "'Noto Serif SC', 'Source Han Serif SC', 'Songti SC', serif",
   sans: "'Nunito', 'Noto Sans SC', system-ui, sans-serif",
   system: "system-ui, -apple-system, 'PingFang SC', sans-serif",
 }
