@@ -550,7 +550,7 @@ export const yaoshi: SutraData = {
           id: 'main_p034',
           label: null,
           chars: p(
-            '阿难白言：\u201c大德世尊！我于如来所说契经，不生疑惑，所以者何？一切如来身、语、意业无不清净！世尊！此日月轮可令堕落，妙高山王可使倾动，诸佛所言无有异也。世尊！有诸众生，信根不具，闻说诸佛甚深行处，作是思惟：\'云何但念药师琉璃光如来一佛名号，便获尔所功德胜利？\'由此不信，返生诽谤，彼于长夜，失大利乐，堕诸恶趣，流转无穷。\u201d',
+            '阿难白言：\u201c大德世尊！我于如来所说契经，不生疑惑，所以者何？一切如来身、语、意业无不清净！世尊！此日月轮可令堕落，妙高山王可使倾动，诸佛所言无有异也。世尊！有诸众生，信根不具，闻说诸佛甚深行处，作是思惟：\u2018云何但念药师琉璃光如来一佛名号，便获尔所功德胜利？\u2019由此不信，返生诽谤，彼于长夜，失大利乐，堕诸恶趣，流转无穷。\u201d',
             'ē nán bó yán dà dé shì zūn wǒ yú rú lái suǒ shuō qì jīng bù shēng yí huò suǒ yǐ zhě hé yī qiè rú lái shēn yǔ yì yè wú bù qīng jìng shì zūn cǐ rì yuè lún kě lìng duò luò miào gāo shān wáng kě shǐ qīng dòng zhū fó suǒ yán wú yǒu yì yě shì zūn yǒu zhū zhòng shēng xìn gēn bú jù wén shuō zhū fó shèn shēn xíng chù zuò shì sī wéi yún hé dàn niàn yào shī liú lí guāng rú lái yī fó míng hào biàn huò ěr suǒ gōng dé shèng lì yóu cǐ bú xìn fǎn shēng fěi bàng bǐ yú cháng yè shī dà lì lè duò zhū è qù liú zhuǎn wú qióng'
           ),
         },
