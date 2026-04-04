@@ -52,13 +52,13 @@
   --r-card-lg: 20px;
   --r-full: 999px;
 
-  /* === Fonts === */
-  --font-serif: 'Noto Serif SC', Georgia, serif;
-  --font-body: 'Nunito', 'Noto Serif SC', system-ui, sans-serif;
-  --font-ui: 'Nunito', system-ui, sans-serif;
+  /* === Fonts — English first, then Chinese by platform === */
+  --font-serif: 'Playfair Display', 'Noto Serif SC', 'Source Han Serif SC', 'Songti SC', serif;
+  --font-body: 'Nunito', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans SC', system-ui, sans-serif;
+  --font-ui: 'Nunito', 'PingFang SC', 'Microsoft YaHei', 'Noto Sans SC', system-ui, sans-serif;
 
   /* === Reading Font (overridden by JS) === */
-  --font-reading: 'Noto Serif SC', Georgia, serif;
+  --font-reading: 'Noto Serif SC', 'Source Han Serif SC', 'Songti SC', serif;
 
   /* === Spacing === */
   --page-padding: 20px;

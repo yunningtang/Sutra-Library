@@ -152,7 +152,8 @@
   font-size: 15px;
   color: var(--c-text-body);
   transition: all 0.18s ease;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.02em;
+  line-height: 1.6;
 }
 
 .toc-item:hover {
@@ -214,18 +215,18 @@
 .reading-meta-title {
   font-family: var(--font-serif);
   font-size: 24px;
-  font-weight: 700;
+  font-weight: 600;
   color: var(--c-ink);
   margin-bottom: 8px;
-  line-height: 1.4;
-  letter-spacing: 2px;
+  line-height: 1.5;
+  letter-spacing: 0.04em;
 }
 
 .reading-meta-translator {
   font-family: var(--font-ui);
-  font-size: 13px;
+  font-size: 14px;
   color: var(--c-text-hint);
-  letter-spacing: 1px;
+  letter-spacing: 0.02em;
 }
 
 /* === Content === */
@@ -252,14 +253,17 @@
   color: var(--theme);
   margin-bottom: 8px;
   font-weight: 600;
-  letter-spacing: 1px;
+  letter-spacing: 0.02em;
 }
 
 /* === Char Grid — CLReq Typography === */
 .char-grid {
   display: flex;
   flex-wrap: wrap;
-  line-height: 1.8;
+  line-height: 2.0;
+  line-break: strict;
+  word-break: normal;
+  overflow-wrap: break-word;
 }
 
 .char-grid.with-pinyin {
@@ -295,8 +299,7 @@
 .char-han {
   font-family: var(--font-reading);
   color: var(--c-ink);
-  line-height: 1.7;
-  letter-spacing: 0.04em;
+  line-height: 1.8;
 }
 
 /* === Footer === */
@@ -361,7 +364,7 @@
 .completion-text {
   font-family: var(--font-serif);
   font-size: 24px;
-  font-weight: 700;
+  font-weight: 600;
   color: var(--theme);
   margin-top: 16px;
   animation: staggerIn 0.5s cubic-bezier(0.22, 1, 0.36, 1) 150ms both;
@@ -440,9 +443,9 @@
 }
 
 .glossary-definition {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--c-text-body);
-  line-height: 1.7;
+  line-height: 1.8;
 }
 
 @keyframes fadeSlideDown {
