@@ -103,8 +103,8 @@ export default function LoginPage() {
           </h2>
           <p className="sent-desc">
             {sentType === 'register'
-              ? '请查收邮箱���的验证链接以完成注册'
-              : '请查收邮箱中的重置链接以设���新密码'}
+              ? '请查收邮箱中的验证链接以完成注册'
+              : '请查收邮箱中的重置链接以设置新密码'}
           </p>
           <p className="sent-email">{email}</p>
           {providerUrl && (
@@ -132,7 +132,7 @@ export default function LoginPage() {
         </button>
         <div className="login-hero">
           <h1 className="login-title">重置密码</h1>
-          <p className="login-desc">输入��册邮箱，我们���发送重��链接</p>
+          <p className="login-desc">输入注册邮箱，我们将发送重置链接</p>
         </div>
         <div className="login-form">
           <div className="form-fields">
