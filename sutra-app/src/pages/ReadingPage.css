@@ -34,74 +34,74 @@
 .reading-toolbar {
   position: fixed;
   top: 0;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 0;
+  right: 0;
   width: 100%;
-  max-width: 420px;
   height: 50px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 var(--page-padding) 0 12px;
-  background: color-mix(in srgb, var(--cream) 85%, transparent);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  padding: 0 max(16px, env(safe-area-inset-left)) 0 max(12px, env(safe-area-inset-left));
+  background: color-mix(in srgb, var(--cream) 80%, transparent);
+  backdrop-filter: blur(20px) saturate(1.8);
+  -webkit-backdrop-filter: blur(20px) saturate(1.8);
   z-index: 50;
-  transition: opacity 0.25s ease, transform 0.25s ease;
-  border-bottom: 1px solid var(--border-ink);
+  transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
 .reading-toolbar.hidden {
   opacity: 0;
-  transform: translateX(-50%) translateY(-100%);
+  transform: translateY(-100%);
   pointer-events: none;
 }
 
 .reading-toolbar.visible {
   opacity: 1;
-  transform: translateX(-50%) translateY(0);
+  transform: translateY(0);
 }
 
 .toolbar-btn {
-  width: 34px;
-  height: 34px;
+  width: 36px;
+  height: 36px;
   display: flex;
   align-items: center;
   justify-content: center;
   color: var(--c-text-mute);
-  border-radius: var(--r-sm);
-  transition: all 0.18s ease;
+  border-radius: var(--r-full);
+  transition: all 0.2s ease;
 }
 
 .toolbar-btn:hover {
-  background: var(--warm);
+  background: color-mix(in srgb, var(--c-ink) 6%, transparent);
 }
 
 .toolbar-btn:active {
-  transform: scale(0.92);
+  transform: scale(0.9);
+  background: color-mix(in srgb, var(--c-ink) 10%, transparent);
 }
 
-.toolbar-text-btn {
-  width: auto;
-  min-width: 38px;
-  height: 34px;
-  padding: 0 12px;
-  font-family: var(--font-ui);
-  font-size: 14px;
-  font-weight: 500;
-  border: 1px solid var(--border-ink);
-  border-radius: var(--r-sm);
-  background: var(--white);
+.toolbar-icon-btn {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--c-text-mute);
+  border-radius: var(--r-full);
+  transition: all 0.2s ease;
 }
 
-.toolbar-text-btn:active {
-  transform: scale(0.94);
+.toolbar-icon-btn:hover {
+  background: color-mix(in srgb, var(--c-ink) 6%, transparent);
+}
+
+.toolbar-icon-btn:active {
+  transform: scale(0.9);
+  background: color-mix(in srgb, var(--c-ink) 10%, transparent);
 }
 
 .toolbar-btn-active {
   color: var(--theme);
-  font-weight: 700;
-  border-color: var(--theme);
   background: var(--theme-bg);
 }
 
@@ -109,12 +109,11 @@
 .reading-progress-bar {
   position: fixed;
   top: 0;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 0;
+  right: 0;
   width: 100%;
-  max-width: 420px;
   height: 2px;
-  background: var(--warm-alt);
+  background: transparent;
   z-index: 51;
 }
 
@@ -147,20 +146,18 @@
 /* === TOC Panel === */
 .reading-toc {
   position: fixed;
-  top: 52px;
-  left: 50%;
-  transform: translateX(-50%);
+  top: 50px;
+  left: 0;
+  right: 0;
   width: 100%;
-  max-width: 420px;
   max-height: 60vh;
   overflow-y: auto;
-  background: color-mix(in srgb, var(--white) 85%, transparent);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid var(--border-ink);
+  background: color-mix(in srgb, var(--cream) 88%, transparent);
+  backdrop-filter: blur(20px) saturate(1.8);
+  -webkit-backdrop-filter: blur(20px) saturate(1.8);
   z-index: 55;
   padding: 8px 0;
-  animation: scaleIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  animation: fadeSlideDown 0.25s ease;
 }
 
 .toc-item {
@@ -187,31 +184,34 @@
 .font-panel {
   position: fixed;
   top: 52px;
-  right: var(--reading-padding);
-  background: color-mix(in srgb, var(--white) 85%, transparent);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid var(--border-ink);
-  border-radius: var(--r-md);
+  right: 12px;
+  background: color-mix(in srgb, var(--cream) 90%, transparent);
+  backdrop-filter: blur(20px) saturate(1.8);
+  -webkit-backdrop-filter: blur(20px) saturate(1.8);
+  border-radius: var(--r-lg);
   padding: 6px;
   z-index: 60;
-  animation: scaleIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+  animation: fadeSlideDown 0.25s ease;
+  display: flex;
+  gap: 4px;
 }
 
 .font-panel-item {
-  display: block;
-  width: 100%;
-  text-align: left;
-  padding: 10px 16px;
-  font-family: var(--font-ui);
-  font-size: 14px;
-  color: var(--c-text-body);
-  border-radius: 8px;
-  transition: all 0.18s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 38px;
+  font-family: var(--font-serif);
+  color: var(--c-text-mute);
+  border-radius: var(--r-sm);
+  transition: all 0.2s ease;
+  cursor: pointer;
 }
 
 .font-panel-item:hover {
-  background: var(--warm);
+  background: color-mix(in srgb, var(--c-ink) 6%, transparent);
 }
 
 .font-panel-item.active {
@@ -315,11 +315,10 @@
 .reading-footer {
   position: fixed;
   bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 0;
+  right: 0;
   width: 100%;
-  max-width: 420px;
-  padding: 12px var(--reading-padding) 28px;
+  padding: 12px 16px 28px;
   display: flex;
   justify-content: center;
   background: linear-gradient(transparent, var(--cream) 40%);
@@ -456,4 +455,15 @@
   font-size: 13px;
   color: var(--c-text-body);
   line-height: 1.7;
+}
+
+@keyframes fadeSlideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

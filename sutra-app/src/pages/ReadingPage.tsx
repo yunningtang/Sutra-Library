@@ -112,7 +112,13 @@ export default function ReadingPage() {
   }
 
   const currentCount = readingCounts[sutraId!] || 0
-  const fontSizes = [18, 20, 22, 24, 26]
+  const fontSizeOptions = [
+    { size: 18, label: '小' },
+    { size: 20, label: '标准' },
+    { size: 22, label: '中' },
+    { size: 24, label: '大' },
+    { size: 26, label: '特大' },
+  ]
 
   if (!sutra) {
     return (
@@ -178,28 +184,44 @@ export default function ReadingPage() {
         <div className="toolbar-right">
           {hasToc && (
             <button
-              className={`toolbar-btn ${showToc ? 'toolbar-btn-active' : ''}`}
+              className={`toolbar-icon-btn ${showToc ? 'toolbar-btn-active' : ''}`}
               onClick={(e) => { e.stopPropagation(); setShowToc(!showToc); setShowFontPanel(false) }}
               aria-label="目录"
             >
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
-                <line x1="3" y1="6" x2="21" y2="6" />
-                <line x1="3" y1="12" x2="15" y2="12" />
-                <line x1="3" y1="18" x2="18" y2="18" />
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="8" y1="6" x2="21" y2="6" />
+                <line x1="8" y1="12" x2="21" y2="12" />
+                <line x1="8" y1="18" x2="21" y2="18" />
+                <circle cx="4" cy="6" r="1" fill="currentColor" stroke="none" />
+                <circle cx="4" cy="12" r="1" fill="currentColor" stroke="none" />
+                <circle cx="4" cy="18" r="1" fill="currentColor" stroke="none" />
               </svg>
             </button>
           )}
           <button
-            className={`toolbar-btn toolbar-text-btn ${showPinyin ? 'toolbar-btn-active' : ''}`}
+            className={`toolbar-icon-btn ${showPinyin ? 'toolbar-btn-active' : ''}`}
             onClick={(e) => { e.stopPropagation(); togglePinyin() }}
+            aria-label="拼音"
           >
-            拼
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M4 18V6h4.5a3.5 3.5 0 0 1 0 7H4" />
+              <path d="M16 6v1.5c0 2.5-4 2.5-4 5 0 1.5 1 2.5 2.5 2.5s2.5-1 3-2.5" />
+              <line x1="14" y1="18" x2="19" y2="18" />
+            </svg>
           </button>
           <button
-            className="toolbar-btn toolbar-text-btn"
+            className={`toolbar-icon-btn ${showFontPanel ? 'toolbar-btn-active' : ''}`}
             onClick={(e) => { e.stopPropagation(); setShowFontPanel(!showFontPanel); setShowToc(false) }}
+            aria-label="字体大小"
           >
-            Aa
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M3 7V5h14v2" />
+              <line x1="10" y1="5" x2="10" y2="19" />
+              <line x1="7" y1="19" x2="13" y2="19" />
+              <path d="M17 13v-2h7v2" />
+              <line x1="20.5" y1="11" x2="20.5" y2="19" />
+              <line x1="18.5" y1="19" x2="22.5" y2="19" />
+            </svg>
           </button>
         </div>
       </div>
@@ -222,13 +244,13 @@ export default function ReadingPage() {
       {/* Font size panel */}
       {showFontPanel && (
         <div className="font-panel" onClick={(e) => e.stopPropagation()}>
-          {fontSizes.map((size) => (
+          {fontSizeOptions.map((opt) => (
             <button
-              key={size}
-              className={`font-panel-item ${fontSize === size ? 'active' : ''}`}
-              onClick={() => { setFontSize(size); setShowFontPanel(false) }}
+              key={opt.size}
+              className={`font-panel-item ${fontSize === opt.size ? 'active' : ''}`}
+              onClick={() => { setFontSize(opt.size); setShowFontPanel(false) }}
             >
-              {size}px
+              {opt.label}
             </button>
           ))}
         </div>
