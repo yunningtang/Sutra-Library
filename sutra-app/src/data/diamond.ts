@@ -6,7 +6,7 @@ export const diamond: SutraData = {
   name: '金刚般若波罗蜜经',
   translator: '姚秦三藏法师鸠摩罗什译',
   source: '《大正藏》第八册 No.235',
-  about: '《金刚般若波罗蜜经》，简称《金刚经》，姚秦鸠摩罗什译。经中以须菩提与佛陀的对话，阐明「应无所住而生其心」之旨，破一切相，显般若空慧。全经三十二分，为大乘佛教最重要的经典之一。',
+  about: '《金刚般若波罗蜜经》，简称《金刚经》，姚秦鸠摩罗什译。经中以须菩提与佛陀的对话，阐明\u201c应无所住而生其心\u201d之旨，破一切相，显般若空慧。全经三十二分，为大乘佛教最重要的经典之一。',
   sections: [
     {
       id: 'xiangzan',
@@ -1155,12 +1155,12 @@ export const diamond: SutraData = {
     { id: 'g13', chars: '菩萨', pinyin: 'pú sà', category: '称谓', definition: '菩提萨埵之简称，意为觉有情，指发大心、上求佛道、下化众生的修行者。' },
     { id: 'g14', chars: '如来', pinyin: 'rú lái', category: '称谓', definition: '佛的十种名号之一，意为如实而来（如实而去），表示证悟真如实相之觉者。' },
     { id: 'g15', chars: '四相', pinyin: 'sì xiàng', category: '名相', definition: '我相、人相、众生相、寿者相。经中反复破除的四种执着，是般若空慧所要超越的。' },
-    { id: 'g16', chars: '布施', pinyin: 'bù shī', category: '修行', definition: '六波罗蜜之首，以财物或法施与他人。经中强调「不住相布施」。' },
+    { id: 'g16', chars: '布施', pinyin: 'bù shī', category: '修行', definition: '六波罗蜜之首，以财物或法施与他人。经中强调\u201c不住相布施\u201d。' },
     { id: 'g17', chars: '恒河沙', pinyin: 'héng hé shā', category: '数量', definition: '以恒河中的沙粒数比喻极多的数量，经中常用来说明功德之大。' },
     { id: 'g18', chars: '三千大千世界', pinyin: 'sān qiān dà qiān shì jiè', category: '佛教宇宙', definition: '佛教宇宙观中一佛所教化的世界范围，由十亿个小世界组成。' },
     { id: 'g19', chars: '燃灯佛', pinyin: 'rán dēng fó', category: '佛', definition: '过去世的一尊佛，曾为释迦牟尼佛授记，预言其将来成佛。' },
     { id: 'g20', chars: '南无', pinyin: 'ná mó', category: '仪轨', definition: '梵语namas音译，意为归命、敬礼，表示至诚皈依。' },
     { id: 'g21', chars: '七宝', pinyin: 'qī bǎo', category: '名相', definition: '金、银、琉璃、玻璃（水晶）、砗磲、赤珠、玛瑙，经中常以满世界七宝布施喻极大功德。' },
-    { id: 'g22', chars: '四句偈', pinyin: 'sì jù jì', category: '名相', definition: '经中反复提及的关键概念，一般认为指「一切有为法，如梦幻泡影，如露亦如电，应作如是观」。' },
+    { id: 'g22', chars: '四句偈', pinyin: 'sì jù jì', category: '名相', definition: '经中反复提及的关键概念，一般认为指\u201c一切有为法，如梦幻泡影，如露亦如电，应作如是观\u201d。' },
   ],
 }

@@ -2,8 +2,41 @@ import { useState, useRef, useEffect, useCallback } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useStore } from '../store/useStore'
 import { IconBack, IconCheck } from '../components/Icons'
-import type { SutraData, GlossaryItem } from '../data/types'
+import type { SutraData, GlossaryItem, SutraChar } from '../data/types'
 import './ReadingPage.css'
+
+/* Quote-binding: group chars so quotes never separate from adjacent text */
+const OPEN_Q = /[\u201c\u2018]/
+const CLOSE_Q = /[\u201d\u2019]/
+const TRAIL_PUNCT = /[。！？]/
+
+interface CharGroup { chars: SutraChar[]; nowrap: boolean; key: number }
+
+function groupChars(chars: SutraChar[]): CharGroup[] {
+  const groups: CharGroup[] = []
+  let i = 0
+  while (i < chars.length) {
+    // Opening quote + next char → nowrap
+    if (OPEN_Q.test(chars[i].char) && i + 1 < chars.length) {
+      groups.push({ chars: [chars[i], chars[i + 1]], nowrap: true, key: i })
+      i += 2
+      continue
+    }
+    // Content char followed by [end-punct...] + closing quote → nowrap
+    if (!CLOSE_Q.test(chars[i].char)) {
+      let j = i + 1
+      while (j < chars.length && TRAIL_PUNCT.test(chars[j].char)) j++
+      if (j < chars.length && CLOSE_Q.test(chars[j].char)) {
+        groups.push({ chars: chars.slice(i, j + 1), nowrap: true, key: i })
+        i = j + 1
+        continue
+      }
+    }
+    groups.push({ chars: [chars[i]], nowrap: false, key: i })
+    i++
+  }
+  return groups
+}
 
 export default function ReadingPage() {
   const { sutraId } = useParams<{ sutraId: string }>()
@@ -296,37 +329,41 @@ export default function ReadingPage() {
                   className={`char-grid ${showPinyin ? 'with-pinyin' : ''}`}
                   style={{ fontSize: `${fontSize}px` }}
                 >
-                  {para.chars.map((c, i) => {
-                    const isQuoteStart = (c.char === '\u300c' || c.char === '\u300e' || c.char === '\u201c') && i + 1 < para.chars.length
-                    if (showPinyin && c.pinyin) {
+                  {groupChars(para.chars).map((group) => {
+                    const renderChar = (c: SutraChar, key: number) => {
+                      if (showPinyin && c.pinyin) {
+                        return (
+                          <ruby
+                            key={key}
+                            className="char-ruby"
+                            onPointerDown={(e) => handleCharDown(c.char, c.pinyin, e)}
+                            onPointerUp={handleCharUp}
+                            onPointerCancel={handleCharUp}
+                          >
+                            {c.char}<rt>{c.pinyin}</rt>
+                          </ruby>
+                        )
+                      }
                       return (
-                        <ruby
-                          key={i}
-                          className="char-ruby"
+                        <span
+                          key={key}
+                          className="char-plain"
                           onPointerDown={(e) => handleCharDown(c.char, c.pinyin, e)}
                           onPointerUp={handleCharUp}
                           onPointerCancel={handleCharUp}
                         >
-                          {c.char}<rt>{c.pinyin}</rt>
-                        </ruby>
+                          {c.char}
+                        </span>
                       )
                     }
-                    if (isQuoteStart) {
+                    if (group.nowrap) {
                       return (
-                        <span key={i} className="char-q">{c.char}</span>
+                        <span key={group.key} className="char-q">
+                          {group.chars.map((c, ci) => renderChar(c, ci))}
+                        </span>
                       )
                     }
-                    return (
-                      <span
-                        key={i}
-                        className="char-plain"
-                        onPointerDown={(e) => handleCharDown(c.char, c.pinyin, e)}
-                        onPointerUp={handleCharUp}
-                        onPointerCancel={handleCharUp}
-                      >
-                        {c.char}
-                      </span>
-                    )
+                    return renderChar(group.chars[0], group.key)
                   })}
                 </div>
               </div>
