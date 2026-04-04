@@ -1,0 +1,7 @@
+{
+  "buildCommand": "cd sutra-app && npm install && npm run build",
+  "outputDirectory": "sutra-app/dist",
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
+}
