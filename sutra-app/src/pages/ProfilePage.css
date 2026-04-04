@@ -251,11 +251,9 @@
 }
 
 .theme-options {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 10px;
+  display: flex;
+  gap: 6px;
   width: 100%;
-  justify-items: center;
 }
 
 .theme-dot {
