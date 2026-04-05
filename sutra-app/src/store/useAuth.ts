@@ -128,20 +128,17 @@ export const useAuth = create<AuthState>()((set, get) => ({
   },
 
   updateDisplayName: async (name) => {
-    if (!supabase) return '后端未配置'
-    const { error } = await supabase.auth.updateUser({ data: { display_name: name } })
-    if (error) return error.message
-    // Also persist in store settings via sync
     useStore.setState({ displayName: name })
+    if (!supabase) return '后端未配置'
+    supabase.auth.updateUser({ data: { display_name: name } })
     await get().syncToCloud()
     return null
   },
 
   updateAvatar: async (dataUrl) => {
-    if (!supabase) return '后端未配置'
-    const { error } = await supabase.auth.updateUser({ data: { avatar_data: dataUrl } })
-    if (error) return error.message
     useStore.setState({ avatarData: dataUrl })
+    if (!supabase) return '后端未配置'
+    supabase.auth.updateUser({ data: { avatar_data: dataUrl } })
     await get().syncToCloud()
     return null
   },
