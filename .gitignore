@@ -1,2 +1,7 @@
 SutraLilbrary.md
 SutraLilbrary.pdf
+~/
+node_modules/
+dist/
+.env
+.env.*
