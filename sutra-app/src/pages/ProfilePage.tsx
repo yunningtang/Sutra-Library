@@ -120,6 +120,32 @@ function CropModal({ src, onConfirm, onCancel }: {
   )
 }
 
+// === About Modal ===
+function AboutModal({ onClose }: { onClose: () => void }) {
+  return (
+    <div className="install-modal" onClick={onClose}>
+      <div className="install-content" onClick={(e) => e.stopPropagation()}>
+        <div className="install-title">关于经库</div>
+        <div className="about-body">
+          <div className="about-row">
+            <span className="about-row-label">版本</span>
+            <span className="about-row-value">1.0</span>
+          </div>
+          <div className="about-row">
+            <span className="about-row-label">开发者</span>
+            <span className="about-row-value">Yunning Tang</span>
+          </div>
+          <div className="about-row about-row-last">
+            <span className="about-row-label">联系</span>
+            <a className="about-row-link" href="mailto:tangyunning27@gmail.com">tangyunning27@gmail.com</a>
+          </div>
+        </div>
+        <button className="install-close-btn" onClick={onClose}>知道了</button>
+      </div>
+    </div>
+  )
+}
+
 // === PWA Install Guide Modal ===
 function InstallGuide({ onClose }: { onClose: () => void }) {
   const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent)
@@ -230,9 +256,9 @@ export default function ProfilePage() {
   const [hexInput, setHexInput] = useState(customColor)
   const [editingName, setEditingName] = useState(false)
   const [nameInput, setNameInput] = useState('')
-  const [showAbout, setShowAbout] = useState(false)
   const [cropSrc, setCropSrc] = useState<string | null>(null)
   const [showInstall, setShowInstall] = useState(false)
+  const [showAbout, setShowAbout] = useState(false)
 
   const handleAvatarFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
@@ -342,10 +368,83 @@ export default function ProfilePage() {
         </button>
       )}
 
+      {/* 1. 阅读设置 — 最常调整 */}
+      <div className="profile-section">
+        <div className="section-title">阅读</div>
+        <div className="section-card">
+          <div className="setting-item">
+            <span className="setting-label">字体</span>
+            <div className="font-choice-options">
+              {fontOptions.map((opt) => (
+                <button
+                  key={opt.id}
+                  className={`font-choice-btn ${fontChoice === opt.id ? 'active' : ''}`}
+                  onClick={() => setFontChoice(opt.id)}
+                >
+                  <span className={`font-sample font-sample-${opt.id}`}>{opt.sample}</span>
+                  <span className="font-label">{opt.label}</span>
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div className="setting-item">
+            <span className="setting-label">字号</span>
+            <div className="font-size-options">
+              {fontSizes.map((size) => (
+                <button
+                  key={size}
+                  className={`font-size-btn ${fontSize === size ? 'active' : ''}`}
+                  onClick={() => setFontSize(size)}
+                >
+                  {size}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div className="setting-item">
+            <span className="setting-label">默认显示拼音</span>
+            <button
+              className={`toggle ${showPinyin ? 'on' : ''}`}
+              onClick={togglePinyin}
+              role="switch"
+              aria-checked={showPinyin}
+            >
+              <span className="toggle-knob" />
+            </button>
+          </div>
+
+          <div className="setting-item">
+            <span className="setting-label">诵读进度条</span>
+            <button
+              className={`toggle ${showProgress ? 'on' : ''}`}
+              onClick={toggleProgress}
+              role="switch"
+              aria-checked={showProgress}
+            >
+              <span className="toggle-knob" />
+            </button>
+          </div>
+
+          <div className="setting-item">
+            <span className="setting-label">计数进度环</span>
+            <button
+              className={`toggle ${showCounterRing ? 'on' : ''}`}
+              onClick={toggleCounterRing}
+              role="switch"
+              aria-checked={showCounterRing}
+            >
+              <span className="toggle-knob" />
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* 2. 外观 — 偶尔调整 */}
       <div className="profile-section">
         <div className="section-title">外观</div>
         <div className="section-card">
-          {/* Theme Color */}
           <div className="setting-item setting-theme">
             <span className="setting-label">主题色</span>
             <div className="theme-options">
@@ -360,7 +459,6 @@ export default function ProfilePage() {
                   {themeColor === opt.id && <span className="theme-check" />}
                 </button>
               ))}
-              {/* Custom color */}
               <button
                 className={`theme-dot theme-custom ${themeColor === 'custom' ? 'active' : ''}`}
                 style={{ '--dot-color': customColor } as React.CSSProperties}
@@ -412,7 +510,6 @@ export default function ProfilePage() {
             )}
           </div>
 
-          {/* Dark Mode */}
           <div className="setting-item">
             <span className="setting-label">
               {darkMode ? <IconMoon size={16} /> : <IconSun size={16} />}
@@ -430,89 +527,7 @@ export default function ProfilePage() {
         </div>
       </div>
 
-      <div className="profile-section">
-        <div className="section-title">阅读</div>
-        <div className="section-card">
-          <div className="setting-item">
-            <span className="setting-label">字体</span>
-            <div className="font-choice-options">
-              {fontOptions.map((opt) => (
-                <button
-                  key={opt.id}
-                  className={`font-choice-btn ${fontChoice === opt.id ? 'active' : ''}`}
-                  onClick={() => setFontChoice(opt.id)}
-                >
-                  <span className={`font-sample font-sample-${opt.id}`}>{opt.sample}</span>
-                  <span className="font-label">{opt.label}</span>
-                </button>
-              ))}
-            </div>
-          </div>
-
-          <div className="setting-item">
-            <span className="setting-label">字号</span>
-            <div className="font-size-options">
-              {fontSizes.map((size) => (
-                <button
-                  key={size}
-                  className={`font-size-btn ${fontSize === size ? 'active' : ''}`}
-                  onClick={() => setFontSize(size)}
-                >
-                  {size}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          <div className="setting-item">
-            <span className="setting-label">诵读进度条</span>
-            <button
-              className={`toggle ${showProgress ? 'on' : ''}`}
-              onClick={toggleProgress}
-              role="switch"
-              aria-checked={showProgress}
-            >
-              <span className="toggle-knob" />
-            </button>
-          </div>
-
-          <div className="setting-item">
-            <span className="setting-label">计数进度环</span>
-            <button
-              className={`toggle ${showCounterRing ? 'on' : ''}`}
-              onClick={toggleCounterRing}
-              role="switch"
-              aria-checked={showCounterRing}
-            >
-              <span className="toggle-knob" />
-            </button>
-          </div>
-
-          <div className="setting-item">
-            <span className="setting-label">默认显示拼音</span>
-            <button
-              className={`toggle ${showPinyin ? 'on' : ''}`}
-              onClick={togglePinyin}
-              role="switch"
-              aria-checked={showPinyin}
-            >
-              <span className="toggle-knob" />
-            </button>
-          </div>
-        </div>
-      </div>
-
-      {/* PWA Install */}
-      <div className="profile-section">
-        <div className="section-title">快捷方式</div>
-        <div className="section-card">
-          <button className="setting-item setting-link" onClick={() => setShowInstall(true)}>
-            <span className="setting-label">添加到主屏幕</span>
-            <span className="setting-arrow">›</span>
-          </button>
-        </div>
-      </div>
-
+      {/* 3. 诵读记录 — 信息展示 */}
       {hasRecords && (
         <div className="profile-section">
           <div className="section-title">诵读记录</div>
@@ -532,24 +547,22 @@ export default function ProfilePage() {
         </div>
       )}
 
+      {/* 4. 更多 — 低频操作 */}
       <div className="profile-section">
-        <div className="section-title">关于</div>
+        <div className="section-title">更多</div>
         <div className="section-card">
-          <button className="setting-item setting-link" onClick={() => setShowAbout(!showAbout)}>
-            <span className="setting-label">更多信息</span>
-            <span className={`setting-arrow ${showAbout ? 'open' : ''}`}>›</span>
+          <button className="setting-item setting-link" onClick={() => setShowInstall(true)}>
+            <span className="setting-label">添加到主屏幕</span>
+            <span className="setting-arrow">›</span>
           </button>
-          {showAbout && (
-            <div className="about-detail">
-              <p>经库 v1.0</p>
-              <p>Yunning Tang</p>
-              <a href="mailto:tangyunning27@gmail.com">tangyunning27@gmail.com</a>
-            </div>
-          )}
+          <button className="setting-item setting-link" onClick={() => setShowAbout(true)}>
+            <span className="setting-label">关于经库</span>
+            <span className="setting-arrow">›</span>
+          </button>
         </div>
       </div>
 
-      {/* Crop Modal */}
+      {/* Modals */}
       {cropSrc && (
         <CropModal
           src={cropSrc}
@@ -557,9 +570,8 @@ export default function ProfilePage() {
           onCancel={() => setCropSrc(null)}
         />
       )}
-
-      {/* Install Guide Modal */}
       {showInstall && <InstallGuide onClose={() => setShowInstall(false)} />}
+      {showAbout && <AboutModal onClose={() => setShowAbout(false)} />}
     </div>
   )
 }
