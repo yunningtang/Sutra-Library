@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useRef, useState, useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useStore, type ThemeColor, type FontChoice } from '../store/useStore'
 import { useAuth } from '../store/useAuth'
@@ -6,29 +6,175 @@ import { manifest } from '../data/manifest'
 import { IconUser, IconSun, IconMoon } from '../components/Icons'
 import './ProfilePage.css'
 
-function resizeImage(file: File, maxSize: number): Promise<string> {
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader()
-    reader.onload = () => {
-      const img = new Image()
-      img.onload = () => {
-        const canvas = document.createElement('canvas')
-        let w = img.width
-        let h = img.height
-        if (w > h) { h = maxSize * h / w; w = maxSize }
-        else { w = maxSize * w / h; h = maxSize }
-        canvas.width = w
-        canvas.height = h
-        const ctx = canvas.getContext('2d')!
-        ctx.drawImage(img, 0, 0, w, h)
-        resolve(canvas.toDataURL('image/jpeg', 0.8))
-      }
-      img.onerror = reject
-      img.src = reader.result as string
+const CROP_SIZE = 240
+const OUT_SIZE = 128
+
+function formatSyncTime(iso: string): string {
+  if (!iso) return ''
+  const diff = Date.now() - new Date(iso).getTime()
+  const min = Math.floor(diff / 60000)
+  if (min < 1) return '刚刚同步'
+  if (min < 60) return `${min}分钟前同步`
+  const hr = Math.floor(min / 60)
+  if (hr < 24) return `${hr}小时前同步`
+  return `${Math.floor(hr / 24)}天前同��`
+}
+
+// === Avatar Crop Modal ===
+function CropModal({ src, onConfirm, onCancel }: {
+  src: string
+  onConfirm: (dataUrl: string) => void
+  onCancel: () => void
+}) {
+  const [naturalSize, setNaturalSize] = useState<{ w: number; h: number } | null>(null)
+  const [offset, setOffset] = useState({ x: 0, y: 0 })
+  const [zoom, setZoom] = useState(1)
+  const dragRef = useRef<{ sx: number; sy: number; ox: number; oy: number } | null>(null)
+
+  const onImgLoad = (e: React.SyntheticEvent<HTMLImageElement>) => {
+    const img = e.currentTarget
+    setNaturalSize({ w: img.naturalWidth, h: img.naturalHeight })
+  }
+
+  const baseScale = naturalSize
+    ? Math.max(CROP_SIZE / naturalSize.w, CROP_SIZE / naturalSize.h)
+    : 1
+  const totalScale = baseScale * zoom
+  const displayW = (naturalSize?.w ?? CROP_SIZE) * totalScale
+  const displayH = (naturalSize?.h ?? CROP_SIZE) * totalScale
+
+  const handlePointerDown = (e: React.PointerEvent) => {
+    e.currentTarget.setPointerCapture(e.pointerId)
+    dragRef.current = { sx: e.clientX, sy: e.clientY, ox: offset.x, oy: offset.y }
+  }
+  const handlePointerMove = (e: React.PointerEvent) => {
+    if (!dragRef.current) return
+    setOffset({
+      x: dragRef.current.ox + e.clientX - dragRef.current.sx,
+      y: dragRef.current.oy + e.clientY - dragRef.current.sy,
+    })
+  }
+  const handlePointerUp = () => { dragRef.current = null }
+
+  const handleConfirm = () => {
+    if (!naturalSize) return
+    const imgLeft = (CROP_SIZE - displayW) / 2 + offset.x
+    const imgTop = (CROP_SIZE - displayH) / 2 + offset.y
+    const srcX = Math.max(0, -imgLeft / totalScale)
+    const srcY = Math.max(0, -imgTop / totalScale)
+    const srcW = Math.min(CROP_SIZE / totalScale, naturalSize.w - srcX)
+    const srcH = Math.min(CROP_SIZE / totalScale, naturalSize.h - srcY)
+
+    const img = new Image()
+    img.onload = () => {
+      const canvas = document.createElement('canvas')
+      canvas.width = OUT_SIZE
+      canvas.height = OUT_SIZE
+      const ctx = canvas.getContext('2d')!
+      ctx.beginPath()
+      ctx.arc(OUT_SIZE / 2, OUT_SIZE / 2, OUT_SIZE / 2, 0, Math.PI * 2)
+      ctx.clip()
+      ctx.drawImage(img, srcX, srcY, srcW, srcH, 0, 0, OUT_SIZE, OUT_SIZE)
+      onConfirm(canvas.toDataURL('image/jpeg', 0.85))
     }
-    reader.onerror = reject
-    reader.readAsDataURL(file)
-  })
+    img.src = src
+  }
+
+  return (
+    <div className="crop-modal">
+      <div className="crop-hint">拖动调整位置</div>
+      <div
+        className="crop-area"
+        style={{ width: CROP_SIZE, height: CROP_SIZE }}
+        onPointerDown={handlePointerDown}
+        onPointerMove={handlePointerMove}
+        onPointerUp={handlePointerUp}
+      >
+        <img
+          src={src}
+          alt=""
+          onLoad={onImgLoad}
+          draggable={false}
+          style={{
+            width: displayW,
+            height: displayH,
+            left: (CROP_SIZE - displayW) / 2 + offset.x,
+            top: (CROP_SIZE - displayH) / 2 + offset.y,
+          }}
+        />
+      </div>
+      <input
+        className="crop-slider"
+        type="range"
+        min={1}
+        max={3}
+        step={0.05}
+        value={zoom}
+        onChange={(e) => setZoom(Number(e.target.value))}
+      />
+      <div className="crop-buttons">
+        <button className="crop-btn crop-btn-cancel" onClick={onCancel}>取消</button>
+        <button className="crop-btn crop-btn-confirm" onClick={handleConfirm}>确认</button>
+      </div>
+    </div>
+  )
+}
+
+// === PWA Install Guide Modal ===
+function InstallGuide({ onClose }: { onClose: () => void }) {
+  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent)
+  const isAndroid = /Android/.test(navigator.userAgent)
+
+  return (
+    <div className="install-modal" onClick={onClose}>
+      <div className="install-content" onClick={(e) => e.stopPropagation()}>
+        <div className="install-title">添加到主屏幕</div>
+        {isIOS ? (
+          <div className="install-steps">
+            <div className="install-step">
+              <span className="step-num">1</span>
+              <span>使用 <b>Safari</b> 打开本页面</span>
+            </div>
+            <div className="install-step">
+              <span className="step-num">2</span>
+              <span>点击底部 <b>分享按钮</b> ⎙</span>
+            </div>
+            <div className="install-step">
+              <span className="step-num">3</span>
+              <span>选择 <b>"添加到主屏幕"</b></span>
+            </div>
+          </div>
+        ) : isAndroid ? (
+          <div className="install-steps">
+            <div className="install-step">
+              <span className="step-num">1</span>
+              <span>使用 <b>Chrome</b> 打开本页面</span>
+            </div>
+            <div className="install-step">
+              <span className="step-num">2</span>
+              <span>点击右上角 <b>⋮ 菜单</b></span>
+            </div>
+            <div className="install-step">
+              <span className="step-num">3</span>
+              <span>选择 <b>"添加到主屏幕"</b></span>
+            </div>
+          </div>
+        ) : (
+          <div className="install-steps">
+            <div className="install-step">
+              <span className="step-num">1</span>
+              <span>使用 Chrome 或 Edge 打开</span>
+            </div>
+            <div className="install-step">
+              <span className="step-num">2</span>
+              <span>点击地址栏右侧 <b>安装图标</b></span>
+            </div>
+          </div>
+        )}
+        <button className="install-close-btn" onClick={onClose}>知道了</button>
+      </div>
+    </div>
+  )
 }
 
 const fontOptions: { id: FontChoice; label: string; sample: string }[] = [
@@ -67,9 +213,9 @@ export default function ProfilePage() {
   const setThemeColor = useStore((s) => s.setThemeColor)
   const setCustomColor = useStore((s) => s.setCustomColor)
   const toggleDarkMode = useStore((s) => s.toggleDarkMode)
-
   const displayName = useStore((s) => s.displayName)
   const avatarData = useStore((s) => s.avatarData)
+  const lastSyncAt = useStore((s) => s.lastSyncAt)
 
   const navigate = useNavigate()
   const user = useAuth((s) => s.user)
@@ -85,14 +231,22 @@ export default function ProfilePage() {
   const [editingName, setEditingName] = useState(false)
   const [nameInput, setNameInput] = useState('')
   const [showAbout, setShowAbout] = useState(false)
+  const [cropSrc, setCropSrc] = useState<string | null>(null)
+  const [showInstall, setShowInstall] = useState(false)
 
-  const handleAvatarChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleAvatarFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
     if (!file) return
-    const dataUrl = await resizeImage(file, 128)
-    await updateAvatar(dataUrl)
+    const reader = new FileReader()
+    reader.onload = () => setCropSrc(reader.result as string)
+    reader.readAsDataURL(file)
     e.target.value = ''
   }
+
+  const handleCropConfirm = useCallback(async (dataUrl: string) => {
+    await updateAvatar(dataUrl)
+    setCropSrc(null)
+  }, [updateAvatar])
 
   const handleNameSave = async () => {
     const trimmed = nameInput.trim()
@@ -134,7 +288,7 @@ export default function ProfilePage() {
             type="file"
             accept="image/*"
             className="avatar-input-hidden"
-            onChange={handleAvatarChange}
+            onChange={handleAvatarFileChange}
           />
           <div className="profile-card-body">
             {editingName ? (
@@ -160,9 +314,15 @@ export default function ProfilePage() {
                 <span className="name-edit-icon">✎</span>
               </button>
             )}
-            {!editingName && userDisplayName && (
-              <div className="profile-card-email">{user.email}</div>
-            )}
+            <div className="profile-card-meta">
+              {userDisplayName && <span>{user.email}</span>}
+              {lastSyncAt && (
+                <>
+                  {userDisplayName && <span className="meta-dot">·</span>}
+                  <span>{formatSyncTime(lastSyncAt)}</span>
+                </>
+              )}
+            </div>
             <div className="profile-card-sub">
               <button className="profile-sync-btn" onClick={async () => { await syncFromCloud(); await syncToCloud() }}>同步数据</button>
               <span style={{ margin: '0 6px', color: 'var(--c-ink-faint)' }}>·</span>
@@ -342,6 +502,17 @@ export default function ProfilePage() {
         </div>
       </div>
 
+      {/* PWA Install */}
+      <div className="profile-section">
+        <div className="section-title">快捷方式</div>
+        <div className="section-card">
+          <button className="setting-item setting-link" onClick={() => setShowInstall(true)}>
+            <span className="setting-label">添加到主屏幕</span>
+            <span className="setting-arrow">›</span>
+          </button>
+        </div>
+      </div>
+
       {hasRecords && (
         <div className="profile-section">
           <div className="section-title">诵读记录</div>
@@ -362,27 +533,33 @@ export default function ProfilePage() {
       )}
 
       <div className="profile-section">
-        <button className="section-title about-toggle" onClick={() => setShowAbout(!showAbout)}>
-          关于
-          <span className={`about-arrow ${showAbout ? 'open' : ''}`}>›</span>
-        </button>
-        {showAbout && (
-          <div className="section-card about-card">
-            <div className="about-item">
-              <span className="about-label">经库</span>
-              <span className="about-value">v1.0</span>
+        <div className="section-title">关于</div>
+        <div className="section-card">
+          <button className="setting-item setting-link" onClick={() => setShowAbout(!showAbout)}>
+            <span className="setting-label">更多信息</span>
+            <span className={`setting-arrow ${showAbout ? 'open' : ''}`}>›</span>
+          </button>
+          {showAbout && (
+            <div className="about-detail">
+              <p>经库 v1.0</p>
+              <p>Yunning Tang</p>
+              <a href="mailto:tangyunning27@gmail.com">tangyunning27@gmail.com</a>
             </div>
-            <div className="about-item">
-              <span className="about-label">开发者</span>
-              <span className="about-value">Yunning Tang</span>
-            </div>
-            <a className="about-item about-link" href="mailto:tangyunning27@gmail.com">
-              <span className="about-label">联系作者</span>
-              <span className="about-value">tangyunning27@gmail.com</span>
-            </a>
-          </div>
-        )}
+          )}
+        </div>
       </div>
+
+      {/* Crop Modal */}
+      {cropSrc && (
+        <CropModal
+          src={cropSrc}
+          onConfirm={handleCropConfirm}
+          onCancel={() => setCropSrc(null)}
+        />
+      )}
+
+      {/* Install Guide Modal */}
+      {showInstall && <InstallGuide onClose={() => setShowInstall(false)} />}
     </div>
   )
 }

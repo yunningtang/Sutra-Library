@@ -56,6 +56,7 @@ interface AppState {
   // Profile
   displayName: string
   avatarData: string
+  lastSyncAt: string
 
   // Settings
   fontSize: number
@@ -157,6 +158,7 @@ export const useStore = create<AppState>()(
 
       displayName: '',
       avatarData: '',
+      lastSyncAt: '',
 
       fontSize: 20,
       fontChoice: 'serif',

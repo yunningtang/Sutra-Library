@@ -175,7 +175,11 @@ export const useAuth = create<AuthState>()((set, get) => ({
       .from('user_data')
       .upsert(payload, { onConflict: 'user_id' })
 
-    if (error) console.error('syncToCloud error:', error)
+    if (error) {
+      console.error('syncToCloud error:', error)
+    } else {
+      useStore.setState({ lastSyncAt: new Date().toISOString() })
+    }
   },
 
   syncFromCloud: async () => {
