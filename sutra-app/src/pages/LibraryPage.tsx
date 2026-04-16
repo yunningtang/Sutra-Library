@@ -14,18 +14,20 @@ function VisualCard({ sutra, count, index, onClick }: {
   return (
     <div
       className={`visual-card ${!isAvailable ? 'disabled' : ''}`}
-      style={{ animationDelay: `${index * 60}ms` }}
+      style={{ animationDelay: `${index * 80}ms` }}
       onClick={() => isAvailable && onClick()}
     >
       <div className="visual-card-inner">
         <div className="visual-card-name">{sutra.name}</div>
-        <div className="visual-card-divider" />
-        <div className="visual-card-meta">
-          <span className="visual-card-translator">{sutra.translator}</span>
-          {count > 0 && <span className="visual-card-count">诵 {count}</span>}
-        </div>
       </div>
-      {!isAvailable && <div className="visual-card-badge">即将</div>}
+      <div className="visual-card-footer">
+        <div className="visual-card-dots" />
+        <span className="visual-card-translator">{sutra.translator}</span>
+        {count > 0 && (
+          <span className="visual-card-count">已诵 {count} 部</span>
+        )}
+      </div>
+      {!isAvailable && <div className="visual-card-badge">即将上线</div>}
     </div>
   )
 }
