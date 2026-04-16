@@ -270,25 +270,9 @@
   box-shadow: 0 2px 8px rgba(0,0,0,0.04);
 }
 
-.visual-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background: var(--theme);
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
 .visual-card:hover {
   transform: translateY(-6px) rotate(-0.5deg);
   box-shadow: 0 12px 32px var(--shadow-ink), 0 2px 8px var(--shadow-ink);
-}
-
-.visual-card:hover::before {
-  opacity: 1;
 }
 
 .visual-card:active:not(.disabled) {
@@ -303,10 +287,6 @@
 .visual-card.disabled:hover {
   transform: none;
   box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-}
-
-.visual-card.disabled:hover::before {
-  opacity: 0;
 }
 
 .visual-card-inner {
