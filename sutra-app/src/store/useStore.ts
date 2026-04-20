@@ -1,7 +1,7 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 
-export type ThemeColor = 'matcha' | 'sky' | 'lavender' | 'peach' | 'amber' | 'rose' | 'slate' | 'teal' | 'ink' | 'custom'
+export type ThemeColor = 'celadon' | 'matcha' | 'sky' | 'lavender' | 'peach' | 'amber' | 'rose' | 'slate' | 'teal' | 'ink' | 'custom'
 export type FontChoice = 'serif' | 'sans' | 'system'
 
 interface ReadingRecord {
@@ -165,8 +165,8 @@ export const useStore = create<AppState>()(
       showPinyin: true,
       showProgress: true,
       showCounterRing: true,
-      themeColor: 'matcha',
-      customColor: '#9DBBA4',
+      themeColor: 'celadon',
+      customColor: '#A8CBB7',
       darkMode: false,
       setFontSize: (size) => set({ fontSize: size }),
       setFontChoice: (font) => set({ fontChoice: font }),

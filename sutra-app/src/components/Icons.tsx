@@ -15,6 +15,15 @@ export function IconBook({ size = 20, color = 'currentColor', className }: IconP
   )
 }
 
+export function IconBookFilled({ size = 20, color = 'currentColor', className }: IconProps) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill={color} stroke={color} strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" className={className}>
+      <path d="M6.5 2H20v18H6.5A2.5 2.5 0 0 0 4 22.5v-18A2.5 2.5 0 0 1 6.5 2z" />
+      <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20v5H6.5A2.5 2.5 0 0 1 4 19.5z" fill="none" />
+    </svg>
+  )
+}
+
 export function IconCounter({ size = 20, color = 'currentColor', className }: IconProps) {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className={className}>
@@ -24,10 +33,28 @@ export function IconCounter({ size = 20, color = 'currentColor', className }: Ic
   )
 }
 
+export function IconCounterFilled({ size = 20, color = 'currentColor', className }: IconProps) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill={color} stroke={color} strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" className={className}>
+      <circle cx="12" cy="12" r="10" />
+      <path d="M12 6v6l4 2" stroke="#fff" fill="none" strokeWidth="2" />
+    </svg>
+  )
+}
+
 export function IconUser({ size = 20, color = 'currentColor', className }: IconProps) {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className={className}>
       <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+      <circle cx="12" cy="7" r="4" />
+    </svg>
+  )
+}
+
+export function IconUserFilled({ size = 20, color = 'currentColor', className }: IconProps) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill={color} stroke={color} strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" className={className}>
+      <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2z" />
       <circle cx="12" cy="7" r="4" />
     </svg>
   )

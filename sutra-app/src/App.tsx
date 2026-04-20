@@ -12,6 +12,13 @@ import ResetPasswordPage from './pages/ResetPasswordPage'
 import { useStore } from './store/useStore'
 
 const themeVars: Record<string, Record<string, string>> = {
+  celadon: {
+    '--theme': '#A8CBB7',
+    '--theme-l': '#C3DCC8',
+    '--theme-xl': '#D9E6DC',
+    '--theme-bg': '#F1F7F3',
+    '--theme-d': '#6E9786',
+  },
   matcha: {
     '--theme': '#9DBBA4',
     '--theme-l': '#BACFBE',
@@ -119,7 +126,7 @@ function ThemeProvider({ children }: { children: React.ReactNode }) {
     const vars =
       themeColor === 'custom'
         ? hexToVars(customColor)
-        : themeVars[themeColor] || themeVars.matcha
+        : themeVars[themeColor] || themeVars.celadon
     Object.entries(vars).forEach(([key, val]) => root.style.setProperty(key, val))
 
     root.style.setProperty('--font-reading', fontFamilies[fontChoice] || fontFamilies.serif)

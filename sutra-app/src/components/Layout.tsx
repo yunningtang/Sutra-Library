@@ -1,12 +1,19 @@
 import { NavLink, Outlet, useLocation } from 'react-router-dom'
 import { useEffect, useState } from 'react'
-import { IconBook, IconCounter, IconUser } from './Icons'
+import {
+  IconBook,
+  IconBookFilled,
+  IconCounter,
+  IconCounterFilled,
+  IconUser,
+  IconUserFilled,
+} from './Icons'
 import './Layout.css'
 
 const tabs = [
-  { to: '/', label: '经库', Icon: IconBook, end: true },
-  { to: '/counter', label: '计数', Icon: IconCounter, end: false },
-  { to: '/profile', label: '我的', Icon: IconUser, end: false },
+  { to: '/', label: '经库', Icon: IconBook, IconActive: IconBookFilled, end: true },
+  { to: '/counter', label: '计数', Icon: IconCounter, IconActive: IconCounterFilled, end: false },
+  { to: '/profile', label: '我的', Icon: IconUser, IconActive: IconUserFilled, end: false },
 ]
 
 export default function Layout() {
@@ -30,21 +37,24 @@ export default function Layout() {
         <Outlet />
       </div>
       <nav className="tab-bar">
-        {tabs.map((tab, i) => (
-          <NavLink
-            key={tab.to}
-            to={tab.to}
-            end={tab.end}
-            className={({ isActive }) =>
-              `tab ${isActive ? 'active' : ''} ${pressedIdx === i ? 'pressing' : ''}`
-            }
-            onPointerDown={() => setPressedIdx(i)}
-          >
-            <tab.Icon size={20} className="tab-icon-svg" />
-            <span className="tab-label">{tab.label}</span>
-            {activeIdx === i && <span className="tab-indicator" />}
-          </NavLink>
-        ))}
+        {tabs.map((tab, i) => {
+          const isActive = activeIdx === i
+          const Icon = isActive ? tab.IconActive : tab.Icon
+          return (
+            <NavLink
+              key={tab.to}
+              to={tab.to}
+              end={tab.end}
+              className={({ isActive: active }) =>
+                `tab ${active ? 'active' : ''} ${pressedIdx === i ? 'pressing' : ''}`
+              }
+              onPointerDown={() => setPressedIdx(i)}
+            >
+              <Icon size={20} className="tab-icon-svg" />
+              <span className="tab-label">{tab.label}</span>
+            </NavLink>
+          )
+        })}
       </nav>
     </div>
   )

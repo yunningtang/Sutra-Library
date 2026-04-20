@@ -210,7 +210,8 @@ const fontOptions: { id: FontChoice; label: string; sample: string }[] = [
 ]
 
 const themeOptions: { id: ThemeColor; label: string; color: string }[] = [
-  { id: 'matcha', label: '抹茶', color: '#6B9E7D' },
+  { id: 'celadon', label: '青瓷', color: '#A8CBB7' },
+  { id: 'matcha', label: '抹茶', color: '#9DBBA4' },
   { id: 'sky', label: '天空', color: '#7AB8D9' },
   { id: 'lavender', label: '薰衣草', color: '#A494CC' },
   { id: 'peach', label: '蜜桃', color: '#E8A598' },
