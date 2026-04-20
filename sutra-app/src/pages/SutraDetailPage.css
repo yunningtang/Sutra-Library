@@ -112,18 +112,20 @@
 .start-reading-btn {
   position: relative;
   display: block;
-  width: 100%;
-  margin: 24px 0 44px;
-  padding: 18px 24px;
+  box-sizing: border-box;
+  align-self: stretch;
+  width: calc(100% + 2 * var(--page-padding));
+  margin: 24px calc(-1 * var(--page-padding)) 44px;
+  padding: 22px 32px;
   background: var(--btn-ink);
   color: var(--btn-ink-fg);
   border: none;
-  border-radius: 8px;
+  border-radius: 0;
   font-family: var(--font-serif);
-  font-size: 16px;
+  font-size: 17px;
   font-weight: 600;
-  letter-spacing: 12px;
-  padding-left: 36px;
+  letter-spacing: 14px;
+  padding-left: 46px;
   transition: background 0.25s ease, transform 0.2s cubic-bezier(0.22, 1, 0.36, 1),
               box-shadow 0.25s ease;
   animation: staggerIn 0.5s cubic-bezier(0.22, 1, 0.36, 1) 120ms both;
@@ -143,11 +145,11 @@
 }
 
 .start-reading-btn::before {
-  left: 26px;
+  left: 32px;
 }
 
 .start-reading-btn::after {
-  right: 26px;
+  right: 32px;
 }
 
 .start-reading-btn:hover {
