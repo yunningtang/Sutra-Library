@@ -64,6 +64,7 @@ interface AppState {
   showPinyin: boolean
   showProgress: boolean
   showCounterRing: boolean
+  showHomeStats: boolean
   themeColor: ThemeColor
   customColor: string
   darkMode: boolean
@@ -72,6 +73,7 @@ interface AppState {
   togglePinyin: () => void
   toggleProgress: () => void
   toggleCounterRing: () => void
+  toggleHomeStats: () => void
   setThemeColor: (color: ThemeColor) => void
   setCustomColor: (hex: string) => void
   toggleDarkMode: () => void
@@ -165,6 +167,7 @@ export const useStore = create<AppState>()(
       showPinyin: true,
       showProgress: true,
       showCounterRing: true,
+      showHomeStats: true,
       themeColor: 'celadon',
       customColor: '#A8CBB7',
       darkMode: false,
@@ -173,6 +176,7 @@ export const useStore = create<AppState>()(
       togglePinyin: () => set((state) => ({ showPinyin: !state.showPinyin })),
       toggleProgress: () => set((state) => ({ showProgress: !state.showProgress })),
       toggleCounterRing: () => set((state) => ({ showCounterRing: !state.showCounterRing })),
+      toggleHomeStats: () => set((state) => ({ showHomeStats: !state.showHomeStats })),
       setThemeColor: (color) => set({ themeColor: color }),
       setCustomColor: (hex) => set({ customColor: hex, themeColor: 'custom' }),
       toggleDarkMode: () => set((state) => ({ darkMode: !state.darkMode })),

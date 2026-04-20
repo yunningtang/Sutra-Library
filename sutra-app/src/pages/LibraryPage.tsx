@@ -42,10 +42,16 @@ export default function LibraryPage() {
   const navigate = useNavigate()
   const readingCounts = useStore((s) => s.readingCounts)
   const favorites = useStore((s) => s.favorites)
+  const showHomeStats = useStore((s) => s.showHomeStats)
+  const counterRecords = useStore((s) => s.counterRecords)
   const [viewMode, setViewMode] = useState<'visual' | 'list'>('visual')
 
   const favSutras = manifest.filter((s) => favorites.includes(s.id))
   const otherSutras = manifest.filter((s) => !favorites.includes(s.id))
+
+  const totalSutras = Object.values(readingCounts).reduce((a, b) => a + b, 0)
+  const uniqueSutras = Object.values(readingCounts).filter((c) => c > 0).length
+  const totalMantra = counterRecords.reduce((a, r) => a + r.count, 0)
 
   return (
     <div className="library-page">
@@ -77,6 +83,29 @@ export default function LibraryPage() {
           </button>
         </div>
       </div>
+
+      {showHomeStats && (totalSutras > 0 || totalMantra > 0) && (
+        <div className="home-stats">
+          <div className="home-stat">
+            <div className="home-stat-number">{totalSutras}</div>
+            <div className="home-stat-label">部已诵</div>
+          </div>
+          <div className="home-stat-divider" />
+          <div className="home-stat">
+            <div className="home-stat-number">{uniqueSutras}</div>
+            <div className="home-stat-label">卷经</div>
+          </div>
+          {totalMantra > 0 && (
+            <>
+              <div className="home-stat-divider" />
+              <div className="home-stat">
+                <div className="home-stat-number">{totalMantra.toLocaleString()}</div>
+                <div className="home-stat-label">遍持</div>
+              </div>
+            </>
+          )}
+        </div>
+      )}
 
       {viewMode === 'visual' ? (
         /* === Visual Card View === */

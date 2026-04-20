@@ -235,8 +235,10 @@ export default function ProfilePage() {
   const setFontChoice = useStore((s) => s.setFontChoice)
   const togglePinyin = useStore((s) => s.togglePinyin)
   const showCounterRing = useStore((s) => s.showCounterRing)
+  const showHomeStats = useStore((s) => s.showHomeStats)
   const toggleProgress = useStore((s) => s.toggleProgress)
   const toggleCounterRing = useStore((s) => s.toggleCounterRing)
+  const toggleHomeStats = useStore((s) => s.toggleHomeStats)
   const setThemeColor = useStore((s) => s.setThemeColor)
   const setCustomColor = useStore((s) => s.setCustomColor)
   const toggleDarkMode = useStore((s) => s.toggleDarkMode)
@@ -435,6 +437,18 @@ export default function ProfilePage() {
               onClick={toggleCounterRing}
               role="switch"
               aria-checked={showCounterRing}
+            >
+              <span className="toggle-knob" />
+            </button>
+          </div>
+
+          <div className="setting-item">
+            <span className="setting-label">首页诵经统计</span>
+            <button
+              className={`toggle ${showHomeStats ? 'on' : ''}`}
+              onClick={toggleHomeStats}
+              role="switch"
+              aria-checked={showHomeStats}
             >
               <span className="toggle-knob" />
             </button>
