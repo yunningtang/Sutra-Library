@@ -11,7 +11,7 @@
   padding-bottom: calc(92px + env(safe-area-inset-bottom, 0px));
 }
 
-/* === Tab Bar — iOS 26 Liquid Glass === */
+/* === Tab Bar — Frosted Pill === */
 .tab-bar {
   position: fixed;
   left: 50%;
@@ -21,55 +21,25 @@
   align-items: center;
   justify-content: space-between;
   gap: 4px;
-  height: 62px;
+  height: 60px;
   padding: 6px;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.55);
-  backdrop-filter: blur(32px) saturate(200%);
-  -webkit-backdrop-filter: blur(32px) saturate(200%);
-  border: 1px solid rgba(255, 255, 255, 0.6);
+  background: rgba(252, 252, 251, 0.82);
+  backdrop-filter: blur(16px) saturate(140%);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
+  border: 1px solid rgba(0, 0, 0, 0.05);
   box-shadow:
-    0 10px 40px rgba(0, 0, 0, 0.12),
-    0 2px 8px rgba(0, 0, 0, 0.06),
-    inset 0 1px 0 rgba(255, 255, 255, 0.9),
-    inset 0 -1px 0 rgba(255, 255, 255, 0.3);
+    0 6px 20px rgba(0, 0, 0, 0.08),
+    0 1px 3px rgba(0, 0, 0, 0.04);
   z-index: 100;
-  overflow: hidden;
-}
-
-/* Inner glossy sheen */
-.tab-bar::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: 999px;
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.45) 0%,
-    rgba(255, 255, 255, 0) 40%,
-    rgba(255, 255, 255, 0) 60%,
-    rgba(255, 255, 255, 0.15) 100%
-  );
-  pointer-events: none;
-  z-index: 0;
 }
 
 [data-theme="dark"] .tab-bar {
-  background: rgba(38, 37, 35, 0.55);
-  border-color: rgba(255, 255, 255, 0.08);
+  background: rgba(38, 37, 35, 0.82);
+  border-color: rgba(255, 255, 255, 0.06);
   box-shadow:
-    0 10px 40px rgba(0, 0, 0, 0.4),
-    0 2px 8px rgba(0, 0, 0, 0.3),
-    inset 0 1px 0 rgba(255, 255, 255, 0.08);
-}
-
-[data-theme="dark"] .tab-bar::after {
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.08) 0%,
-    rgba(255, 255, 255, 0) 50%,
-    rgba(0, 0, 0, 0.15) 100%
-  );
+    0 6px 20px rgba(0, 0, 0, 0.3),
+    0 1px 3px rgba(0, 0, 0, 0.2);
 }
 
 .tab {
@@ -90,17 +60,11 @@
 }
 
 .tab.active {
-  background: var(--btn-ink);
-  box-shadow:
-    0 2px 6px rgba(0, 0, 0, 0.15),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  background: var(--theme-bg);
 }
 
 [data-theme="dark"] .tab.active {
-  background: var(--btn-ink);
-  box-shadow:
-    0 2px 6px rgba(0, 0, 0, 0.3),
-    inset 0 1px 0 rgba(0, 0, 0, 0.15);
+  background: rgba(255, 255, 255, 0.06);
 }
 
 .tab.pressing {
@@ -113,7 +77,7 @@
 }
 
 .tab.active .tab-icon-svg {
-  color: var(--btn-ink-fg);
+  color: var(--theme-d);
 }
 
 .tab-label {
@@ -126,7 +90,7 @@
 }
 
 .tab.active .tab-label {
-  color: var(--btn-ink-fg);
+  color: var(--theme-d);
   font-weight: 600;
 }
 

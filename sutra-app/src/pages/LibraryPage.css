@@ -44,8 +44,13 @@
 }
 
 .toggle-btn.active {
-  background: var(--btn-ink);
-  color: var(--btn-ink-fg);
+  background: #2E2E2E;
+  color: #FFFFFF;
+}
+
+[data-theme="dark"] .toggle-btn.active {
+  background: #E8E6E2;
+  color: #1A1A1A;
 }
 
 .toggle-btn:not(.active):hover {

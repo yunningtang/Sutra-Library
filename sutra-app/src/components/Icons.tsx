@@ -37,7 +37,7 @@ export function IconCounterFilled({ size = 20, color = 'currentColor', className
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill={color} stroke={color} strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" className={className}>
       <circle cx="12" cy="12" r="10" />
-      <path d="M12 6v6l4 2" stroke="#fff" fill="none" strokeWidth="2" />
+      <path d="M12 6v6l4 2" fill="none" stroke="var(--theme-bg, #fff)" strokeWidth="2" />
     </svg>
   )
 }
