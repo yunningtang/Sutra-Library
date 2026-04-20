@@ -13,11 +13,11 @@ import { useStore } from './store/useStore'
 
 const themeVars: Record<string, Record<string, string>> = {
   matcha: {
-    '--theme': '#6B9E7D',
-    '--theme-l': '#8FBF9E',
-    '--theme-xl': '#B5D4C1',
-    '--theme-bg': '#EFF6F1',
-    '--theme-d': '#4A7A5C',
+    '--theme': '#9DBBA4',
+    '--theme-l': '#BACFBE',
+    '--theme-xl': '#D4E1D5',
+    '--theme-bg': '#F2F6F2',
+    '--theme-d': '#7A9A82',
   },
   sky: {
     '--theme': '#7AB8D9',

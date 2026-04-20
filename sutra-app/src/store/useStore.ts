@@ -166,7 +166,7 @@ export const useStore = create<AppState>()(
       showProgress: true,
       showCounterRing: true,
       themeColor: 'matcha',
-      customColor: '#6B9E7D',
+      customColor: '#9DBBA4',
       darkMode: false,
       setFontSize: (size) => set({ fontSize: size }),
       setFontChoice: (font) => set({ fontChoice: font }),
