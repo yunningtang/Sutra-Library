@@ -101,7 +101,7 @@
 
 .reading-progress-fill {
   height: 100%;
-  background: var(--theme);
+  background: var(--theme-d);
   transition: width 0.15s ease-out;
   border-radius: 0 1px 1px 0;
 }
