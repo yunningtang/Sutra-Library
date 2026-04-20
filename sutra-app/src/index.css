@@ -11,11 +11,11 @@
 
 :root {
   /* === Theme (overridden by JS) === */
-  --theme: #3A3A3A;
-  --theme-l: #555555;
-  --theme-xl: #888888;
-  --theme-bg: #F0F0F0;
-  --theme-d: #2A2A2A;
+  --theme: #6B9E7D;
+  --theme-l: #8FBF9E;
+  --theme-xl: #B5D4C1;
+  --theme-bg: #EFF6F1;
+  --theme-d: #4A7A5C;
 
   /* === Functional Colors === */
   --sky: #7AB8D9;
@@ -72,11 +72,11 @@
   /* === Semantic: text on colored buttons === */
   --on-accent: #FFFFFF;
 
-  /* === Button Design System === */
-  --btn-ink: #2E2E2E;
-  --btn-ink-hover: #1A1A1A;
+  /* === Button Design System — follows theme === */
+  --btn-ink: var(--theme-d);
+  --btn-ink-hover: var(--theme);
   --btn-ink-fg: #FFFFFF;
-  --btn-outline: rgba(46, 46, 46, 0.35);
+  --btn-outline: color-mix(in srgb, var(--theme-d) 50%, transparent);
 }
 
 /* ==============================
@@ -107,11 +107,11 @@
 
   --on-accent: #FFFFFF;
 
-  /* === Button tokens for dark === */
-  --btn-ink: #E8E6E2;
-  --btn-ink-hover: #FFFFFF;
+  /* === Button tokens for dark — follows theme === */
+  --btn-ink: var(--theme-l);
+  --btn-ink-hover: var(--theme-xl);
   --btn-ink-fg: #1A1A1A;
-  --btn-outline: rgba(255, 255, 255, 0.25);
+  --btn-outline: color-mix(in srgb, var(--theme-l) 50%, transparent);
 
   --rose-bg: #3A2A2F;
   --sky-bg: #1E2E38;
