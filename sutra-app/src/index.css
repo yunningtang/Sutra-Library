@@ -30,20 +30,20 @@
   --lavender-bg: #F2EEF8;
   --lemon: #D4C564;
 
-  /* === Neutrals & Text === */
-  --c-ink: #2E2E2E;
-  --c-ink-soft: #555555;
-  --c-ink-faint: #C0C0C0;
-  --c-text-body: #404040;
-  --c-text-mute: #888888;
-  --c-text-hint: #ABABAB;
+  /* === Neutrals & Text (cocochi-inspired warm grays) === */
+  --c-ink: #474747;
+  --c-ink-soft: #6A6A6A;
+  --c-ink-faint: #C4C4C4;
+  --c-text-body: #5A5A5A;
+  --c-text-mute: #8F8F8F;
+  --c-text-hint: #B0B0B0;
 
   /* === Backgrounds === */
-  --cream: #FCFCFB;
+  --cream: #F4F3F0;
   --white: #FFFFFF;
-  --warm: #F5F5F3;
-  --warm-alt: #EDEDEB;
-  --card-tint: #FAFDFB;
+  --warm: #EDECE8;
+  --warm-alt: #E4E2DD;
+  --card-tint: #FAFAF8;
 
   /* === Radius === */
   --r-sm: 10px;
@@ -134,9 +134,7 @@ body {
   color: var(--c-ink);
   background: var(--cream);
   background-image:
-    radial-gradient(ellipse at 20% 0%, color-mix(in srgb, var(--theme-xl) 35%, transparent) 0%, transparent 55%),
-    radial-gradient(ellipse at 100% 100%, color-mix(in srgb, var(--theme-xl) 22%, transparent) 0%, transparent 50%),
-    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.2  0 0 0 0 0.2  0 0 0 0 0.2  0 0 0 0.035 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.2  0 0 0 0 0.2  0 0 0 0 0.2  0 0 0 0.045 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
   background-attachment: fixed;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -144,9 +142,7 @@ body {
 
 [data-theme="dark"] body {
   background-image:
-    radial-gradient(ellipse at 20% 0%, color-mix(in srgb, var(--theme) 12%, transparent) 0%, transparent 55%),
-    radial-gradient(ellipse at 100% 100%, color-mix(in srgb, var(--theme) 8%, transparent) 0%, transparent 50%),
-    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.03 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.035 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
 }
 
 a {
