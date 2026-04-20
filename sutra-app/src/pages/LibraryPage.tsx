@@ -4,13 +4,15 @@ import { manifest } from '../data/manifest'
 import { useStore } from '../store/useStore'
 import './LibraryPage.css'
 
-function VisualCard({ sutra, count, index, onClick }: {
+function VisualCard({ sutra, count, index, number, onClick }: {
   sutra: typeof manifest[0]
   count: number
   index: number
+  number: number
   onClick: () => void
 }) {
   const isAvailable = sutra.status === 'available'
+  const numStr = String(number).padStart(2, '0')
   return (
     <div
       className={`visual-card ${!isAvailable ? 'disabled' : ''}`}
@@ -22,12 +24,16 @@ function VisualCard({ sutra, count, index, onClick }: {
       </div>
       <div className="visual-card-footer">
         <div className="visual-card-dots" />
-        <span className="visual-card-translator">{sutra.translator}</span>
+        <div className="visual-card-number">
+          <span>经</span>
+          <span className="visual-card-number-dot">·</span>
+          <span>{numStr}</span>
+        </div>
         {count > 0 && (
-          <span className="visual-card-count">已诵 {count} 部</span>
+          <span className="visual-card-count">诵 {count}</span>
         )}
       </div>
-      {!isAvailable && <div className="visual-card-badge">即将上线</div>}
+      {!isAvailable && <div className="visual-card-badge">即将</div>}
     </div>
   )
 }
@@ -85,6 +91,7 @@ export default function LibraryPage() {
                     sutra={sutra}
                     count={readingCounts[sutra.id] || 0}
                     index={index}
+                    number={manifest.findIndex((s) => s.id === sutra.id) + 1}
                     onClick={() => navigate(`/sutra/${sutra.id}`)}
                   />
                 ))}
@@ -101,6 +108,7 @@ export default function LibraryPage() {
                     sutra={sutra}
                     count={readingCounts[sutra.id] || 0}
                     index={index}
+                    number={manifest.findIndex((s) => s.id === sutra.id) + 1}
                     onClick={() => navigate(`/sutra/${sutra.id}`)}
                   />
                 ))}
