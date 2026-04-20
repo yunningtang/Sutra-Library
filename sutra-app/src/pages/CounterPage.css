@@ -145,14 +145,14 @@
 .counter-action-btn {
   font-family: var(--font-ui);
   font-size: 13px;
-  color: var(--c-ink);
-  padding: 9px 20px;
+  color: var(--c-ink-soft);
+  padding: 9px 22px;
   border-radius: var(--r-full);
-  border: 1.5px solid var(--btn-outline);
+  border: 1px solid var(--btn-outline);
   background: transparent;
-  letter-spacing: 0.5px;
-  transition: background 0.25s ease, border-color 0.25s ease,
-              color 0.25s ease, transform 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+  letter-spacing: 1px;
+  transition: background 0.3s ease, border-color 0.3s ease,
+              color 0.3s ease, transform 0.22s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .counter-action-btn:hover {
@@ -181,6 +181,7 @@
   background: var(--btn-ink);
   color: var(--btn-ink-fg);
   border-color: var(--btn-ink);
+  padding: 9px 24px;
 }
 
 .counter-action-btn.save-btn:hover {
@@ -455,12 +456,12 @@
 .preset-btn {
   font-family: var(--font-ui);
   font-size: 13px;
-  color: var(--c-ink);
+  color: var(--c-ink-soft);
   padding: 7px 16px;
   border-radius: var(--r-full);
-  border: 1.5px solid var(--btn-outline);
+  border: 1px solid var(--btn-outline);
   background: transparent;
-  transition: background 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+  transition: background 0.3s ease, border-color 0.3s ease, color 0.3s ease;
 }
 
 .preset-btn:hover {

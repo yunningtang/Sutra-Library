@@ -76,9 +76,9 @@
   --btn-ink: var(--theme-d);
   --btn-ink-hover: color-mix(in srgb, var(--theme-d) 82%, #000 18%);
   --btn-ink-fg: #FFFFFF;
-  --btn-outline: color-mix(in srgb, var(--theme-d) 45%, transparent);
-  --btn-ghost-hover-bg: color-mix(in srgb, var(--theme-d) 8%, transparent);
-  --btn-ghost-hover-border: color-mix(in srgb, var(--theme-d) 75%, transparent);
+  --btn-outline: color-mix(in srgb, var(--theme-d) 32%, transparent);
+  --btn-ghost-hover-bg: color-mix(in srgb, var(--theme-d) 7%, transparent);
+  --btn-ghost-hover-border: color-mix(in srgb, var(--theme-d) 55%, transparent);
 }
 
 /* ==============================
