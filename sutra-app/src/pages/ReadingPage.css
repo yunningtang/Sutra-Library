@@ -318,21 +318,21 @@
   align-items: center;
   gap: 6px;
   padding: 12px 28px;
-  background: linear-gradient(180deg, var(--theme-l), var(--theme-d));
-  color: var(--on-accent);
+  background: var(--btn-ink);
+  color: var(--btn-ink-fg);
   border: none;
   border-radius: var(--r-full);
   font-family: var(--font-ui);
   font-size: 14px;
   font-weight: 600;
-  box-shadow: 0 2px 12px color-mix(in srgb, var(--theme) 25%, transparent);
+  letter-spacing: 1px;
   animation: scaleIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
   transition: all 0.18s ease;
 }
 
 .complete-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 20px color-mix(in srgb, var(--theme) 30%, transparent);
+  background: var(--btn-ink-hover);
+  transform: translateY(-1px);
 }
 
 .complete-btn:active {

@@ -90,17 +90,17 @@
 }
 
 .tab.active {
-  background: rgba(255, 255, 255, 0.7);
+  background: var(--btn-ink);
   box-shadow:
-    0 2px 6px rgba(0, 0, 0, 0.06),
-    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+    0 2px 6px rgba(0, 0, 0, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
 [data-theme="dark"] .tab.active {
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--btn-ink);
   box-shadow:
-    0 2px 6px rgba(0, 0, 0, 0.2),
-    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    0 2px 6px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(0, 0, 0, 0.15);
 }
 
 .tab.pressing {
@@ -113,7 +113,7 @@
 }
 
 .tab.active .tab-icon-svg {
-  color: var(--theme);
+  color: var(--btn-ink-fg);
 }
 
 .tab-label {
@@ -126,7 +126,7 @@
 }
 
 .tab.active .tab-label {
-  color: var(--theme);
+  color: var(--btn-ink-fg);
   font-weight: 600;
 }
 

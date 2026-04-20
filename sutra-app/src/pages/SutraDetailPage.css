@@ -32,14 +32,16 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid var(--border-ink);
-  background: var(--white);
+  border: 1.5px solid var(--btn-outline);
+  background: transparent;
+  color: var(--c-ink);
   transition: all 0.22s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .fav-btn.fav-active {
-  background: var(--theme-bg);
-  border-color: var(--theme);
+  background: var(--btn-ink);
+  border-color: var(--btn-ink);
+  color: var(--btn-ink-fg);
 }
 
 .fav-btn:active {
@@ -91,41 +93,31 @@
   font-weight: 500;
 }
 
-/* === Primary Button === */
+/* === Primary Button — Dark Pill === */
 .start-reading-btn {
   position: relative;
   width: 100%;
   padding: 16px;
-  background: linear-gradient(180deg, var(--theme-l), var(--theme-d));
-  color: var(--on-accent);
+  background: var(--btn-ink);
+  color: var(--btn-ink-fg);
   border: none;
-  border-radius: var(--r-md);
+  border-radius: var(--r-full);
   font-family: var(--font-ui);
   font-size: 16px;
   font-weight: 600;
+  letter-spacing: 1px;
   margin: 20px 0 40px;
-  box-shadow: 0 2px 12px color-mix(in srgb, var(--theme) 25%, transparent);
   transition: all 0.18s ease;
   animation: staggerIn 0.5s cubic-bezier(0.22, 1, 0.36, 1) 120ms both;
 }
 
-.start-reading-btn::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25);
-  pointer-events: none;
-}
-
 .start-reading-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 20px color-mix(in srgb, var(--theme) 30%, transparent);
+  background: var(--btn-ink-hover);
+  transform: translateY(-1px);
 }
 
 .start-reading-btn:active {
   transform: scale(0.97);
-  box-shadow: 0 1px 4px color-mix(in srgb, var(--theme) 15%, transparent);
 }
 
 /* === Links === */

@@ -24,7 +24,7 @@
 .view-toggle {
   display: flex;
   gap: 4px;
-  background: var(--warm);
+  border: 1.5px solid var(--btn-outline);
   border-radius: var(--r-full);
   padding: 3px;
 }
@@ -44,13 +44,12 @@
 }
 
 .toggle-btn.active {
-  background: var(--white);
-  color: var(--c-ink);
-  box-shadow: 0 1px 3px var(--shadow-ink);
+  background: var(--btn-ink);
+  color: var(--btn-ink-fg);
 }
 
 .toggle-btn:not(.active):hover {
-  color: var(--c-text-mute);
+  color: var(--c-ink);
 }
 
 /* === Section Label === */

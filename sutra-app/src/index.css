@@ -71,6 +71,12 @@
 
   /* === Semantic: text on colored buttons === */
   --on-accent: #FFFFFF;
+
+  /* === Button Design System === */
+  --btn-ink: #2E2E2E;
+  --btn-ink-hover: #1A1A1A;
+  --btn-ink-fg: #FFFFFF;
+  --btn-outline: rgba(46, 46, 46, 0.35);
 }
 
 /* ==============================
@@ -100,6 +106,12 @@
   --border-ink: rgba(255, 255, 255, 0.08);
 
   --on-accent: #FFFFFF;
+
+  /* === Button tokens for dark === */
+  --btn-ink: #E8E6E2;
+  --btn-ink-hover: #FFFFFF;
+  --btn-ink-fg: #1A1A1A;
+  --btn-outline: rgba(255, 255, 255, 0.25);
 
   --rose-bg: #3A2A2F;
   --sky-bg: #1E2E38;

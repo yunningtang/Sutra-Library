@@ -688,15 +688,18 @@ button.profile-avatar:active {
 }
 
 .crop-btn-cancel {
-  color: rgba(255, 255, 255, 0.7);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: rgba(255, 255, 255, 0.85);
+  border: 1.5px solid rgba(255, 255, 255, 0.35);
   background: transparent;
+  letter-spacing: 1px;
 }
 
 .crop-btn-confirm {
-  color: var(--on-accent);
-  background: var(--theme);
+  color: var(--btn-ink-fg);
+  background: var(--btn-ink);
   border: none;
+  letter-spacing: 1px;
+  font-weight: 600;
 }
 
 /* === Install Guide Modal === */
@@ -764,15 +767,20 @@ button.profile-avatar:active {
 .install-close-btn {
   display: block;
   width: 100%;
-  padding: 12px;
-  border-radius: var(--r-md);
-  background: var(--theme);
-  color: var(--on-accent);
+  padding: 14px;
+  border-radius: var(--r-full);
+  background: var(--btn-ink);
+  color: var(--btn-ink-fg);
   font-family: var(--font-ui);
   font-size: 14px;
   font-weight: 600;
+  letter-spacing: 1px;
   border: none;
   transition: all 0.18s ease;
+}
+
+.install-close-btn:hover {
+  background: var(--btn-ink-hover);
 }
 
 .install-close-btn:active {
