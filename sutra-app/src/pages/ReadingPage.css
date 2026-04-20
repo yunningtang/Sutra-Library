@@ -333,6 +333,7 @@
 .complete-btn:hover {
   background: var(--btn-ink-hover);
   transform: translateY(-1px);
+  box-shadow: 0 6px 18px color-mix(in srgb, var(--theme-d) 22%, transparent);
 }
 
 .complete-btn:active {

@@ -74,9 +74,11 @@
 
   /* === Button Design System — follows theme === */
   --btn-ink: var(--theme-d);
-  --btn-ink-hover: var(--theme);
+  --btn-ink-hover: color-mix(in srgb, var(--theme-d) 82%, #000 18%);
   --btn-ink-fg: #FFFFFF;
-  --btn-outline: color-mix(in srgb, var(--theme-d) 50%, transparent);
+  --btn-outline: color-mix(in srgb, var(--theme-d) 45%, transparent);
+  --btn-ghost-hover-bg: color-mix(in srgb, var(--theme-d) 8%, transparent);
+  --btn-ghost-hover-border: color-mix(in srgb, var(--theme-d) 75%, transparent);
 }
 
 /* ==============================
@@ -111,7 +113,9 @@
   --btn-ink: var(--theme-l);
   --btn-ink-hover: var(--theme-xl);
   --btn-ink-fg: #1A1A1A;
-  --btn-outline: color-mix(in srgb, var(--theme-l) 50%, transparent);
+  --btn-outline: color-mix(in srgb, var(--theme-l) 45%, transparent);
+  --btn-ghost-hover-bg: color-mix(in srgb, var(--theme-l) 12%, transparent);
+  --btn-ghost-hover-border: color-mix(in srgb, var(--theme-l) 70%, transparent);
 
   --rose-bg: #3A2A2F;
   --sky-bg: #1E2E38;

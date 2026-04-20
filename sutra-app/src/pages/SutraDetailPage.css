@@ -129,6 +129,7 @@
 .start-reading-btn:hover {
   background: var(--btn-ink-hover);
   transform: translateY(-1px);
+  box-shadow: 0 8px 20px color-mix(in srgb, var(--theme-d) 24%, transparent);
 }
 
 .start-reading-btn:active {

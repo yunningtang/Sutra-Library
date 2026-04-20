@@ -46,7 +46,8 @@
 }
 
 .toggle-btn:not(.active):hover {
-  color: var(--c-ink);
+  color: var(--theme-d);
+  background: var(--btn-ghost-hover-bg);
 }
 
 /* === Section Label === */

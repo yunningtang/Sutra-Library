@@ -78,8 +78,8 @@
 }
 
 .google-btn:hover {
-  background: var(--warm);
-  border-color: var(--c-ink);
+  background: var(--btn-ghost-hover-bg);
+  border-color: var(--btn-ghost-hover-border);
 }
 
 .google-btn:active {
@@ -168,6 +168,7 @@
 .submit-btn:hover {
   background: var(--btn-ink-hover);
   transform: translateY(-1px);
+  box-shadow: 0 6px 16px color-mix(in srgb, var(--theme-d) 22%, transparent);
 }
 
 .submit-btn:active {
@@ -284,6 +285,7 @@
 .sent-open-btn:hover {
   background: var(--btn-ink-hover);
   transform: translateY(-1px);
+  box-shadow: 0 6px 16px color-mix(in srgb, var(--theme-d) 22%, transparent);
 }
 
 .sent-open-btn:active {
@@ -302,8 +304,9 @@
 }
 
 .sent-back-btn:hover {
-  background: var(--warm);
-  border-color: var(--c-ink);
+  background: var(--btn-ghost-hover-bg);
+  border-color: var(--btn-ghost-hover-border);
+  color: var(--theme-d);
 }
 
 .sent-back-btn:active {
