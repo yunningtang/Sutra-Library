@@ -63,7 +63,7 @@ export default function SutraDetailPage() {
           className={`fav-btn press-scale ${isFav ? 'fav-active' : ''}`}
           onClick={() => toggleFavorite(sutra.id)}
         >
-          {isFav ? <IconHeartFilled size={18} color="var(--theme)" /> : <IconHeart size={18} />}
+          {isFav ? <IconHeartFilled size={18} /> : <IconHeart size={18} />}
         </button>
       </div>
 
