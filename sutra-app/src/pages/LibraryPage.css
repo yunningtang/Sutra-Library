@@ -24,9 +24,6 @@
 .view-toggle {
   display: flex;
   gap: 4px;
-  border: 1.5px solid var(--btn-outline);
-  border-radius: var(--r-full);
-  padding: 3px;
 }
 
 .toggle-btn {
