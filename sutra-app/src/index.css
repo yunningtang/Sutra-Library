@@ -11,11 +11,11 @@
 
 :root {
   /* === Theme (overridden by JS) === */
-  --theme: #6B9E7D;
-  --theme-l: #8FBF9E;
-  --theme-xl: #B5D4C1;
-  --theme-bg: #EFF6F1;
-  --theme-d: #4A7A5C;
+  --theme: #3A3A3A;
+  --theme-l: #555555;
+  --theme-xl: #888888;
+  --theme-bg: #F0F0F0;
+  --theme-d: #2A2A2A;
 
   /* === Functional Colors === */
   --sky: #7AB8D9;
