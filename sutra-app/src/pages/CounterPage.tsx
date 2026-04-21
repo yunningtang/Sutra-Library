@@ -97,7 +97,8 @@ export default function CounterPage() {
   return (
     <div className="counter-page">
       {/* Tabs */}
-      <div className="counter-tabs">
+      <div className="counter-tabs" data-active={tab}>
+        <span className="counter-tabs-pill" />
         <button className={`counter-tab ${tab === 'counter' ? 'active' : ''}`} onClick={() => setTab('counter')}>
           计数
         </button>
