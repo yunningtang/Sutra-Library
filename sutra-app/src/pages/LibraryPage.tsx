@@ -38,14 +38,37 @@ function VisualCard({ sutra, count, index, number, onClick }: {
   )
 }
 
+function computeStreak(records: { completedAt: string }[]): { streak: number; todayCount: number } {
+  if (records.length === 0) return { streak: 0, todayCount: 0 }
+  const dayKey = (d: Date) => `${d.getFullYear()}-${d.getMonth()}-${d.getDate()}`
+  const today = new Date()
+  const todayKey = dayKey(today)
+  const days = new Set(records.map((r) => dayKey(new Date(r.completedAt))))
+  const todayCount = records.filter((r) => dayKey(new Date(r.completedAt)) === todayKey).length
+
+  let streak = 0
+  const cursor = new Date(today)
+  // If nothing today yet, streak still counts from yesterday back
+  if (!days.has(todayKey)) cursor.setDate(cursor.getDate() - 1)
+  while (days.has(dayKey(cursor))) {
+    streak++
+    cursor.setDate(cursor.getDate() - 1)
+  }
+  return { streak, todayCount }
+}
+
 export default function LibraryPage() {
   const navigate = useNavigate()
   const readingCounts = useStore((s) => s.readingCounts)
+  const readingRecords = useStore((s) => s.readingRecords)
   const favorites = useStore((s) => s.favorites)
   const [viewMode, setViewMode] = useState<'visual' | 'list'>('visual')
 
   const favSutras = manifest.filter((s) => favorites.includes(s.id))
   const otherSutras = manifest.filter((s) => !favorites.includes(s.id))
+
+  const { streak, todayCount } = computeStreak(readingRecords)
+  const hasPractice = streak > 0 || todayCount > 0
 
   return (
     <div className="library-page">
@@ -77,6 +100,22 @@ export default function LibraryPage() {
           </button>
         </div>
       </div>
+
+      {hasPractice && (
+        <div className="practice-line">
+          {todayCount > 0 && (
+            <span className="practice-today">
+              今日 <strong>{todayCount}</strong> 遍
+            </span>
+          )}
+          {todayCount > 0 && streak > 0 && <span className="practice-dot">·</span>}
+          {streak > 0 && (
+            <span className="practice-streak">
+              连续 <strong>{streak}</strong> 天
+            </span>
+          )}
+        </div>
+      )}
 
       {viewMode === 'visual' ? (
         /* === Visual Card View === */

@@ -4,10 +4,18 @@ import { IconClose } from '../components/Icons'
 import './CounterPage.css'
 
 type Tab = 'counter' | 'history'
+type Mode = 'tap' | 'timer'
+
+function fmt(sec: number): string {
+  const m = Math.floor(sec / 60)
+  const s = Math.floor(sec % 60)
+  return `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`
+}
 
 export default function CounterPage() {
   const { counter, counterRecords, incrementCounter, resetCounter, setCounterTarget, saveCounterRecord, deleteCounterRecord, updateCounterRecordNote, showCounterRing } = useStore()
   const [tab, setTab] = useState<Tab>('counter')
+  const [mode, setMode] = useState<Mode>('tap')
   const [showReset, setShowReset] = useState(false)
   const [showTarget, setShowTarget] = useState(false)
   const [showSave, setShowSave] = useState(false)
@@ -18,6 +26,31 @@ export default function CounterPage() {
   const [deleteConfirm, setDeleteConfirm] = useState<number | null>(null)
   const [editingIndex, setEditingIndex] = useState<number | null>(null)
   const [editNote, setEditNote] = useState('')
+  const [elapsed, setElapsed] = useState(0)
+  const [running, setRunning] = useState(false)
+
+  // Timer tick
+  useEffect(() => {
+    if (!running) return
+    const id = setInterval(() => setElapsed((s) => s + 1), 1000)
+    return () => clearInterval(id)
+  }, [running])
+
+  const handleTimerTap = () => {
+    setRunning((r) => !r)
+    setPressing(true)
+    if (navigator.vibrate) navigator.vibrate(10)
+  }
+
+  const handleTimerReset = () => {
+    if (showReset) {
+      setElapsed(0)
+      setRunning(false)
+      setShowReset(false)
+    } else {
+      setShowReset(true)
+    }
+  }
 
   const progress = Math.min(counter.count / counter.target, 1)
 
@@ -109,50 +142,97 @@ export default function CounterPage() {
 
       {tab === 'counter' ? (
         <>
-          {/* Count Display */}
-          <div className="counter-display">
-            <span className={`counter-number ${pressing ? 'bounce' : ''} ${hitTarget ? 'hit' : ''}`}>
-              {counter.count}
-            </span>
-            <span className="counter-target">/ {counter.target}</span>
-          </div>
-
-          {/* Progress ring */}
-          <div className="counter-ring-wrap">
-            {showCounterRing && (
-              <svg className="counter-ring" viewBox="0 0 200 200">
-                <circle className="ring-bg" cx="100" cy="100" r="90" fill="none" stroke="var(--warm-alt)" strokeWidth="3" />
-                <circle className="ring-progress" cx="100" cy="100" r="90" fill="none" stroke="url(#ringGrad)" strokeWidth="4" strokeLinecap="round"
-                  strokeDasharray={`${2 * Math.PI * 90}`} strokeDashoffset={`${2 * Math.PI * 90 * (1 - progress)}`} transform="rotate(-90 100 100)" />
-                <defs>
-                  <linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="var(--theme-l)" />
-                    <stop offset="100%" stopColor="var(--theme)" />
-                  </linearGradient>
-                </defs>
-              </svg>
-            )}
-            <button className={`counter-circle ${pressing ? 'pressed' : ''}`} onPointerDown={handleTap}>
-              <span className="circle-label" />
+          {/* Mode switch */}
+          <div className="mode-switch" data-active={mode}>
+            <span className="mode-switch-pill" />
+            <button
+              className={`mode-switch-btn ${mode === 'tap' ? 'active' : ''}`}
+              onClick={() => { setMode('tap'); setShowReset(false) }}
+            >
+              点按
+            </button>
+            <button
+              className={`mode-switch-btn ${mode === 'timer' ? 'active' : ''}`}
+              onClick={() => { setMode('timer'); setShowReset(false) }}
+            >
+              计时
             </button>
           </div>
 
-          {/* Actions */}
-          <div className="counter-actions">
-            <button className={`counter-action-btn ${showReset ? 'danger' : ''}`} onClick={handleReset}>
-              {showReset ? '确定重置？' : '重置'}
-            </button>
-            {showReset ? (
-              <button className="counter-action-btn" onClick={() => setShowReset(false)}>取消</button>
-            ) : (
-              <>
-                <button className="counter-action-btn" onClick={() => setShowTarget(true)}>目标</button>
-                {counter.count > 0 && (
-                  <button className="counter-action-btn save-btn" onClick={() => setShowSave(true)}>保存</button>
+          {mode === 'tap' ? (
+            <>
+              {/* Count Display */}
+              <div className="counter-display">
+                <span className={`counter-number ${pressing ? 'bounce' : ''} ${hitTarget ? 'hit' : ''}`}>
+                  {counter.count}
+                </span>
+                <span className="counter-target">/ {counter.target}</span>
+              </div>
+
+              {/* Progress ring */}
+              <div className="counter-ring-wrap">
+                {showCounterRing && (
+                  <svg className="counter-ring" viewBox="0 0 200 200">
+                    <circle className="ring-bg" cx="100" cy="100" r="90" fill="none" stroke="var(--warm-alt)" strokeWidth="3" />
+                    <circle className="ring-progress" cx="100" cy="100" r="90" fill="none" stroke="url(#ringGrad)" strokeWidth="4" strokeLinecap="round"
+                      strokeDasharray={`${2 * Math.PI * 90}`} strokeDashoffset={`${2 * Math.PI * 90 * (1 - progress)}`} transform="rotate(-90 100 100)" />
+                    <defs>
+                      <linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stopColor="var(--theme-l)" />
+                        <stop offset="100%" stopColor="var(--theme)" />
+                      </linearGradient>
+                    </defs>
+                  </svg>
                 )}
-              </>
-            )}
-          </div>
+                <button className={`counter-circle ${pressing ? 'pressed' : ''}`} onPointerDown={handleTap}>
+                  <span className="circle-label" />
+                </button>
+              </div>
+
+              {/* Actions */}
+              <div className="counter-actions">
+                <button className={`counter-action-btn ${showReset ? 'danger' : ''}`} onClick={handleReset}>
+                  {showReset ? '确定重置？' : '重置'}
+                </button>
+                {showReset ? (
+                  <button className="counter-action-btn" onClick={() => setShowReset(false)}>取消</button>
+                ) : (
+                  <>
+                    <button className="counter-action-btn" onClick={() => setShowTarget(true)}>目标</button>
+                    {counter.count > 0 && (
+                      <button className="counter-action-btn save-btn" onClick={() => setShowSave(true)}>保存</button>
+                    )}
+                  </>
+                )}
+              </div>
+            </>
+          ) : (
+            /* Timer mode */
+            <>
+              <div className="counter-display">
+                <span className={`timer-display ${pressing ? 'bounce' : ''}`}>{fmt(elapsed)}</span>
+                <span className="timer-status">{running ? '进行中' : elapsed === 0 ? '未开始' : '已暂停'}</span>
+              </div>
+
+              <div className="counter-ring-wrap">
+                <button
+                  className={`counter-circle ${pressing ? 'pressed' : ''} ${running ? 'running' : ''}`}
+                  onPointerDown={handleTimerTap}
+                >
+                  <span className="circle-label timer-label">{running ? '暂停' : elapsed === 0 ? '开始' : '继续'}</span>
+                </button>
+              </div>
+
+              <div className="counter-actions">
+                <button className={`counter-action-btn ${showReset ? 'danger' : ''}`} onClick={handleTimerReset}>
+                  {showReset ? '确定重置？' : '重置'}
+                </button>
+                {showReset && (
+                  <button className="counter-action-btn" onClick={() => setShowReset(false)}>取消</button>
+                )}
+              </div>
+            </>
+          )}
         </>
       ) : (
         /* History Tab */

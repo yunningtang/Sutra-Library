@@ -50,6 +50,40 @@
   background: var(--btn-ghost-hover-bg);
 }
 
+/* === Practice line — subtle streak indicator === */
+.practice-line {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: -10px 0 22px;
+  padding-left: 2px;
+  font-family: var(--font-ui);
+  font-size: 12px;
+  color: var(--c-text-mute);
+  letter-spacing: 1px;
+  animation: fadeIn 0.45s cubic-bezier(0.22, 1, 0.36, 1) 80ms both;
+}
+
+.practice-today,
+.practice-streak {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 4px;
+}
+
+.practice-today strong,
+.practice-streak strong {
+  font-family: var(--font-serif);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--theme-d);
+  letter-spacing: 0;
+}
+
+.practice-dot {
+  color: var(--c-ink-faint);
+}
+
 /* === Section Label === */
 .section-label {
   font-family: var(--font-ui);
