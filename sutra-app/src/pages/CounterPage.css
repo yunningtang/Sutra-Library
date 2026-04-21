@@ -129,37 +129,110 @@
   transition: stroke-dashoffset 0.6s ease;
 }
 
+/* === 3D Wooden Fish (木鱼) === */
 .counter-circle {
   position: absolute;
-  inset: 15%;
-  border-radius: 50%;
-  background: var(--btn-ink);
+  inset: 10%;
+  /* Organic fish-like rounded shape */
+  border-radius: 55% 55% 50% 50% / 48% 48% 55% 55%;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.18s ease;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-  animation: breatheGlow 3.5s ease-in-out infinite;
+  cursor: pointer;
+  /* Wood body: warm honey gradient with highlight + deep bottom shadow */
+  background:
+    radial-gradient(circle at 32% 28%, rgba(255, 232, 190, 0.55) 0%, transparent 35%),
+    radial-gradient(ellipse at 50% 115%, rgba(60, 28, 6, 0.55) 0%, transparent 65%),
+    radial-gradient(ellipse at 50% 50%, #C48449 0%, #A86A33 45%, #7F4C22 85%, #5E3614 100%);
+  box-shadow:
+    0 14px 32px rgba(70, 35, 10, 0.38),
+    0 4px 10px rgba(70, 35, 10, 0.25),
+    inset 0 3px 8px rgba(255, 220, 175, 0.45),
+    inset 0 -6px 12px rgba(30, 12, 2, 0.45),
+    inset 0 0 0 1px rgba(20, 10, 0, 0.3);
+  transition: transform 0.16s cubic-bezier(0.34, 1.56, 0.64, 1),
+              box-shadow 0.2s ease;
+  animation: woodBreathe 4.5s ease-in-out infinite;
 }
 
+/* The horizontal slit across the middle — the 木鱼's opening */
+.counter-circle::before {
+  content: '';
+  position: absolute;
+  top: 54%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 62%;
+  height: 5px;
+  background: linear-gradient(180deg,
+    rgba(25, 12, 2, 0.75) 0%,
+    rgba(10, 5, 0, 0.85) 50%,
+    rgba(70, 38, 14, 0.4) 100%);
+  border-radius: 3px;
+  box-shadow:
+    inset 0 1px 2px rgba(0, 0, 0, 0.6),
+    0 1px 0 rgba(255, 220, 170, 0.2);
+  pointer-events: none;
+}
+
+/* Small carved eye on top-right */
 .counter-circle::after {
   content: '';
   position: absolute;
-  inset: 0;
+  top: 30%;
+  right: 28%;
+  width: 9%;
+  height: 9%;
   border-radius: 50%;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  background: radial-gradient(circle at 35% 30%, #5E3614 0%, #1E0E04 70%);
+  box-shadow:
+    inset 0 1px 1px rgba(0, 0, 0, 0.6),
+    0 1px 0 rgba(255, 220, 170, 0.2);
   pointer-events: none;
 }
 
 .counter-circle:hover {
-  background: var(--btn-ink-hover);
-  transform: translateY(-2px);
-  box-shadow: 0 10px 28px color-mix(in srgb, var(--theme-d) 28%, transparent);
+  transform: translateY(-3px);
+  box-shadow:
+    0 18px 40px rgba(70, 35, 10, 0.45),
+    0 6px 14px rgba(70, 35, 10, 0.3),
+    inset 0 3px 8px rgba(255, 220, 175, 0.5),
+    inset 0 -6px 12px rgba(30, 12, 2, 0.45),
+    inset 0 0 0 1px rgba(20, 10, 0, 0.3);
 }
 
 .counter-circle.pressed {
-  transform: scale(0.96);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  transform: scale(0.94) translateY(1px);
+  animation: woodKnock 0.25s cubic-bezier(0.34, 1.8, 0.5, 1);
+  box-shadow:
+    0 4px 10px rgba(70, 35, 10, 0.35),
+    inset 0 2px 6px rgba(255, 220, 175, 0.35),
+    inset 0 -3px 6px rgba(30, 12, 2, 0.5),
+    inset 0 0 0 1px rgba(20, 10, 0, 0.35);
+}
+
+@keyframes woodBreathe {
+  0%, 100% { filter: brightness(1); }
+  50% { filter: brightness(1.02); }
+}
+
+@keyframes woodKnock {
+  0% { transform: scale(1) translateY(0); }
+  40% { transform: scale(0.94) translateY(2px); }
+  100% { transform: scale(1) translateY(0); }
+}
+
+[data-theme="dark"] .counter-circle {
+  background:
+    radial-gradient(circle at 32% 28%, rgba(255, 210, 160, 0.3) 0%, transparent 35%),
+    radial-gradient(ellipse at 50% 115%, rgba(20, 8, 0, 0.7) 0%, transparent 65%),
+    radial-gradient(ellipse at 50% 50%, #8B5A2B 0%, #6F4322 45%, #4A2B10 85%, #2E1A06 100%);
+  box-shadow:
+    0 14px 32px rgba(0, 0, 0, 0.5),
+    0 4px 10px rgba(0, 0, 0, 0.4),
+    inset 0 3px 8px rgba(255, 200, 150, 0.25),
+    inset 0 -6px 12px rgba(0, 0, 0, 0.6),
+    inset 0 0 0 1px rgba(0, 0, 0, 0.4);
 }
 
 .circle-label {

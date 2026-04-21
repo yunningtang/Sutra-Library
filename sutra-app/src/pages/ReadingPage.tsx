@@ -41,7 +41,7 @@ function groupChars(chars: SutraChar[]): CharGroup[] {
 export default function ReadingPage() {
   const { sutraId } = useParams<{ sutraId: string }>()
   const navigate = useNavigate()
-  const { fontSize, showPinyin, showProgress, darkMode, setFontSize, togglePinyin, toggleDarkMode, completeReading, readingCounts, hasSeenLongPressHint, hasSeenToolbarHint, dismissLongPressHint, dismissToolbarHint, readingPositions, saveReadingPosition } = useStore()
+  const { fontSize, showPinyin, showProgress, readingTheme, setFontSize, togglePinyin, cycleReadingTheme, completeReading, readingCounts, hasSeenLongPressHint, hasSeenToolbarHint, dismissLongPressHint, dismissToolbarHint, readingPositions, saveReadingPosition } = useStore()
 
   const [sutra, setSutra] = useState<SutraData | null>(null)
   const [showToolbar, setShowToolbar] = useState(true)
@@ -255,7 +255,7 @@ export default function ReadingPage() {
   }
 
   return (
-    <div className="reading-page" onClick={handlePageTap}>
+    <div className="reading-page" data-reading={readingTheme} onClick={handlePageTap}>
       {/* Progress bar — thin line always at very top, z above toolbar */}
       {showProgress && (
         <div className="reading-progress-bar">
@@ -312,25 +312,38 @@ export default function ReadingPage() {
             </svg>
           </button>
           <button
-            className={`toolbar-icon-btn ${darkMode ? 'toolbar-btn-active' : ''}`}
-            onClick={(e) => { e.stopPropagation(); toggleDarkMode() }}
-            aria-label="夜间模式"
+            className={`toolbar-icon-btn ${readingTheme !== 'auto' ? 'toolbar-btn-active' : ''}`}
+            onClick={(e) => { e.stopPropagation(); cycleReadingTheme() }}
+            aria-label={readingTheme === 'auto' ? '阅读主题（当前：跟随系统）' : readingTheme === 'sutra' ? '阅读主题（当前：经书黄）' : '阅读主题（当前：夜间）'}
+            title={readingTheme === 'auto' ? '跟随系统' : readingTheme === 'sutra' ? '经书黄' : '夜间'}
           >
-            {darkMode ? (
+            {readingTheme === 'sutra' ? (
+              /* Scroll / sutra paper */
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                <circle cx="12" cy="12" r="5" />
-                <line x1="12" y1="1" x2="12" y2="3" />
-                <line x1="12" y1="21" x2="12" y2="23" />
-                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
-                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
-                <line x1="1" y1="12" x2="3" y2="12" />
-                <line x1="21" y1="12" x2="23" y2="12" />
-                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
-                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+                <path d="M8 3h10a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H8" />
+                <path d="M8 3a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2" />
+                <path d="M8 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2" />
+                <line x1="12" y1="8" x2="16" y2="8" />
+                <line x1="12" y1="12" x2="16" y2="12" />
+                <line x1="12" y1="16" x2="15" y2="16" />
               </svg>
-            ) : (
+            ) : readingTheme === 'dark' ? (
+              /* Moon */
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+              </svg>
+            ) : (
+              /* Sun (auto = default light) */
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                <circle cx="12" cy="12" r="4" />
+                <line x1="12" y1="2" x2="12" y2="4" />
+                <line x1="12" y1="20" x2="12" y2="22" />
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+                <line x1="2" y1="12" x2="4" y2="12" />
+                <line x1="20" y1="12" x2="22" y2="12" />
+                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
               </svg>
             )}
           </button>

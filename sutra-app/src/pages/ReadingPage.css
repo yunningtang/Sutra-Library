@@ -5,6 +5,36 @@
   padding-bottom: 80px;
 }
 
+/* === Sutra yellow reading theme (经书黄) === */
+.reading-page[data-reading="sutra"] {
+  --cream: #F2E4BF;
+  --white: #F6E9C7;
+  --warm: #EAD9AD;
+  --warm-alt: #E0CD9C;
+  --c-ink: #3E2817;
+  --c-ink-soft: #5A3E26;
+  --c-ink-faint: #BEA378;
+  --c-text-body: #4A3220;
+  --c-text-mute: #8B6E48;
+  --c-text-hint: #AB8E68;
+  --border-ink: rgba(62, 40, 23, 0.18);
+}
+
+/* === Forced dark reading theme (overrides global) === */
+.reading-page[data-reading="dark"] {
+  --cream: #1C1B1A;
+  --white: #262523;
+  --warm: #2E2D2B;
+  --warm-alt: #3A3836;
+  --c-ink: #D8D8D5;
+  --c-ink-soft: #B0ADA8;
+  --c-ink-faint: #555250;
+  --c-text-body: #C5C2BD;
+  --c-text-mute: #8A8783;
+  --c-text-hint: #65625E;
+  --border-ink: rgba(255, 255, 255, 0.08);
+}
+
 /* === Loading === */
 .loading-page {
   display: flex;

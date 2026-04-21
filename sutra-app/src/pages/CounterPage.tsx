@@ -1,9 +1,49 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { useStore } from '../store/useStore'
 import { IconClose } from '../components/Icons'
 import './CounterPage.css'
 
 type Tab = 'counter' | 'history'
+
+/**
+ * Synthesize a muted wood-knock (木鱼) percussion tone using Web Audio.
+ * Uses an exponentially-decaying sine + filtered noise for the "thock".
+ */
+function playWoodKnock(ctx: AudioContext) {
+  const now = ctx.currentTime
+  const master = ctx.createGain()
+  master.gain.value = 0.25
+  master.connect(ctx.destination)
+
+  // Body resonance — low sine that decays fast
+  const osc = ctx.createOscillator()
+  const oscGain = ctx.createGain()
+  osc.type = 'sine'
+  osc.frequency.setValueAtTime(260, now)
+  osc.frequency.exponentialRampToValueAtTime(140, now + 0.15)
+  oscGain.gain.setValueAtTime(0.9, now)
+  oscGain.gain.exponentialRampToValueAtTime(0.001, now + 0.18)
+  osc.connect(oscGain).connect(master)
+  osc.start(now)
+  osc.stop(now + 0.2)
+
+  // Attack click — short filtered noise
+  const bufferSize = ctx.sampleRate * 0.05
+  const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate)
+  const data = buffer.getChannelData(0)
+  for (let i = 0; i < bufferSize; i++) data[i] = (Math.random() * 2 - 1) * (1 - i / bufferSize)
+  const noise = ctx.createBufferSource()
+  noise.buffer = buffer
+  const filter = ctx.createBiquadFilter()
+  filter.type = 'bandpass'
+  filter.frequency.value = 1800
+  filter.Q.value = 4
+  const noiseGain = ctx.createGain()
+  noiseGain.gain.setValueAtTime(0.35, now)
+  noiseGain.gain.exponentialRampToValueAtTime(0.001, now + 0.04)
+  noise.connect(filter).connect(noiseGain).connect(master)
+  noise.start(now)
+}
 
 export default function CounterPage() {
   const { counter, counterRecords, incrementCounter, resetCounter, setCounterTarget, saveCounterRecord, deleteCounterRecord, updateCounterRecordNote, showCounterRing } = useStore()
@@ -18,12 +58,22 @@ export default function CounterPage() {
   const [deleteConfirm, setDeleteConfirm] = useState<number | null>(null)
   const [editingIndex, setEditingIndex] = useState<number | null>(null)
   const [editNote, setEditNote] = useState('')
+  const audioCtxRef = useRef<AudioContext | null>(null)
 
   const progress = Math.min(counter.count / counter.target, 1)
 
   const handleTap = () => {
     incrementCounter()
     setPressing(true)
+
+    // Lazy-init audio context on first tap (browsers require user gesture)
+    if (!audioCtxRef.current) {
+      try {
+        const AC = window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext
+        audioCtxRef.current = new AC()
+      } catch { /* audio unavailable */ }
+    }
+    if (audioCtxRef.current) playWoodKnock(audioCtxRef.current)
 
     if (counter.count + 1 >= counter.target) {
       setHitTarget(true)

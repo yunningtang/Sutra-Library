@@ -3,6 +3,7 @@ import { persist } from 'zustand/middleware'
 
 export type ThemeColor = 'celadon' | 'matcha' | 'sky' | 'lavender' | 'peach' | 'amber' | 'rose' | 'slate' | 'teal' | 'ink' | 'custom'
 export type FontChoice = 'serif' | 'sans' | 'system'
+export type ReadingTheme = 'auto' | 'sutra' | 'dark'
 
 interface ReadingRecord {
   sutraId: string
@@ -64,6 +65,7 @@ interface AppState {
   showPinyin: boolean
   showProgress: boolean
   showCounterRing: boolean
+  readingTheme: ReadingTheme
   themeColor: ThemeColor
   customColor: string
   darkMode: boolean
@@ -72,6 +74,8 @@ interface AppState {
   togglePinyin: () => void
   toggleProgress: () => void
   toggleCounterRing: () => void
+  cycleReadingTheme: () => void
+  setReadingTheme: (t: ReadingTheme) => void
   setThemeColor: (color: ThemeColor) => void
   setCustomColor: (hex: string) => void
   toggleDarkMode: () => void
@@ -165,6 +169,7 @@ export const useStore = create<AppState>()(
       showPinyin: true,
       showProgress: true,
       showCounterRing: true,
+      readingTheme: 'auto',
       themeColor: 'celadon',
       customColor: '#A8CBB7',
       darkMode: false,
@@ -173,6 +178,16 @@ export const useStore = create<AppState>()(
       togglePinyin: () => set((state) => ({ showPinyin: !state.showPinyin })),
       toggleProgress: () => set((state) => ({ showProgress: !state.showProgress })),
       toggleCounterRing: () => set((state) => ({ showCounterRing: !state.showCounterRing })),
+      setReadingTheme: (t) => set({ readingTheme: t }),
+      cycleReadingTheme: () =>
+        set((state) => ({
+          readingTheme:
+            state.readingTheme === 'auto'
+              ? 'sutra'
+              : state.readingTheme === 'sutra'
+                ? 'dark'
+                : 'auto',
+        })),
       setThemeColor: (color) => set({ themeColor: color }),
       setCustomColor: (hex) => set({ customColor: hex, themeColor: 'custom' }),
       toggleDarkMode: () => set((state) => ({ darkMode: !state.darkMode })),
