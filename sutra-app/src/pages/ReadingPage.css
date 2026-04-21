@@ -419,18 +419,20 @@
   font-family: var(--font-ui);
   font-size: 14px;
   font-weight: 600;
-  color: var(--on-accent);
+  color: var(--btn-ink-fg);
   padding: 12px 32px;
-  background: linear-gradient(180deg, var(--theme-l), var(--theme-d));
+  background: var(--btn-ink);
   border: none;
   border-radius: var(--r-full);
-  box-shadow: 0 2px 12px color-mix(in srgb, var(--theme) 25%, transparent);
-  transition: all 0.18s ease;
+  letter-spacing: 1px;
+  transition: background 0.25s ease, transform 0.2s cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 0.25s ease;
 }
 
 .completion-btn-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 20px color-mix(in srgb, var(--theme) 30%, transparent);
+  background: var(--btn-ink-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px color-mix(in srgb, var(--theme-d) 22%, transparent);
 }
 
 .completion-btn-primary:active {
@@ -440,11 +442,19 @@
 .completion-btn {
   font-family: var(--font-ui);
   font-size: 14px;
-  color: var(--c-text-mute);
-  padding: 10px 24px;
-  border: 1px solid var(--border-ink);
+  color: var(--c-ink);
+  padding: 10px 28px;
+  border: 1px solid var(--btn-outline);
   border-radius: var(--r-full);
-  transition: all 0.18s ease;
+  background: transparent;
+  letter-spacing: 0.5px;
+  transition: background 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+}
+
+.completion-btn:hover {
+  background: var(--btn-ghost-hover-bg);
+  border-color: var(--btn-ghost-hover-border);
+  color: var(--theme-d);
 }
 
 .completion-btn:hover {
