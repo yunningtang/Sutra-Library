@@ -209,17 +209,21 @@ const fontOptions: { id: FontChoice; label: string; sample: string }[] = [
   { id: 'system', label: '系统', sample: '经' },
 ]
 
-const themeOptions: { id: ThemeColor; label: string; color: string }[] = [
-  { id: 'celadon', label: '青瓷', color: '#A8CBB7' },
-  { id: 'matcha', label: '抹茶', color: '#9DBBA4' },
-  { id: 'sky', label: '天空', color: '#7AB8D9' },
-  { id: 'lavender', label: '薰衣草', color: '#A494CC' },
-  { id: 'peach', label: '蜜桃', color: '#E8A598' },
-  { id: 'amber', label: '琥珀', color: '#D9A84E' },
-  { id: 'rose', label: '玫瑰', color: '#D4849A' },
-  { id: 'slate', label: '岩灰', color: '#7A8B99' },
-  { id: 'teal', label: '青碧', color: '#5BA4A4' },
-  { id: 'ink', label: '墨黑', color: '#3A3A3A' },
+const themeOptions: { id: ThemeColor; label: string; color: string; group: string }[] = [
+  // Greens — cool
+  { id: 'celadon', label: '青瓷', color: '#A8CBB7', group: '绿' },
+  { id: 'matcha', label: '抹茶', color: '#9DBBA4', group: '绿' },
+  { id: 'teal', label: '青碧', color: '#5BA4A4', group: '绿' },
+  // Blues
+  { id: 'sky', label: '天空', color: '#7AB8D9', group: '蓝' },
+  { id: 'lavender', label: '薰衣草', color: '#A494CC', group: '蓝' },
+  // Warms
+  { id: 'peach', label: '蜜桃', color: '#E8A598', group: '暖' },
+  { id: 'rose', label: '玫瑰', color: '#D4849A', group: '暖' },
+  { id: 'amber', label: '琥珀', color: '#D9A84E', group: '暖' },
+  // Neutrals
+  { id: 'slate', label: '岩灰', color: '#7A8B99', group: '灰' },
+  { id: 'ink', label: '墨黑', color: '#3A3A3A', group: '灰' },
 ]
 
 export default function ProfilePage() {
@@ -447,36 +451,61 @@ export default function ProfilePage() {
         <div className="section-title">外观</div>
         <div className="section-card">
           <div className="setting-item setting-theme">
-            <span className="setting-label">主题色</span>
-            <div className="theme-options">
+            <div className="theme-header">
+              <span className="setting-label">主题色</span>
+              <span className="theme-current">
+                {themeColor === 'custom'
+                  ? '自定义'
+                  : themeOptions.find((o) => o.id === themeColor)?.label || ''}
+              </span>
+            </div>
+            <div className="theme-chip-grid">
               {themeOptions.map((opt) => (
                 <button
                   key={opt.id}
-                  className={`theme-dot ${themeColor === opt.id ? 'active' : ''}`}
-                  style={{ '--dot-color': opt.color } as React.CSSProperties}
+                  className={`theme-chip ${themeColor === opt.id ? 'active' : ''}`}
                   onClick={() => setThemeColor(opt.id)}
-                  title={opt.label}
+                  aria-label={opt.label}
+                  aria-pressed={themeColor === opt.id}
                 >
-                  {themeColor === opt.id && <span className="theme-check" />}
+                  <span className="theme-chip-swatch" style={{ background: opt.color }}>
+                    {themeColor === opt.id && (
+                      <svg className="theme-chip-check" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round">
+                        <polyline points="20 6 9 17 4 12" />
+                      </svg>
+                    )}
+                  </span>
+                  <span className="theme-chip-label">{opt.label}</span>
                 </button>
               ))}
               <button
-                className={`theme-dot theme-custom ${themeColor === 'custom' ? 'active' : ''}`}
-                style={{ '--dot-color': customColor } as React.CSSProperties}
+                className={`theme-chip theme-chip-custom ${themeColor === 'custom' ? 'active' : ''}`}
                 onClick={() => { setShowColorPanel(!showColorPanel); setHexInput(customColor) }}
-                title="自定义"
+                aria-label="自定义颜色"
+                aria-pressed={themeColor === 'custom'}
               >
-                <span className="custom-plus">{themeColor === 'custom' ? '' : '+'}</span>
-                {themeColor === 'custom' && <span className="theme-check" />}
+                <span className="theme-chip-swatch" style={{ background: themeColor === 'custom' ? customColor : 'transparent' }}>
+                  {themeColor === 'custom' ? (
+                    <svg className="theme-chip-check" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round">
+                      <polyline points="20 6 9 17 4 12" />
+                    </svg>
+                  ) : (
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                      <line x1="12" y1="5" x2="12" y2="19" />
+                      <line x1="5" y1="12" x2="19" y2="12" />
+                    </svg>
+                  )}
+                </span>
+                <span className="theme-chip-label">自定义</span>
               </button>
-              <input
-                ref={colorInputRef}
-                type="color"
-                className="color-input-hidden"
-                value={customColor}
-                onChange={(e) => { setCustomColor(e.target.value); setHexInput(e.target.value) }}
-              />
             </div>
+            <input
+              ref={colorInputRef}
+              type="color"
+              className="color-input-hidden"
+              value={customColor}
+              onChange={(e) => { setCustomColor(e.target.value); setHexInput(e.target.value) }}
+            />
             {showColorPanel && (
               <div className="color-panel">
                 <div className="color-palette">
@@ -486,6 +515,7 @@ export default function ProfilePage() {
                       className={`palette-dot ${customColor === c && themeColor === 'custom' ? 'active' : ''}`}
                       style={{ background: c }}
                       onClick={() => { setCustomColor(c); setHexInput(c) }}
+                      aria-label={`颜色 ${c}`}
                     />
                   ))}
                 </div>

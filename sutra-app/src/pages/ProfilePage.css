@@ -389,66 +389,113 @@ button.profile-avatar:active {
   transform: scale(0.94);
 }
 
-/* === Theme Color Dots === */
+/* === Theme Color Chips === */
 .setting-theme {
   flex-direction: column;
-  align-items: flex-start;
+  align-items: stretch;
+  gap: 14px;
+}
+
+.theme-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
   gap: 12px;
 }
 
-.theme-options {
-  display: flex;
-  gap: 6px;
+.theme-current {
+  font-family: var(--font-ui);
+  font-size: 12px;
+  color: var(--theme-d);
+  letter-spacing: 1px;
+  font-weight: 600;
+}
+
+.theme-chip-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(64px, 1fr));
+  gap: 10px;
   width: 100%;
 }
 
-.theme-dot {
-  width: 30px;
-  height: 30px;
+.theme-chip {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 4px;
+  border-radius: 10px;
+  background: transparent;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: background 0.22s ease, border-color 0.22s ease,
+              transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.theme-chip:hover {
+  background: var(--btn-ghost-hover-bg);
+}
+
+.theme-chip.active {
+  background: color-mix(in srgb, var(--theme-d) 8%, transparent);
+  border-color: var(--btn-ghost-hover-border);
+}
+
+.theme-chip:active {
+  transform: scale(0.96);
+}
+
+.theme-chip-swatch {
+  position: relative;
+  width: 36px;
+  height: 36px;
   border-radius: var(--r-full);
-  background: var(--dot-color);
-  border: 2.5px solid transparent;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.22s cubic-bezier(0.34, 1.56, 0.64, 1);
-  position: relative;
+  box-shadow:
+    inset 0 0 0 1px rgba(0, 0, 0, 0.06),
+    0 1px 3px rgba(0, 0, 0, 0.08);
+  transition: transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1),
+              box-shadow 0.22s ease;
 }
 
-.theme-dot.active {
-  border-color: var(--c-ink);
-  transform: scale(1.12);
+.theme-chip.active .theme-chip-swatch {
+  transform: scale(1.06);
+  box-shadow:
+    inset 0 0 0 1px rgba(0, 0, 0, 0.1),
+    0 3px 10px color-mix(in srgb, var(--theme-d) 30%, transparent);
 }
 
-.theme-dot:active {
-  transform: scale(0.88);
-}
-
-.theme-check {
-  width: 8px;
-  height: 8px;
-  border-radius: var(--r-full);
-  background: var(--on-accent);
+.theme-chip-check {
+  color: #FFFFFF;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.35));
   animation: activeDot 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-.theme-custom {
-  border: 2.5px dashed var(--c-ink-faint);
-  background: var(--dot-color);
-}
-
-.theme-custom.active {
-  border-style: solid;
-  border-color: var(--c-ink);
-}
-
-.custom-plus {
+.theme-chip-label {
   font-family: var(--font-ui);
-  font-size: 16px;
+  font-size: 11px;
+  color: var(--c-text-mute);
+  letter-spacing: 1px;
+  transition: color 0.22s ease;
+}
+
+.theme-chip.active .theme-chip-label {
+  color: var(--theme-d);
   font-weight: 600;
-  color: var(--on-accent);
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-  line-height: 1;
+}
+
+/* Custom chip — dashed outline on the swatch when unset */
+.theme-chip-custom .theme-chip-swatch {
+  box-shadow: inset 0 0 0 1.5px var(--c-ink-faint);
+  color: var(--c-text-mute);
+}
+
+.theme-chip-custom.active .theme-chip-swatch {
+  box-shadow:
+    inset 0 0 0 1px rgba(0, 0, 0, 0.1),
+    0 3px 10px color-mix(in srgb, var(--theme-d) 30%, transparent);
 }
 
 .color-input-hidden {
@@ -464,11 +511,9 @@ button.profile-avatar:active {
   width: 100%;
   margin-top: 4px;
   padding: 14px;
-  background: color-mix(in srgb, var(--white) 70%, transparent);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: var(--white);
   border: 1px solid var(--border-ink);
-  border-radius: var(--r-md);
+  border-radius: 12px;
   animation: staggerIn 0.3s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
@@ -483,25 +528,33 @@ button.profile-avatar:active {
   width: 100%;
   aspect-ratio: 1;
   border-radius: var(--r-full);
-  border: 2.5px solid transparent;
+  border: 2px solid transparent;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.06);
   transition: all 0.18s cubic-bezier(0.34, 1.56, 0.64, 1);
   cursor: pointer;
 }
 
+.palette-dot:hover {
+  transform: scale(1.08);
+}
+
 .palette-dot.active {
-  border-color: var(--c-ink);
-  transform: scale(1.15);
+  border-color: var(--theme-d);
+  transform: scale(1.12);
+  box-shadow:
+    inset 0 0 0 1px rgba(0, 0, 0, 0.1),
+    0 2px 8px color-mix(in srgb, var(--theme-d) 24%, transparent);
 }
 
 .palette-dot:active {
-  transform: scale(0.88);
+  transform: scale(0.9);
 }
 
 .color-hex-row {
   display: flex;
   align-items: center;
   gap: 6px;
-  background: var(--white);
+  background: var(--cream);
   border: 1px solid var(--border-ink);
   border-radius: var(--r-sm);
   padding: 6px 10px;
@@ -530,19 +583,23 @@ button.profile-avatar:active {
 .hex-pick-btn {
   font-family: var(--font-ui);
   font-size: 12px;
-  font-weight: 500;
-  color: var(--theme);
-  padding: 4px 10px;
-  border-radius: var(--r-sm);
-  background: var(--theme-bg);
-  border: 1px solid var(--theme-xl);
+  font-weight: 600;
+  color: var(--theme-d);
+  padding: 5px 12px;
+  border-radius: var(--r-full);
+  background: var(--btn-ghost-hover-bg);
+  border: 1px solid var(--btn-ghost-hover-border);
   transition: all 0.18s ease;
   flex-shrink: 0;
+  letter-spacing: 0.5px;
+}
+
+.hex-pick-btn:hover {
+  background: color-mix(in srgb, var(--theme-d) 14%, transparent);
 }
 
 .hex-pick-btn:active {
   transform: scale(0.94);
-  opacity: 0.8;
 }
 
 /* === Toggle Switch === */
